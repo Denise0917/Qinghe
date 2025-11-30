@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>关于保卫处个别工作人员行为的情况反映 - 清河大学</title>
+
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  /* 顶部导航 + 搜索条 */
+  .nav-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .nav-links{
+    display:flex;
+    gap:22px;
+    flex-wrap:nowrap;
+  }
+  .nav-search{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:auto;
+  }
+  .nav-search input{
+    width:220px;
+    max-width:260px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #262d3f;
+    background:#0c1119;
+    color:#e8eaee;
+    font-size:13px;
+    outline:none;
+  }
+  .nav-search input::placeholder{
+    color:#737b8c;
+  }
+  .nav-search input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px;
+    border-radius:999px;
+    border:1px solid #36527a;
+    background:#1f2a3f;
+    color:#e8eaee;
+    font-size:13px;
+    cursor:pointer;
+  }
+  .nav-search button:hover{
+    border-color:#4f7dd9;
+    background:#243455;
+  }
+
+  /* 内容卡片 */
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 18px 20px; margin:20px 0 26px; }
+  h1{ margin:0 0 10px; font-size:22px; }
+  .meta-line{ font-size:12px; color:#9aa0a6; margin-bottom:12px; }
+
+  .letter-body{
+    font-size:14px;
+    line-height:1.8;
+    white-space:pre-wrap;
+  }
+  .letter-body p{
+    margin:0 0 10px;
+  }
+  .letter-footer{
+    margin-top:20px;
+    text-align:right;
+    font-size:14px;
+    line-height:1.8;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 登录模态兜底（main.js 会复用） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、监控、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="muted small" style="margin:10px 2px 6px;">
+    <a href="../index.html">首页</a> · <a href="../archive.html">校史档案 / 记录</a> · 投诉信节选
+  </div>
+
+  <div class="card">
+    <h1>关于保卫处个别工作人员行为的情况反映</h1>
+    <div class="meta-line">
+      提交渠道：校园安全与权益网上投诉平台（匿名）　|　涉及地点：B-4 楼周边路段
+    </div>
+
+    <div >
+      <p>尊敬的学校相关部门领导：</p>
+      <p>您好！我是一名长期在图书馆自习的在校女学生。出于对自身安全和其他女同学安全的担忧，特通过校园安全投诉渠道，向学校反映保卫处一位值班人员在夜间值守期间存在的不当行为。</p>
+      <p>具体情况如下：</p>
+      <p>一、<strong>多次在夜间回宿舍路上被持续盯视</strong></p>
+      <p>本学期以来，我基本每天都会在晚自习结束后于 21:30 左右，从图书馆沿着主干道步行回西苑宿舍。路线上会经过 B-4 实验楼旁的一段路灯较暗的路段。大约从 3 月中旬开始，我多次在该路段看到一位身穿保安制服、中年男性值班人员。</p>
+      <p>他常常站在 B-4 楼旁边的树荫或墙边位置，在我经过时长时间盯着我看，目光从上到下打量，让人感到非常不适。有几次我刻意减慢或加快脚步，甚至暂时停下看手机，他仍然一直看着我，直到我走远。</p>
+      <p>起初我以为可能是正常巡逻，但类似情况在不同日期、不同时间段多次出现，而且不仅是我，身边也有女生提到“每晚路过那段路都觉得被人盯着”。这已经对我们造成了持续的心理压力和恐惧感。</p>
+      <p>二、<strong>在公共场合使用贬低女性的言语</strong></p>
+      <p>此外，在 4 月下旬的一次晚上，我和同学结伴从图书馆回宿舍，途经 B 区时，曾听到保卫处值守人员（声音与上述人员相似）在值班室门口与同事聊天。当时周围还有其他学生经过，他并没有刻意压低声音。</p>
+      <p>对话大意包括：“今天在那边看到几个小姑娘，穿得那个样子”“身材怎么样”“看起来就很会玩”等内容，带有明显物化、揣测女学生私生活的意味。虽然未点出姓名，但这种公开场合随意评价女生外貌和“私生活”的言论，让人感到非常被冒犯和不被尊重。</p>
+      <p>作为一名普通女学生，我无法判断对方是否就是负责 B-4 楼附近的那位保安，但制服、体貌特征和声音都高度相似。无论如何，这样的言行都与“维护校园安全”的岗位职责严重不符。</p>
+      <p>三、<strong>由此带来的影响与诉求</strong></p>
+      <p>（一）主观感受上，我们在夜间通过 B-4 楼附近时，已经从“觉得有保安在比较安全”，变成了“宁可绕远路也不想从那里走”，这与校园安保本应提供的安全感完全相反。</p>
+      <p>（二）在女生群体中，这一现象已经开始被悄悄讨论，一些同学会互相提醒“晚上尽量不要一个人从 B-4 那里过”，大家对“值班人员的态度”和“学校是否重视学生反映”产生了疑问。</p>
+      <p>（三）我理解安保工作辛苦，夜间值守也不容易，但职位本身意味着应当时刻注意自己的言行举止，避免给学生造成额外的心理负担，更不应该有明显物化和贬低女性的言论。</p>
+      <p>基于上述情况，我有以下几点请求：</p>
+      <p>1. 希望学校相关部门能对该路段相关值班人员的行为进行调查和约谈，提醒并规范个人言行；<br/>
+         2. 在不公开当事人身份的前提下，向学生群体重申学校对于保障女生安全和尊重学生人格尊严的态度；<br/>
+         3. 适当加强 B-4 楼周边路段的照明和监控覆盖，让夜间回宿舍的同学可以有更真实的安全感，而不是被迫绕路。</p>
+      <p>我理解有些情况可能缺乏直接证据，也不希望因此引发不必要的矛盾或极端处理，但仍希望学校能够重视女生的主观感受，认真看待这种看似“只是盯着看、只是随口说两句”的小事。</p>
+      <p>写下这封投诉信，是出于对学校的信任，以及对自己和身边同学安全的基本期待。感谢您在百忙之中阅读这封较长的来信，恳请予以重视并妥善处理。</p>
+    </div>
+
+    <div class="letter-footer">
+      反映人：一名在校女学生（匿名）<br/>
+      提交日期：2025 年 3 月 5 日
+    </div>
+
+    <p class="small muted" style="margin-top:10px;">
+      注：本件为校园安全投诉平台导出的文字节选，涉及个人隐私信息已作技术处理，仅用于内部研判与教学案例，不对外公开。
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态（main.js 会自动复用） -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code> 密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

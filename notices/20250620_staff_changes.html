@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>关于部分教职工岗位调整及聘用关系处理的通知 - 清河大学</title>
+
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee;
+        font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px;
+                 display:flex; justify-content:space-between; align-items:center; gap:10px; }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap.nav-wrap{
+    max-width:1200px; margin:0 auto; padding:0 14px;
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .nav-links{ display:flex; gap:22px; flex-wrap:nowrap; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  /* 顶部搜索 */
+  .nav-search{ display:flex; align-items:center; gap:6px; margin-left:auto; }
+  .nav-search input{
+    width:220px; max-width:260px; padding:6px 10px; border-radius:999px;
+    border:1px solid #262d3f; background:#0c1119; color:#e8eaee; font-size:13px; outline:none;
+  }
+  .nav-search input::placeholder{ color:#737b8c; }
+  .nav-search input:focus{
+    border-color:#3b82f6; box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px; border-radius:999px; border:1px solid #36527a;
+    background:#1f2a3f; color:#e8eaee; font-size:13px; cursor:pointer; white-space:nowrap;
+  }
+  .nav-search button:hover{ border-color:#4f7dd9; background:#243455; }
+
+  /* 内容卡片 */
+  .card{
+    background:#141822; border:1px solid #202636; border-radius:12px;
+    padding:18px 18px 20px; margin:20px 0 26px;
+  }
+  h1{ margin:0 0 10px; font-size:22px; }
+  h2{ margin:18px 0 10px; font-size:18px; }
+
+  .meta-line{ font-size:12px; color:#9aa0a6; margin-bottom:12px; }
+
+  table.staff-table{
+    width:100%; border-collapse:collapse; margin-top:8px; font-size:13px;
+  }
+  .staff-table th,.staff-table td{
+    border:1px solid #232b3b; padding:8px 10px; text-align:left;
+  }
+  .staff-table th{
+    background:#181f2c; font-weight:600; color:#d5d9e5;
+  }
+  .staff-table tbody tr:nth-child(even){ background:#111724; }
+  .staff-table .danger{ color:#ff6b6b; font-weight:600; }
+
+  .note-box{
+    margin-top:14px; padding:10px 12px;
+    border-radius:8px; background:#111724; border:1px dashed #28334a;
+    font-size:12px; color:#9aa0a6; line-height:1.6;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{
+    max-width:1200px; margin:0 auto; padding:18px 14px;
+    color:#97a0ad; font-size:12px; display:flex; justify-content:space-between;
+  }
+
+  /* 登录模态兜底 */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55);
+              display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{
+    width:380px; background:#141822; border:1px solid #202636;
+    border-radius:12px; padding:16px;
+  }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px;
+          padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px;
+        color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input type="text" id="siteSearchInput" name="q"
+             placeholder="搜索：B-4、门禁记录、奖学金…" autocomplete="off"/>
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="muted small" style="margin:10px 2px 6px;">
+    <a href="/index.html">首页</a> · 通知公告 · 人员岗位调整
+  </div>
+
+  <div class="card">
+    <h1>关于部分教职工岗位调整及聘用关系处理的通知</h1>
+    <div class="meta-line">
+      发布时间：2025-06-20　|　发布单位：人力资源部（人事处）　
+      文号：清河人事〔2025〕16 号
+    </div>
+
+    <p>
+      根据学校事业发展需要和年度聘期考核结果，经校长办公会审议通过，
+      现对部分教职工岗位聘用及人事关系作出如下调整。
+      现将有关情况通告如下：
+    </p>
+
+    <h2>一、续聘及岗位调整人员</h2>
+    <table class="staff-table">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>姓名</th>
+          <th>所在单位</th>
+          <th>原岗位</th>
+          <th>调整后岗位/状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>王&nbsp;晨</td>
+          <td>信息学部</td>
+          <td>讲师</td>
+          <td>经考核合格，续聘为讲师，聘期三年。</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>刘&nbsp;洁</td>
+          <td>生命与健康学院</td>
+          <td>实验师</td>
+          <td>调整至实验教学中心，承担公共实验教学管理工作。</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>赵&nbsp;明</td>
+          <td>图书馆</td>
+          <td>馆员</td>
+          <td>续聘并兼任文献资源建设小组组长。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>二、调任及借调人员</h2>
+    <table class="staff-table">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>姓名</th>
+          <th>原单位</th>
+          <th>现单位</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>4</td>
+          <td>周&nbsp;瑜</td>
+          <td>后勤与基建处</td>
+          <td>资产与招标管理处</td>
+          <td>调任资产管理岗，负责固定资产统筹。</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>李&nbsp;青</td>
+          <td>学生工作部</td>
+          <td>学生心理中心</td>
+          <td>借调一年，参与学生心理健康教育与咨询工作。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>三、终止聘用及解除劳动关系人员</h2>
+    <table class="staff-table">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>姓名</th>
+          <th>所在单位</th>
+          <th>原岗位</th>
+          <th>处理意见</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>6</td>
+          <td>黄&nbsp;立</td>
+          <td>后勤与基建处</td>
+          <td>维修工</td>
+          <td>聘期届满，经本人申请及用人单位同意，终止聘用关系。</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="danger">张国权</td>
+          <td>后勤保卫处</td>
+          <td>B-4 楼安保及设备管理员</td>
+          <td >
+            经调查核实，张国权在值班期间多次未按规定履行巡查与监控值守职责，
+            对 2025 年上半年发生的相关安全事故负有直接管理责任。
+            依据《清河大学教职工聘用管理暂行办法》《校园安全工作责任制实施细则》，
+            决定自本通知下发之日起解除与其签订的劳动合同，取消校内一切聘任职务，
+            并将有关情况通报合作安保公司和后勤外包单位备案。
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      说明：<br/>
+      1. 本通知所涉人员，如对聘用及岗位调整结果有异议，可在通知发布之日起
+      5 个工作日内向人力资源部（人事处）书面反映情况。<br/>
+      2. 各单位要做好相关人员的工作交接与思想沟通，确保教学、科研、
+      后勤保障等工作平稳有序衔接。<br/>
+      3. 本通知仅供校内查阅，未经允许不得对外扩散或用于与工作无关的用途。
+    </div>
+
+    <p style="margin-top:16px; text-align:right;">
+      清河大学人力资源部（人事处）<br/>
+      2025 年 6 月 20 日
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="/overview.html">学校概况</a> · <a href="/organization.html">组织机构</a> · <a href="/education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 登录模态兜底（main.js 会复用） -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025A0917"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

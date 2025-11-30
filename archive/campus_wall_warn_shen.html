@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>校园墙 · [避雷] 选导师慎重，关于信息学部某位“王牌”老师的提醒 - 清河大学</title>
+
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee;
+        font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px;
+                 display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px;
+            border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; }
+
+  /* 导航 + 顶部搜索 */
+  .nav-wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .nav-links{ display:flex; gap:22px; flex-wrap:nowrap; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .nav-search{
+    display:flex; align-items:center; gap:6px; margin-left:auto;
+  }
+  .nav-search input{
+    width:220px; max-width:260px; padding:6px 10px;
+    border-radius:999px; border:1px solid #262d3f;
+    background:#0c1119; color:#e8eaee; font-size:13px; outline:none;
+  }
+  .nav-search input::placeholder{ color:#737b8c; }
+  .nav-search input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px; border-radius:999px; border:1px solid #36527a;
+    background:#1f2a3f; color:#e8eaee; font-size:13px; cursor:pointer;
+  }
+  .nav-search button:hover{
+    border-color:#4f7dd9; background:#243455;
+  }
+
+  /* 帖子卡片 */
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px;
+         padding:18px 18px 20px; margin:20px 0 26px; }
+  .thread-title{
+    font-size:20px; font-weight:600; margin:0 0 6px;
+  }
+  .thread-meta{
+    font-size:12px; color:#9aa0a6; margin-bottom:10px;
+  }
+  .thread-meta span + span::before{
+    content:"·"; margin:0 4px; color:#50586a;
+  }
+  .thread-body{
+    margin-top:8px; font-size:14px; line-height:1.7; white-space:pre-wrap;
+  }
+
+  .divider{
+    border-top:1px solid #202636; margin:14px -18px 10px; padding-top:10px;
+  }
+
+  /* 回帖列表 */
+  .reply-list{
+    list-style:none; margin:0; padding:0;
+  }
+  .reply-item{
+    padding:10px 0 12px;
+    border-bottom:1px dashed #223046;
+  }
+  .reply-head{
+    display:flex; align-items:center; justify-content:space-between; gap:6px;
+    font-size:12px; color:#a3adbd;
+  }
+  .reply-author{
+    font-weight:500; color:#d5d9e4;
+  }
+  .reply-floor{
+    color:#7f8797;
+  }
+  .reply-time{
+    color:#7f8797;
+  }
+  .reply-body{
+    margin-top:6px; font-size:14px; line-height:1.6;
+    white-space:pre-wrap;
+  }
+
+  .op-tag{
+    display:inline-block; margin-left:6px;
+    padding:1px 6px; border-radius:999px; font-size:11px;
+    border:1px solid #3751a8; color:#9fb3ff; background:#151d38;
+  }
+
+  .badge-hot{
+    display:inline-block; margin-left:8px; padding:1px 6px;
+    border-radius:999px; border:1px solid #b45309;
+    font-size:11px; color:#fed7aa; background:#451a03;
+  }
+
+  .tag-pill{
+    display:inline-block; padding:1px 7px;
+    border-radius:999px; border:1px solid #2b3854;
+    background:#162136; font-size:11px; margin-left:6px; color:#cdd6e3;
+  }
+
+  .quote{
+    margin-top:6px; padding:6px 8px;
+    border-radius:6px; background:#111724; border:1px dashed #28334a;
+    font-size:12px; color:#9aa0a6;
+  }
+
+  .hint-box{
+    margin-top:12px; padding:8px 10px;
+    border-radius:8px; background:#111724; border:1px dashed #28334a;
+    font-size:12px; color:#9aa0a6;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px;
+                color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 兜底登录模态（main.js 会自动复用） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55);
+              display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636;
+                   border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px;
+          padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px;
+        color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="../index.html">首页</a> · <span>校园墙（毕业生避雷贴 · 节选截图）</span>
+  </div>
+
+  <div class="card">
+    <!-- 主楼：避雷帖 -->
+    <div>
+      <h1 class="thread-title">
+        [避雷] 信息学部某位“王牌”导师，学弟学妹慎重考虑
+        <span class="badge-hot">热帖 · 置顶过</span>
+      </h1>
+      <div class="thread-meta">
+        <span>来自：<strong>校园墙 · 匿名树洞</strong></span>
+        <span>板块：<span class="muted">#选导师 #避雷 #信息学部</span></span>
+        <span>发布时间：2025-03-08 22:07</span>
+      </div>
+      <div class="thread-body">
+先报备一下身份：已经<strong>毕业两年</strong>的老学姐（信息学部），现在在外面工作了，跟学校和实验室的利益已经没太大关系了，只是想给选导师的学弟学妹一点<strong>中立的提醒</strong>。
+
+说的是哪位，大家应该能猜到：  
+信息学部那位到处都被吹成「王牌」的老师，项目一堆、文章一堆，学院宣传推文常客，动不动就被拿出来当招生牌面。
+
+先说<strong>好处</strong>：
+- 手里项目多是真的，多到你怀疑他到底哪来那么多时间；  
+- 如果能真正成为他认可的核心学生，<strong>保研 / 推免 / 各种奖学金</strong>，确实有很大概率拿到；  
+- 对外的资源、竞赛、合作单位，也确实有，用得好的话，对履历帮助不小。
+
+但问题也非常现实，而且<strong>对不同性别的学生差别巨大</strong>：
+
+1）对男生：  
+- 几乎所有杂活、体力活、熬夜盯实验、改文档的<strong>底层工作</strong>，基本都丢给男生；  
+- 白天开会、晚上跑实验、周末做汇报，<strong>占用你全部时间</strong>是真；  
+- 你如果说自己扛不住了，对方会一脸「年轻人怎么这么矫情」的态度，顺便给你上价值观课。
+
+2）对女生：  
+- 表面上非常照顾，语气温柔、永远笑眯眯；  
+- 喜欢<strong>单独叫女学生谈话</strong>，理由从「项目进度」到「人生规划」都有；  
+- 被他「关照」过的女学生里，<strong>拿到保研 / 各种奖项的人比例确实很高</strong>，这个无法否认。
+
+问题是，很多人都开始怀疑：  
+<strong>这种「关照」到底有没有越界。</strong>
+
+在我读书那几年，内部其实已经有不少关于他的<strong>小道消息</strong>：
+- 有人说他喜欢晚上约女学生在实验室谈话，时间一谈就是好几个小时；  
+- 有人说他的微信聊天非常暧昧，动不动就夸人「懂事」「乖」「很特别」；  
+- 也有学妹说，自己被他言语上「试探过」，靠装傻+开玩笑才糊弄过去。
+
+这类事情，站在外面看，你可能会觉得是学生们敏感、想太多。  
+但当每一届都有人在说类似的话，你就会开始怀疑：  
+<strong>是不是系统性的问题，而不是个别误会。</strong>
+
+还有一件在校内<strong>被刻意压低音量</strong>的事：  
+具体细节我不会展开，只能模糊说一句——
+
+很多人应该听说过，几年前在<strong>B-4 楼</strong>有个女生自杀了。  
+当时官方说法只提到是「个人心理原因」，希望同学不要传播不实信息。
+
+是不是因为这位「王牌」老师，我不能下定论；  
+但我听到的多个版本，指向的都是同一个人。
+
+所以我想说的是：
+
+<strong>1. 他确实是资源多、项目多的王牌，但也意味着，你在一套很强势的权力结构下面。</strong>  
+<strong>2. 对男生来说，你可能会被当成无限透支的「工具人」。</strong>  
+<strong>3. 对女生来说，你要非常清楚自己的边界，任何让你觉得不舒服的单独约谈、暧昧语言，都要及时拉红线。</strong>  
+
+学弟学妹们，选导师的时候，别只看简历和获奖名单。  
+<strong>问问高年级、问问毕业的前辈，再决定要不要把自己几年的时间交出去。</strong>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 回帖列表 -->
+    <ul class="reply-list">
+
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">已毕业 · 信息学部 18 级</span>
+            <span class="op-tag">楼主</span>
+          </div>
+          <div class="reply-time">1楼 · 2025-03-08 22:07</div>
+        </div>
+        <div class="reply-body">
+补充一句：不要来问我是哪个实验室的、是哪一届的，我不会回答。  
+发出来只是希望你们知道，档案和宣传背后，有一些是永远不会写进简介里的东西。
+        </div>
+      </li>
+
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">信息学部在读</span>
+            <span class="reply-floor">2楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 22:15</div>
+        </div>
+        <div class="reply-body">
+看到标题就知道是说谁了🙂  
+现役学生确认：男生真的是各种被当工具人用，搬设备、接线、改 PPT、写中期报告、通宵跑脚本……  
+每次他在群里@，点名的永远是几个男生。
+        </div>
+      </li>
+
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">「被聊过人生规划的」</span>
+            <span class="reply-floor">3楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 22:23</div>
+        </div>
+        <div class="reply-body">
+女学生路过。  
+确实被他单独叫过去聊过几次「人生规划」「职业发展」，时间都在晚上，话题也会慢慢滑到一些让人不太舒服的位置。
+
+他有时候还会动手动脚的，那种<strong>紧贴着边界试探</strong>的感觉，非常强。  
+后来我主动申请换课题换导师，才慢慢淡掉联系。
+
+不敢说所有人都这样，但<strong>至少我个人的体验是不再想和他打交道</strong>。
+        </div>
+      </li>
+
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">实验室前成员</span>
+            <span class="reply-floor">4楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 22:31</div>
+        </div>
+        <div class="reply-body">
+从项目角度讲，他确实能带人出成果，这是事实。  
+我在他那边发过一篇文章、拿过一次奖学金，简历上是好看的。
+
+但代价是：  
+<strong>你要习惯 24 小时待命</strong>，哪怕是跨年那天，他也会在群里丢消息说「这个数据能不能看一下」「这个表重新做一下」。  
+你只要没回，他就会在第二天当众问你「昨天晚上在干嘛？」那种。
+
+对我这种对边界比较敏感的人来说，精神压力很大。
+        </div>
+      </li>
+
+      <!-- 谈到 B-4 楼往事的楼层 -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">听过一些旧事的</span>
+            <span class="reply-floor">5楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 22:39</div>
+        </div>
+        <div class="reply-body">
+你们说的那些「小道消息」，我不确定。  
+但<strong>B-4 楼自杀那件事</strong>，我们那届传得非常厉害。
+
+只敢用很模糊的方式说：  
+据说当年有个女生，被某位老师<strong>单独叫去实验室谈了很久</strong>，然后就......
+后来被说是「因为个人原因选择了极端方式」，学校通告写d，名字也不提。
+
+        </div>
+      </li>
+
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">嘘——</span>
+            <span class="reply-floor">6楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 22:41</div>
+        </div>
+        <div class="reply-body">
+<strong>嘘 小声点，这个自杀事件</strong>。  
+这件事在校内本来就不让提，之前有同学在公开群里问，被老师当场打断，说「不要再传播未经证实的说法」。
+        </div>
+      </li>
+
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">好奇详情的吃瓜人</span>
+            <span class="reply-floor">7楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 22:45</div>
+        </div>
+        <div class="reply-body">
+求问 5 楼说的那个自杀事件，<strong>到底是怎样个过程</strong>？  
+是那种单独谈完话以后，女生就被推了什么决定吗？还是……发生了别的什么？
+        </div>
+      </li>
+
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">「别问我是谁」</span>
+            <span class="reply-floor">8楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 22:52</div>
+        </div>
+        <div class="reply-body">
+能说的只有一点点，大家自己判断就好：
+
+- 那天晚上的确有老师以「项目沟通」的名义，把她叫去了实验楼；  
+- 有人说她被老师<strong>那个了</strong>，然后才zs的；  
+- 有同宿舍的人后来提过，那个老师之前就一直这样，一直叫她去，pua她。
+
+<strong>你们不需要知道百分百的真相，只需要记住：  
+当一个成年人掌握了你的成绩、奖学金、保研资格的时候，他任何一点点越界，都足够可怕。</strong>
+        </div>
+      </li>
+
+      <!-- 有人劝不要传得太具体 -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">“走得太远就不好了”</span>
+            <span class="reply-floor">9楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 23:00</div>
+        </div>
+        <div class="reply-body">
+提醒一下楼里各位：  
+这里毕竟只是<strong>匿名墙</strong>，大家说的话也不会变成正式的调查结论。
+
+可以提醒学弟学妹「要有边界感」，但如果开始把一切都当成事实，那就变成另一种伤害了——对那位女生，对她的家人，对所有受过类似事情困扰的人，都是一种二次消费。
+
+<strong>请在心里记住这件事，但说话的时候留一点分寸。</strong>
+        </div>
+      </li>
+
+      <!-- 有人从“避雷”角度继续说 -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">「真的只是想提醒」</span>
+            <span class="reply-floor">10楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 23:09</div>
+        </div>
+        <div class="reply-body">
+我理解 9 楼的意思。  
+但从「避雷」角度讲，有些东西如果完全不说，后来的人就永远只看到<strong>简历上的光鲜</strong>。
+
+所以我会这样对学弟妹总结：
+
+- 如果你是男生，想去他那边拿资源——要准备好被<strong>压榨到极限</strong>；  
+- 如果你是女生，身边又没有可以信任的同伴帮你一起扛，就<strong>慎重再慎重</strong>；  
+- 无论性别，只要你在任何一次交流里感到不舒服，就要学会说「不」，而不是想着「算了，他是老师」。
+
+这也许不是「事实真相」，但至少是很多人真实的感受。
+        </div>
+      </li>
+
+      <!-- 有人出来说“也有例外” -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">“可能我是例外吧”</span>
+            <span class="reply-floor">11楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 23:18</div>
+        </div>
+        <div class="reply-body">
+女学生现身说法：  
+我也在他那边带过项目，确实拿过奖学金、最后也保研了——但是我们之间<strong>从来没有发生过任何暧昧的事情</strong>，他对我一直是普通师生界限。
+
+所以我会说：  
+<strong>1）他不是对所有人都越界；  
+2）正因为不是「所有人」，才更让人分不清哪里是界限。</strong>
+
+这种「对一部分人很好，对另一部分人很可怕」的状态，本身就很让人不安。
+        </div>
+      </li>
+
+      <!-- 有人补充“对男生的压榨” -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">前工具人</span>
+            <span class="reply-floor">12楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 23:26</div>
+        </div>
+        <div class="reply-body">
+男生视角：  
+我在他那边待了一年多，感受就是——  
+<strong>完全就是牛马！！！</strong>。
+
+要资料：叫你去搬。  
+要改文：叫你通宵改。  
+出了成果：署名的时候，你可能只是一串很靠后的「学生」。  
+他根本不会管学生怎么样，对他最重要的东西就是MemViz和他的实验室
+
+后来我跟别的老师聊起这个，得到的回应是：「你们年轻人吃点苦没什么」。  
+那一刻我突然发现，从上到下好像都觉得这很正常。
+
+所以避雷不仅是避某一个人，也是避一整套<strong>默认你应该沉默的环境</strong>。
+        </div>
+      </li>
+
+      <!-- 有人把话拉回“选导师建议” -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">“写给正在纠结的你”</span>
+            <span class="reply-floor">13楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 23:35</div>
+        </div>
+        <div class="reply-body">
+给正在选导师的同学几点实用建议：
+
+1. 不要只看「发了几篇顶会」，也要看<strong>他带出来的学生现在过得怎样</strong>。  
+2. 尽量找<strong>两三个不同届的学长学姐</strong>问同一个问题，别只听一面的评价。  
+3. 任何时候，都要给自己保留<strong>退出的空间</strong>，不要把「跟了他就一定能保研」当成唯一选项。
+
+<strong>好导师会尊重你的界限，坏导师会消耗你对整套系统的信任。</strong>
+        </div>
+      </li>
+
+      <!-- 有人质疑墙上说法的可靠性 -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">“墙上的话也别全信”</span>
+            <span class="reply-floor">14楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 23:44</div>
+        </div>
+        <div class="reply-body">
+虽然我对他也没什么好感，但还是要说一句：  
+<strong>校园墙不是纪检委</strong>，这里的东西有真有假，有体验也有情绪，不能把每一句都当成裁决。
+
+对学弟妹来说，也许更好的用法是：
+
+- 把这些帖子当成「预警」，  
+- 然后自己多去打听、多去观察，  
+- 再决定要不要把自己的时间和信任交给某个人。
+        </div>
+      </li>
+
+      <!-- 有人把话拉回 B-4 楼自杀的传言 -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">“B-4 那个阴影一直在”</span>
+            <span class="reply-floor">15楼</span>
+          </div>
+          <div class="reply-time">2025-03-08 23:52</div>
+        </div>
+        <div class="reply-body">
+每一年都会有新生路过 B-4 楼，然后有人给他们讲「当年的故事」。  
+版本细节不一样，但共同点是：  
+<strong>大家都觉得那件事不应该只是被写成「心理问题」几个字。</strong>
+
+你问我真相是什么，我不知道。  
+我只知道，当一个人感到彻底绝望的时候，绝望很少只来自于她自己。
+        </div>
+      </li>
+
+      <!-- 收束楼层 -->
+      <li class="reply-item">
+        <div class="reply-head">
+          <div>
+            <span class="reply-author">楼主 · 已毕业</span>
+            <span class="reply-floor">16楼</span>
+          </div>
+          <div class="reply-time">2025-03-09 00:03</div>
+        </div>
+        <div class="reply-body">
+看到这么多回复，有点复杂。
+
+想再强调一遍：  
+<strong>1）帖子只是一些人的真实体验，不是官方定性；  
+2）我不鼓励人肉，不鼓励网暴，只希望后来的人别太天真；  
+3）如果你已经在他的体系里，也请好好保护自己，必要的时候，可以向校内心理中心、人力部门、可信任的老师求助。</strong>
+
+写这些，不是为了给谁判刑，而是想告诉你——  
+当你觉得哪里不对劲的时候，你的直觉往往没有错。
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="hint-box">
+      提示：本页为“校园墙”匿名帖子节选页面，仅作为剧情线索展示，内容均为虚构，不代表学校或任何真实机构的立场。
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态（main.js 会自动复用） -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code>密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

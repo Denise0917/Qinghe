@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>2021级信息学部女生宿舍安排（节选） - 清河大学</title>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; display:flex; gap:22px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 18px 20px; margin:20px 0 26px; }
+
+  h1{ margin:0 0 10px; font-size:22px; }
+  h2{ margin:18px 0 10px; font-size:18px; }
+
+  .meta-line{ font-size:12px; color:#9aa0a6; margin-bottom:12px; }
+
+  table.dorm-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:6px;
+    font-size:13px;
+  }
+  .dorm-table th,
+  .dorm-table td{
+    border:1px solid #232b3b;
+    padding:8px 10px;
+    text-align:left;
+  }
+  .dorm-table th{
+    background:#181f2c;
+    font-weight:600;
+  }
+  .dorm-table tbody tr:nth-child(even){
+    background:#111724;
+  }
+/* 模糊显示的文字（看得出有字，但无法辨认） */
+.blur-text{
+  color:#c3cad5;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+
+/* 鼠标悬停时也保持模糊，防止“对着看” */
+.blur-text:hover{
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+
+  .hl{
+    color:#f5c96a;
+    font-weight:600;
+  }
+  .note-box{
+    margin-top:14px;
+    padding:10px 12px;
+    border-radius:8px;
+    background:#111724;
+    border:1px dashed #28334a;
+    font-size:12px;
+    color:#9aa0a6;
+    line-height:1.6;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 兜底登录模态（main.js 会自动复用） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h1>2021 级信息学部女生宿舍安排（节选）</h1>
+    <div class="meta-line">
+      资料来源：学生工作部 · 信息学部　|　校区：清河校区　|　楼宇：西苑学生公寓
+    </div>
+
+    <p class="small muted">
+      说明：本页为 2021 级信息学部新生入住信息，仅展示与
+      <span class="hl">西苑 3 栋 412 宿舍</span> 相关记录。
+    </p>
+
+    <h2>一、西苑 3 栋 · 4 层宿舍分配</h2>
+    <table class="dorm-table">
+      <thead>
+        <tr>
+          <th>楼栋</th>
+          <th>房间号</th>
+          <th>床位</th>
+          <th>姓名</th>
+          <th>学号/身份</th>
+          <th>学院 / 专业方向</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 412 宿舍：林澜 + 陈思芸，其余模糊 -->
+        <tr>
+          <td>西苑 3 栋</td>
+          <td class="hl">412</td>
+          <td>A 床</td>
+          <td class="hl">林澜</td>
+          <td>2021A0831</td>
+          <td>信息学部 · 人机交互与认知计算</td>
+        </tr>
+        <tr>
+          <td>西苑 3 栋</td>
+          <td class="hl">412</td>
+          <td>B 床</td>
+          <td class="hl">陈思芸（邮箱：chen.siyun@stu.qh.edu）</td>
+          <td>2021A0421</td>
+          <td>信息学部 · 智能媒体技术方向</td>
+        </tr>
+ <tr>
+  <td>西苑 3 栋</td>
+  <td class="hl">412</td>
+  <td>C 床</td>
+  <td><span class="blur-text">李&nbsp;晓彤</span></td>
+  <td><span class="blur-text">2021A0753</span></td>
+  <td><span class="blur-text">信息学部 · 信息安全</span></td>
+</tr>
+<tr>
+  <td>西苑 3 栋</td>
+  <td class="hl">412</td>
+  <td>D 床</td>
+  <td><span class="blur-text">周&nbsp;宁</span></td>
+  <td><span class="blur-text">2021A0918</span></td>
+  <td><span class="blur-text">信息学部 · 计算机科学与技术</span></td>
+</tr>
+
+
+        <!-- 旁边几间房，全部模糊，增加“合理性”，但不暴露角色 -->
+        <tr>
+          <td>西苑 3 栋</td>
+          <td>410</td>
+          <td>A–D</td>
+          <td class="name-blur">4 名同学（信息工程）</td>
+          <td class="name-blur">2021A0***</td>
+          <td>信息学部 · 信息工程</td>
+        </tr>
+        <tr>
+          <td>西苑 3 栋</td>
+          <td>414</td>
+          <td>A–D</td>
+          <td class="name-blur">4 名同学（数据科学）</td>
+          <td class="name-blur">2021B0***</td>
+          <td>信息学部 · 数据科学与大数据技术</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      提示：因学生信息保护要求，系统公开版本仅展示与宿舍整体安排相关的基础信息，不含联系方式等敏感字段；
+      如需用于辅导员工作或寝室调整，请登录学生工作管理系统查看完整数据。
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态 -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：player@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

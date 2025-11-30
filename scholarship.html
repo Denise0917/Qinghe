@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>奖学金申报系统 - 清河大学</title>
+
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/main.js" defer></script>
+<script src="js/auth.js" defer></script>
+
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; display:flex; gap:22px; align-items:center; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  /* 顶部导航 + 搜索条（和 index 一致） */
+  .nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .nav-links{display:flex;gap:22px;flex-wrap:nowrap;}
+  .nav-search{display:flex;align-items:center;gap:6px;margin-left:auto;}
+  .nav-search input{
+    width:220px;max-width:260px;padding:6px 10px;border-radius:999px;
+    border:1px solid #262d3f;background:#0c1119;color:#e8eaee;font-size:13px;outline:none;
+  }
+  .nav-search input::placeholder{color:#737b8c;}
+  .nav-search input:focus{
+    border-color:#3b82f6;box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px;border-radius:999px;border:1px solid #36527a;
+    background:#1f2a3f;color:#e8eaee;font-size:13px;cursor:pointer;
+  }
+  .nav-search button:hover{border-color:#4f7dd9;background:#243455;}
+
+  /* 卡片布局 */
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:16px 18px 18px; margin:16px 0; }
+  .card h1{ margin:0 0 8px; font-size:22px; }
+  .card h2{ margin:12px 0 8px; font-size:18px; }
+  .card p{ margin:4px 0 8px; line-height:1.6; }
+
+  .badge-year{
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:999px;
+    border:1px solid #2b3854;
+    background:#162136;
+    font-size:12px;
+    margin-left:6px;
+  }
+
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+
+  .btn-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+
+  table.sch-table{
+    width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;
+  }
+  .sch-table th,.sch-table td{
+    border-bottom:1px solid #202636;padding:8px 6px;text-align:left;
+  }
+  .sch-table th{color:#cfd6df;font-weight:600;}
+  .sch-table tbody tr:nth-child(even){background:#111724;}
+  .tag-major{
+    display:inline-block;padding:2px 6px;border-radius:999px;
+    border:1px solid #28334a;background:#111724;font-size:11px;margin-left:4px;
+  }
+  .highlight-name{color:#f5c96a;font-weight:600;}
+
+  .note-box{
+    margin-top:10px;padding:8px 10px;border-radius:8px;
+    background:#111724;border:1px dashed #28334a;font-size:12px;color:#9aa0a6;line-height:1.6;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 登录模态兜底（main.js 会复用） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+</style>
+</head>
+<body>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    if (typeof getAuth !== 'function') return;
+    const a = getAuth();
+    if (!a || a.id !== 'U-LL') return;
+
+    const container = document.querySelector('.container');
+    if (!container) return;
+    if (document.getElementById('frozenBanner')) return;
+
+    const div = document.createElement('div');
+    div.id = 'frozenBanner';
+    div.className = 'card';
+    div.style.marginTop = '14px';
+    div.innerHTML = `
+      <p class="small" style="margin:0;">
+        当前为 <span style="color:#f5c96a;font-weight:600;">封存账号的只读视图</span>，
+        部分操作（修改、删除、回复邮件等）已被关闭，仅供家属核查学习与奖助记录之用。
+      </p>
+    `;
+    container.insertBefore(div, container.firstChild);
+  });
+</script>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="index.html">首页</a> · 奖学金申报系统
+  </div>
+
+  <!-- 系统状态 -->
+  <section class="card">
+    <h1>奖学金申报系统 <span class="badge-year">2025–2026 学年</span></h1>
+    <p>
+      欢迎登录清河大学奖学金申报系统。本学年奖学金申报通道
+      <strong>暂未开放</strong>，预计将在
+      <span class="muted">秋季学期第 6–8 周</span>
+      通过本系统统一受理学生在线申请。
+    </p>
+    <p class="small muted">
+      届时，同学需使用校园统一身份账号登录，在线填写申请信息并上传证明材料，
+      由学院初审、学校复核后在校园网进行结果公示。
+    </p>
+
+    <div class="btn-row">
+      <!-- 个人记录入口：请把原来的“奖学金系统页面”另存为 scholarship_records.html -->
+      <a class="btn primary" href="scholarship_records.html">查看我的奖学金记录</a>
+      <button class="btn" type="button" onclick="alert('当前申报入口尚未开放，请关注后续通知。');">
+        本学年申报入口（未开放）
+      </button>
+    </div>
+  </section>
+
+  <!-- 去年公示 -->
+  <section class="card">
+    <h2>2024–2025 学年奖学金评定结果公示（已归档）</h2>
+    <p>
+      根据《清河大学本科学生奖励办法》相关规定，经个人申请、学院评审、
+      学校审核及公示程序，2024–2025 学年各类奖学金评定工作已完成。
+      完整名单可通过下方 PDF 文件下载查阅。
+    </p>
+
+    <div class="btn-row">
+      <!-- 你需要在 files 目录下放一个真实的 PDF 文件，路径与文件名可按需调整 -->
+      <a class="btn primary" href="files/QHU_Scholarship_Public_2024-2025.pdf" download>
+        下载 2024–2025 学年奖学金公示名单（PDF）
+      </a>
+    </div>
+
+    <p class="small muted" style="margin-top:8px;">
+      下表为公示名单中的部分节选，完整信息以 PDF 文件为准。
+    </p>
+
+    <table class="sch-table">
+      <thead>
+        <tr>
+          <th>学年</th>
+          <th>学生姓名</th>
+          <th>学院 / 专业</th>
+          <th>奖学金类别</th>
+          <th>金额（元）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 顾岱明 -->
+        <tr>
+          <td>2024–2025</td>
+          <td class="highlight-name">顾岱明</td>
+          <td>
+            信息学部
+            <span class="tag-major">结构化记忆与智能系统方向</span>
+          </td>
+          <td>国家奖学金</td>
+          <td>20,000</td>
+        </tr>
+        <!-- 林澜 -->
+        <tr>
+          <td>2024–2025</td>
+          <td class="highlight-name">林澜</td>
+          <td>
+            信息学部
+            <span class="tag-major">人机交互与认知计算</span>
+          </td>
+          <td>学校综合一等奖学金</td>
+          <td>15,000</td>
+        </tr>
+        <!-- 下面是若干“其他学院”示例数据，营造真实感 -->
+        <tr>
+          <td>2024–2025</td>
+          <td>赵行远</td>
+          <td>材料科学与工程学院<span class="tag-major">高分子材料</span></td>
+          <td>国家奖学金</td>
+          <td>20,000</td>
+        </tr>
+        <tr>
+          <td>2024–2025</td>
+          <td>李可欣</td>
+          <td>生命与健康学院<span class="tag-major">生物医学工程</span></td>
+          <td>学校综合一等奖学金</td>
+          <td>12,000</td>
+        </tr>
+        <tr>
+          <td>2024–2025</td>
+          <td>马庭珂</td>
+          <td>经济与管理学院<span class="tag-major">金融学</span></td>
+          <td>学校综合二等奖学金</td>
+          <td>6,000</td>
+        </tr>
+        <tr>
+          <td>2024–2025</td>
+          <td>周一诺</td>
+          <td>人文与社会科学学院<span class="tag-major">新闻与传播</span></td>
+          <td>社会实践专项奖学金</td>
+          <td>3,000</td>
+        </tr>
+        <tr>
+          <td>2024–2025</td>
+          <td>程浩然</td>
+          <td>机械与智能制造学院<span class="tag-major">智能制造工程</span></td>
+          <td>创新创业奖学金</td>
+          <td>5,000</td>
+        </tr>
+        <tr>
+          <td>2024–2025</td>
+          <td>王滢</td>
+          <td>艺术与设计学院<span class="tag-major">环境设计</span></td>
+          <td>文体艺术奖学金</td>
+          <td>4,000</td>
+        </tr>
+        <tr>
+          <td>2024–2025</td>
+          <td>艾力木·吾守尔</td>
+          <td>外国语学院<span class="tag-major">翻译</span></td>
+          <td>民族团结进步奖学金</td>
+          <td>3,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      提示：本公示名单为系统自动导出版本，若对奖学金评定结果有异议，
+      请在公示期内向所在学院学生工作办公室或学生处反馈。
+      公示期满后不再受理相关申诉。
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>联系方式</h2>
+    <p class="small">
+      奖学金政策咨询：学生处资助管理中心　
+      邮箱：<a href="mailto:aids@qh.edu">aids@qh.edu</a>　
+      办公地点：学生服务中心 2 层
+    </p>
+    <p class="small muted">
+      * 本页面所有人物与数据均为剧情演示用虚构信息，与真实学校及个人无关。
+    </p>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 登录模态兜底（main.js 会自动复用） -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">
+      示例：林镜 <code>linjing@stu.qh.edu</code> 　密码 <code>qh-2025</code>
+    </p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

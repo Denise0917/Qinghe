@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>科学研究 - 清河大学</title>
+
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/auth.js" defer></script>
+<script src="js/main.js" defer></script>
+<meta name="description" content="清河大学科研：研究平台、导师与学生档案、论文数据库、科研奖励。对标高校科研页，支持按年份/类型/关键词检索与引用导出。">
+
+<style>
+  .cols{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+  .sec-h{margin:0;padding:12px 14px 8px;border-bottom:1px solid #202636}
+  .meta{display:flex;gap:12px;align-items:center;color:#9aa0a6;font-size:12px;padding:8px 14px;border-bottom:1px solid #202636}
+  .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:12px 14px}
+  .kpi .item{background:#101624;border:1px solid #202636;border-radius:12px;padding:12px}
+  .kpi .val{font-size:22px;font-weight:800}
+
+  .profiles{display:grid;grid-template-columns:1fr;gap:10px;padding:12px 14px 16px}
+  .profile{display:grid;grid-template-columns:92px 1fr;gap:12px;border:1px solid #202636;background:#101624;border-radius:12px;padding:12px}
+  .profile .avatar{width:92px;height:92px;border-radius:12px;border:1px solid #2a3347;background:#0d1320;display:flex;align-items:center;justify-content:center;color:#92a0b3;font-weight:700}
+  .profile .name{font-weight:800}
+  .profile .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .tag{display:inline-block;padding:2px 8px;border:1px solid #2c3852;background:#152033;border-radius:999px;font-size:12px;white-space:nowrap}
+  .featured{border-color:#34538b;background:#0f1625;box-shadow:0 0 0 1px #2a3f6d inset}
+  .muted a{color:#9aa7b7}
+
+  .toolbar{display:flex;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid #202636}
+  .table{width:100%;border-collapse:collapse}
+  .table th,.table td{border-bottom:1px solid #202636;padding:10px 8px;text-align:left;vertical-align:top}
+  .table th{color:#cfd6df;font-weight:600;cursor:pointer}
+  .badge{display:inline-block;border:1px solid #2b3854;background:#162136;border-radius:999px;font-size:12px;padding:2px 8px;margin-right:6px;white-space:nowrap}
+  .badge.sci{border-color:#355c9a}
+  .badge.ei{border-color:#5a8b3b}
+
+  .note{background:#111a27;border:1px dashed #2b3b56;border-radius:8px;padding:10px 12px}
+  .sticky{position:sticky;top:12px}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:999}
+  .modal .box{width:min(780px,92vw);background:#141822;border:1px solid #202636;border-radius:12px;padding:16px}
+  .code{font:12px/1.6 ui-monospace,Consolas,monospace;background:#0d1320;border:1px solid #23304a;border-radius:6px;padding:8px;white-space:pre-wrap}
+
+  @media (max-width:1100px){ .cols{grid-template-columns:1fr} .profile{grid-template-columns:72px 1fr} .kpi{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin" onclick="openLogin();return false;">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden" onclick="logout();location.reload();return false;">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="index.html">首页</a> · 科学研究
+  </div>
+
+  <div class="cols">
+    <!-- 主栏 -->
+    <main style="display:flex;flex-direction:column;gap:16px;">
+
+      <!-- 平台与指标 -->
+      <section class="card">
+        <h3 class="sec-h">研究平台与指标 <span class="muted">RESEARCH OVERVIEW</span></h3>
+        <div class="kpi">
+          <div class="item"><div class="muted small">在研项目</div><div class="val">128</div><div class="muted small">含重点 9 项</div></div>
+          <div class="item"><div class="muted small">近三年论文</div><div class="val">1,052</div><div class="muted small">一二区占比 63%</div></div>
+          <div class="item"><div class="muted small">专利授权</div><div class="val">286</div><div class="muted small">成果转化 3,200 万</div></div>
+        </div>
+      </section>
+
+      <!-- 导师与教师档案（突出沈以航） -->
+      <section class="card" id="faculty">
+        <h3 class="sec-h">导师与教师档案 <span class="muted">FACULTY PROFILES</span></h3>
+        <div class="profiles">
+          <!-- 重点：沈以航（置顶+高亮） -->
+          <article class="profile featured">
+            <div class="avatar">SYH</div>
+            <div>
+              <div class="name">沈以航 教授 <span class="muted small">信息学部 · 智能感知与交互实验室 · ORCID 0000-0000-1234-567X</span></div>
+              <div class="muted" style="margin-top:4px;">方向：多模态交互 / 结构化检索 / 可信人机协作。主持省部重点与企业联合项目，近年论文 18 篇；多项国际会议程序委员、期刊审稿人。</div>
+              <div class="tags">
+                <span class="tag">省科技进步一等奖</span>
+                <span class="tag">省重点实验室骨干</span>
+                <span class="tag">结构化记忆检索项目在研</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 其他老师（正常权重） -->
+          <article class="profile">
+            <div class="avatar">LYZ</div>
+            <div>
+              <div class="name">罗映竹 教授 <span class="muted small">材料学院 · 器件工程中心</span></div>
+              <div class="muted" style="margin-top:4px;">方向：二维材料界面调控与柔性器件。主持省自然科学基金重点项目，发明专利多项。</div>
+              <div class="tags">
+                <span class="tag">自然科学二等奖</span>
+                <span class="tag">ACS AMI</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="profile">
+            <div class="avatar">HJ</div>
+            <div>
+              <div class="name">贺嘉 副教授 <span class="muted small">生命与健康学院 · 交叉研究院</span></div>
+              <div class="muted" style="margin-top:4px;">方向：神经影像与行为联合建模、智能康复。</div>
+              <div class="tags">
+                <span class="tag">青年科技奖</span>
+                <span class="tag">MICCAI</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="profile">
+            <div class="avatar">ZY</div>
+            <div>
+              <div class="name">周远 副教授 <span class="muted small">信息学部 · 系统与安全</span></div>
+              <div class="muted" style="margin-top:4px;">方向：可信系统与人机共创，参与跨学院合作项目。</div>
+              <div class="tags">
+                <span class="tag">Patterns</span>
+                <span class="tag">协同共创</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 学生档案（突出顾岱明；最后一条为林澜） -->
+      <section class="card" id="students">
+        <h3 class="sec-h">学生与校友 <span class="muted">STUDENTS & ALUMNI</span></h3>
+        <div class="profiles">
+          <!-- 重点：顾岱明（置顶+高亮） -->
+          <article class="profile featured">
+            <div class="avatar">GDM</div>
+            <div>
+              <div class="name">顾岱明 直博生 <span class="muted small">信息学部 · 事件检索与结构化记忆</span></div>
+              <div class="muted" style="margin-top:4px;">以一作/共同一作在 NeurIPS 等 A 类会议发表 2 篇；获校级青年科技奖、学院优秀毕业生。</div>
+              <div class="tags">
+                <span class="tag">NeurIPS</span>
+                <span class="tag">结构化记忆</span>
+                <span class="tag">青年科技奖</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 其他学生/校友 -->
+          <article class="profile">
+            <div class="avatar">ZR</div>
+            <div>
+              <div class="name">赵睿 硕士生 <span class="muted small">材料学院 · 柔性器件</span></div>
+              <div class="muted" style="margin-top:4px;">参与二维材料器件联合课题，发表期刊论文 1 篇。</div>
+              <div class="tags"><span class="tag">2D Materials</span><span class="tag">器件测试</span></div>
+            </div>
+          </article>
+
+          <article class="profile">
+            <div class="avatar">LSR</div>
+            <div>
+              <div class="name">李思然 博士生 <span class="muted small">生命与健康学院 · 神经影像</span></div>
+              <div class="muted" style="margin-top:4px;">关注影像-行为联合建模，合作 MICCAI 论文。</div>
+              <div class="tags"><span class="tag">Neuro</span><span class="tag">康复</span></div>
+            </div>
+          </article>
+
+          <!-- 最后一条：林澜（点到为止，信息真实口吻） -->
+          <article class="profile">
+            <div class="avatar">LL</div>
+            <div>
+              <div class="name">林澜 本科生 <span class="muted small">信息学部 · 多模态交互与可靠性</span></div>
+              <div class="muted" style="margin-top:4px;">参与课题组数据采集与评测工作，作为学生作者参与多篇论文。</div>
+              <div class="tags"><span class="tag">多模态交互</span><span class="tag">评测</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 论文数据库（含导师/顾岱明/林澜条目） -->
+      <section class="card" id="pubs">
+        <h3 class="sec-h">论文数据库 <span class="muted">PUBLICATIONS</span></h3>
+        <div class="toolbar">
+          <input id="kw" class="input" placeholder="题目/作者/单位/关键词，如：林澜、顾岱明、交互…"/>
+          <select id="yearSel" class="input" style="max-width:140px"><option value="">全部年份</option></select>
+          <select id="typeSel" class="input" style="max-width:160px">
+            <option value="">全部类型</option>
+            <option value="Journal">期刊</option>
+            <option value="Conference">会议</option>
+            <option value="Preprint">预印本</option>
+          </select>
+          <button class="btn" onclick="doFilter()">检索</button>
+          <button class="btn ghost" onclick="resetFilter()">重置</button>
+        </div>
+        <div style="padding:0 14px 14px;">
+          <table class="table" id="pubTable">
+            <thead>
+              <tr>
+                <th data-sort="year">年份</th>
+                <th>作者</th>
+                <th>题目 / 期刊·会议</th>
+                <th data-sort="type">类型</th>
+                <th>索引</th>
+              </tr>
+            </thead>
+            <tbody><!-- JS 渲染 --></tbody>
+          </table>
+          <div class="note" style="margin-top:10px;">支持 APA / BibTeX 导出；DOI 使用机构前缀示例（10.14567/qhu.*）。</div>
+        </div>
+      </section>
+
+      <!-- 科研奖励 -->
+      <section class="card" id="awards">
+        <h3 class="sec-h">科研奖励 <span class="muted">AWARDS</span></h3>
+        <ul class="list">
+          <li><span class="badge">2025</span> 省科技进步一等奖（信息类） · 负责人：沈以航 教授</li>
+          <li><span class="badge">2024</span> 自然科学二等奖 · 负责人：罗映竹 教授（材料学院）</li>
+          <li><span class="badge">2024</span> 青年科技奖 · 获奖者：贺嘉 副教授（生命与健康学院）</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- 侧栏 -->
+    <aside class="card side sticky">
+      <div class="block">
+        <h3 style="margin:0 0 8px;">快速入口</h3>
+        <a class="btn" href="#faculty">教师档案</a>
+        <a class="btn" href="#students">学生与校友</a>
+        <a class="btn" href="#pubs">论文数据库</a>
+        <a class="btn" href="#awards">科研奖励</a>
+      </div>
+      <div class="block">
+        <h3 style="margin:0 0 8px;">科研支持</h3>
+        <p class="muted small">科研处：<a href="mailto:kyc@qh.edu">kyc@qh.edu</a></p>
+        <p class="muted small">平台与实验室：<a href="mailto:labs@qh.edu">labs@qh.edu</a></p>
+        <p class="muted small">学术伦理：<a href="mailto:ethics@qh.edu">ethics@qh.edu</a></p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 引用导出模态 -->
+<div class="modal" id="citeModal" aria-hidden="true" role="dialog">
+  <div class="box">
+    <h3 style="margin:0 0 8px">引用导出</h3>
+    <div style="display:flex;gap:8px;margin-bottom:8px;">
+      <button class="btn" id="btnAPA">APA</button>
+      <button class="btn ghost" id="btnBib">BibTeX</button>
+    </div>
+    <pre class="code" id="citeCode"></pre>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" onclick="copyCite()">复制</button>
+      <button class="btn primary" onclick="closeCite()">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 页面脚本：论文数据/检索/排序/引用导出 -->
+<script>
+  // 论文数据（包含：导师、顾岱明、林澜 + 其他老师）
+  const PUBS = [
+    { year: 2025, authors: ["Lin, L.","Shen, Y.-H.","Wang, X."],
+      title: "Memory-anchored Multimodal Interaction for Reliable Campus Assistants",
+      venue: "Proceedings of the ACM CHI Conference on Human Factors in Computing Systems",
+      type: "Conference", vol:"", no:"", pages:"1–14", doi:"10.14567/qhu.2025.001", index:["SCI"], unit:"信息学部",
+      tags:["多模态交互","可靠性","清河大学"] },
+
+    { year: 2024, authors: ["Lin, L.","Shen, Y.-H."],
+      title: "Visual Clue Tracing with Cross-Event Retrieval",
+      venue: "IEEE Transactions on Multimedia",
+      type: "Journal", vol:"26", no:"12", pages:"3456–3468", doi:"10.14567/qhu.2024.118", index:["SCI"], unit:"信息学部",
+      tags:["检索","事件","视觉线索"] },
+
+    { year: 2025, authors: ["Gu, D.-M.","Lin, L."],
+      title: "Structured Memory for Event-driven Query Understanding",
+      venue: "Neural Information Processing Systems (NeurIPS)",
+      type: "Conference", vol:"", no:"", pages:"1–12", doi:"10.14567/qhu.2025.045", index:["SCI","EI"], unit:"信息学部",
+      tags:["结构化记忆","事件检索"] },
+
+    { year: 2023, authors: ["Gu, D.-M."],
+      title: "Temporal Abduction in Graph-based Retrieval",
+      venue: "Information Processing & Management",
+      type: "Journal", vol:"60", no:"4", pages:"103371", doi:"10.14567/qhu.2023.377", index:["SCI"], unit:"信息学部",
+      tags:["图检索","时间推理"] },
+
+    { year: 2024, authors: ["Shen, Y.-H.","He, J.","Zhou, Y."],
+      title: "Trustworthy Human–AI Co-creation under Ambiguous Signals",
+      venue: "Patterns",
+      type: "Journal", vol:"5", no:"7", pages:"100123", doi:"10.14567/qhu.2024.083", index:["SCI"], unit:"信息学部",
+      tags:["可信交互","共创"] },
+
+    { year: 2024, authors: ["Luo, Y.-Z.","Zhou, Y.","Shen, Y.-H."],
+      title: "Interfacial Engineering of 2D Materials for Flexible Devices",
+      venue: "ACS Applied Materials & Interfaces",
+      type: "Journal", vol:"16", no:"8", pages:"11234–11243", doi:"10.14567/qhu.2024.212", index:["SCI"], unit:"材料学院",
+      tags:["二维材料","柔性器件"] },
+
+    { year: 2023, authors: ["He, J.","Chen, Y.","Shen, Y.-H."],
+      title: "Neural Imaging Meets Behavior: Joint Modeling for Rehabilitation",
+      venue: "International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)",
+      type: "Conference", vol:"", no:"", pages:"1–10", doi:"10.14567/qhu.2023.590", index:["EI"], unit:"生命与健康学院",
+      tags:["神经影像","康复"] },
+
+    { year: 2025, authors: ["Lin, L.","Gu, D.-M."],
+      title: "A Pilot Study on Campus-scale Interaction Logs",
+      venue: "arXiv", type:"Preprint", vol:"", no:"", pages:"", doi:"arXiv:2505.00123", index:[], unit:"信息学部",
+      tags:["日志","可复现"] }
+  ];
+
+  // 下拉年份
+  const yearSel = document.getElementById('yearSel');
+  (function initYears(){
+    const years = Array.from(new Set(PUBS.map(p=>p.year))).sort((a,b)=>b-a);
+    years.forEach(y => { const opt=document.createElement('option'); opt.value=y; opt.textContent=y; yearSel.appendChild(opt); });
+  })();
+
+  const typeSel = document.getElementById('typeSel');
+  const kwInput = document.getElementById('kw');
+  const tbody = document.querySelector('#pubTable tbody');
+
+  function badgeIndex(list){ return (list||[]).map(x=>`<span class="badge ${x.toLowerCase()}">${x}</span>`).join(" "); }
+
+  function render(rows){
+    tbody.innerHTML = rows.map((p,idx)=>{
+      const authors = p.authors.join(', ');
+      const venue = p.venue + (p.vol ? `, ${p.vol}${p.no?`(${p.no})`:""}:${p.pages||""}` : "");
+      return `<tr>
+        <td>${p.year}</td>
+        <td>${authors}</td>
+        <td>
+          <div><a class="link" href="#" onclick="openCite(${idx});return false;" title="查看/导出引用">${p.title}</a></div>
+          <div class="muted small">${venue}</div>
+          <div class="muted small">${p.doi ? `DOI: ${p.doi}` : ""}</div>
+        </td>
+        <td>${p.type}</td>
+        <td>${badgeIndex(p.index)}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  function doFilter(){
+    const y = yearSel.value.trim();
+    const t = typeSel.value.trim().toLowerCase();
+    const kw = kwInput.value.trim().toLowerCase();
+    let rows = PUBS.slice().filter(p=>{
+      const hitYear = y ? String(p.year)===y : true;
+      const hitType = t ? p.type.toLowerCase()===t : true;
+      const hay = [p.title,p.authors.join(' '),p.venue,p.unit,(p.tags||[]).join(' '),p.doi,p.year].join(' ').toLowerCase();
+      const hitKw = kw ? hay.includes(kw) : true;
+      return hitYear && hitType && hitKw;
+    });
+    rows.sort((a,b)=>(b.year-a.year)||a.title.localeCompare(b.title));
+    render(rows);
+  }
+
+  function resetFilter(){ yearSel.value=''; typeSel.value=''; kwInput.value=''; doFilter(); }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    doFilter();
+    document.querySelectorAll('#pubTable thead th[data-sort]').forEach(th=>{
+      let asc=false;
+      th.addEventListener('click', ()=>{
+        const key = th.dataset.sort;
+        const rows = Array.from(tbody.querySelectorAll('tr')).map(tr=>{
+          const cells = tr.children;
+          return {
+            year: Number(cells[0].textContent.trim()),
+            authors: cells[1].textContent.trim(),
+            title: cells[2].querySelector('.link').textContent.trim(),
+            venue: cells[2].querySelector('.muted.small').textContent.trim(),
+            type: cells[3].textContent.trim(),
+            index: cells[4].textContent.trim()
+          };
+        });
+        rows.sort((a,b)=>{
+          if(key==='year') return asc ? (a.year-b.year) : (b.year-a.year);
+          return asc ? a.type.localeCompare(b.type) : b.type.localeCompare(a.type);
+        });
+        asc=!asc;
+        tbody.innerHTML = rows.map(r=>`
+          <tr>
+            <td>${r.year}</td>
+            <td>${r.authors}</td>
+            <td><div><a class="link" href="#" onclick="return false;">${r.title}</a></div><div class="muted small">${r.venue}</div></td>
+            <td>${r.type}</td>
+            <td>${r.index}</td>
+          </tr>`).join('');
+      });
+    });
+  });
+
+  // 引用导出
+  const citeModal = document.getElementById('citeModal');
+  const citeCode  = document.getElementById('citeCode');
+  const btnAPA    = document.getElementById('btnAPA');
+  const btnBib    = document.getElementById('btnBib');
+  let curIdx=-1, curFmt='APA';
+
+  function openCite(i){ curIdx=i; curFmt='APA'; renderCite(); citeModal.style.display='flex'; citeModal.setAttribute('aria-hidden','false'); }
+  function closeCite(){ citeModal.style.display='none'; citeModal.setAttribute('aria-hidden','true'); }
+  function copyCite(){ navigator.clipboard.writeText(citeCode.textContent).then(()=>alert('已复制到剪贴板')); }
+  btnAPA.addEventListener('click',()=>{curFmt='APA';btnAPA.classList.remove('ghost');btnBib.classList.add('ghost');renderCite();});
+  btnBib.addEventListener('click',()=>{curFmt='BIB';btnBib.classList.remove('ghost');btnAPA.classList.add('ghost');renderCite();});
+  citeModal.addEventListener('click',(e)=>{ if(e.target===citeModal) closeCite(); });
+
+  function renderCite(){
+    const p = PUBS[curIdx]; if(!p) return;
+    if(curFmt==='APA'){
+      const auth = p.authors.join(', ');
+      const volIssue = p.vol ? `${p.vol}${p.no?`(${p.no})`:""}` : "";
+      const pages = p.pages ? `, ${p.pages}` : "";
+      const venue = p.venue + (volIssue || pages ? `, ${volIssue}${pages}` : "");
+      const doi = p.doi ? ` https://doi.org/${p.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//i,'')}` : "";
+      citeCode.textContent = `${auth} (${p.year}). ${p.title}. ${venue}.${doi}`;
+    }else{
+      const key = (p.authors[0].split(',')[0]||'qhu') + p.year;
+      const vol = p.vol ? `  volume = {${p.vol}},\n` : "";
+      const no  = p.no  ? `  number = {${p.no}},\n` : "";
+      const pg  = p.pages? `  pages  = {${p.pages}},\n` : "";
+      const doi = p.doi ? `  doi    = {${p.doi}},\n` : "";
+      const type = p.type==='Journal' ? 'article' : (p.type==='Conference'?'inproceedings':'misc');
+      let body =
+`@${type}{${key},
+  author = {${p.authors.join(' and ')}},
+  title  = {${p.title}},
+  ${type==='article'?'journal':'booktitle'} = {${p.venue}},
+  year   = {${p.year}},
+${vol}${no}${pg}${doi}}`;
+      citeCode.textContent = body;
+    }
+  }
+</script>
+
+</body>
+</html>

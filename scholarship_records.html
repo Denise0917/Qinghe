@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>奖学金申报与评定系统 - 清河大学</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/main.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/scholarship.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1000px; margin:0 auto; padding:0 14px 40px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; display:flex; gap:22px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .card{ margin-top:18px; background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 20px 22px; }
+  .card h1{ margin:0 0 8px; font-size:22px; }
+  .card h2{ margin:18px 0 10px; font-size:16px; }
+
+  .meta-bar{ font-size:12px; color:#9aa0a6; padding-bottom:10px; border-bottom:1px solid #202636; margin-bottom:10px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+  .sch-header{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  .sch-header-left{ display:flex; flex-direction:column; gap:4px; }
+  .badge-role{ display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid #33415d; font-size:12px; background:#192338; }
+
+  .sch-tip{ margin-top:8px; font-size:12px; color:#7c8594; }
+
+  .table-wrap{ margin-top:10px; overflow-x:auto; }
+  table{ border-collapse:collapse; width:100%; font-size:13px; }
+  th,td{ border:1px solid #283246; padding:6px 8px; text-align:left; }
+  th{ background:#182132; }
+  tbody tr:nth-child(2n){ background:#101722; }
+  .status-ok{ color:#7dd47c; }
+  .status-fail{ color:#ff6b6b; }
+  .status-pending{ color:#ffd166; }
+
+  .reason{ font-size:12px; color:#9aa0a6; line-height:1.6; }
+
+  .sch-access{ text-align:center; padding:30px 10px; }
+  .sch-access p{ margin:4px 0; }
+  .sch-btn{ display:inline-block; margin-top:14px; padding:8px 16px; border-radius:999px; border:1px solid #2c3c5a; background:#1c2536; color:#e8eaee; cursor:pointer; font-size:14px; }
+  .sch-btn:hover{ border-color:#3b4d74; }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 访问控制卡片（未登录 / 非学生账号） -->
+  <div class="card" id="schAccessCard">
+    <div class="sch-access">
+      <h1 style="margin-bottom:12px;">奖学金申报与评定系统</h1>
+      <p id="schAccessMsg">本系统仅向在校学生开放，请先登录学生账号。</p>
+      <button class="sch-btn" id="schBtnLogin">使用学生账号登录</button>
+      <p class="sch-tip">如对奖学金评定结果有异议，请联系学院学生工作办公室。</p>
+    </div>
+  </div>
+
+  <!-- 主内容（仅学生账号可见） -->
+  <div class="card hidden" id="schMainCard">
+    <div class="sch-header">
+      <div class="sch-header-left">
+        <h1>我的奖学金申请记录</h1>
+        <div class="meta-bar" style="border:none;padding:0;margin:0;">
+          <span>当前账号：<span id="schUser">-</span></span>
+          <span>当前学年：2024–2025 学年</span>
+        </div>
+        <div class="sch-tip">
+          说明：下表仅展示与当前账号绑定的奖学金申请及评定结果，其他学生的记录不可见。
+        </div>
+      </div>
+      <div>
+        <span class="badge-role" id="schRoleTag">在校学生</span>
+      </div>
+    </div>
+
+    <h2>一、历史申请与评定结果</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:18%">学年</th>
+            <th style="width:22%">奖学金类别</th>
+            <th style="width:12%">金额（元）</th>
+            <th style="width:14%">评定结果</th>
+            <th style="width:34%">评定说明 / 未获奖原因</th>
+          </tr>
+        </thead>
+        <tbody id="schTableBody">
+          <!-- scholarship.js 填充 -->
+        </tbody>
+      </table>
+    </div>
+
+    <h2>二、评定说明</h2>
+    <p class="small">
+      奖学金评定综合考虑学业成绩、科研竞赛、综合测评、导师推荐意见及思想品德等多项指标。
+      国家奖学金、学校综合一等奖学金等高等级奖项，需在校内综合测评中名列前茅，并在科研竞赛等方面取得突出成果。
+    </p>
+    <p class="small">
+      如需查看评定细则，请登录学院教务系统或咨询辅导员。若对评定结果有异议，可在公示期内通过“奖助学金在线反馈”渠道提交申诉材料。
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

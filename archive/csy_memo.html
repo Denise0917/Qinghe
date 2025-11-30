@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>（未保存的备忘录）- 陈思芸</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<style>
+  :root{ color-scheme: dark; }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    padding:0;
+    background:#05070c;
+    color:#e8eaee;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+  }
+
+  /* 顶部窄条 + 返回按钮 */
+  .topbar-lite{
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    border-bottom:1px solid #151927;
+    background:#080c14;
+    font-size:12px;
+    color:#9aa0a6;
+  }
+  .back-btn{
+    border:1px solid #303949;
+    background:#101623;
+    color:#e8eaee;
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .back-btn:hover{
+    border-color:#3b82f6;
+  }
+
+  /* 中间内容区域：仿备忘录 */
+  .wrap{
+    max-width:720px;
+    margin:28px auto 40px;
+    padding:0 16px;
+  }
+
+  .meta{
+    font-family:Menlo,Consolas,monospace;
+    font-size:12px;
+    color:#8b95a5;
+    margin-bottom:14px;
+  }
+
+  .note-card{
+    background:#0b0f1a;
+    border:1px solid #202637;
+    border-radius:12px;
+    padding:18px 18px 20px;
+    box-shadow:0 14px 32px rgba(0,0,0,.55);
+  }
+
+  /* 尽量“手写感”的中文字体效果 */
+  .note-title{
+    font-family:"STKaiti","KaiTi","Songti SC","SimSun",serif;
+    font-size:18px;
+    margin:0 0 10px;
+    letter-spacing:.08em;
+    color:#f4d38d;
+  }
+  .note-body{
+    font-family:"STKaiti","KaiTi","Songti SC","SimSun",serif;
+    font-size:15px;
+    line-height:1.8;
+    white-space:pre-wrap;
+  }
+
+  .note-body em{
+    font-style:normal;
+    color:#f98f8f;
+  }
+
+  .time-line{
+    margin-top:20px;
+    font-size:12px;
+    color:#7f8899;
+    text-align:right;
+  }
+</style>
+
+<script>
+  function goBack(){
+    if (window.history.length > 1){
+      history.back();
+    }else{
+      // 没有历史记录时，退到搜索页（你也可以改成 index.html）
+      location.href = "../search.html";
+    }
+  }
+</script>
+</head>
+<body>
+
+<div class="topbar-lite">
+  <button class="back-btn" onclick="goBack()">← 返回上一页</button>
+  <div>本地备忘录 · 未同步</div>
+</div>
+
+<div class="wrap">
+  <div class="meta">
+    draft://notes/csy_memo<br/>
+    auto-saved: 2025-02-14 02:27
+  </div>
+
+  <div class="note-card">
+    <h1 class="note-title">凭什么。</h1>
+    <div class="note-body">
+我真的想问一句——<em>凭什么</em>。
+
+课上作业谁帮她改？大作业谁陪着她熬？那些实验报告是谁给她讲到半夜？
+绩点差不多，甚至有的课我比她高，可奖学金永远是她，保研名额也是她。
+凭什么！
+
+通知一条条发出来的时候，名字永远是：<em>林澜</em>。
+综合测评、优秀学生、科研创新、什么“项目骨干”… 每一栏都能看到她。
+而我呢？系统里就一句干巴巴的“未通过”，理由写得冠冕堂皇，好像我什么都没做。
+凭什么！
+
+他们说什么“公平、公开、公正”，
+笑死，人家是看谁站在谁那边。
+
+我早就看明白了，沈老师那点龌龊心思，不是一天两天。
+组会上对她的态度，和对我们完全是两套标准：
+她迟到是“辛苦了，最近压力大注意休息”，
+我们晚交一天就是“态度不端正、不适合搞科研”。
+凭什么！
+
+他在邮件里一遍遍说自己带过多少国奖、保研生，
+一副“跟着我就能上岸”的样子，
+顺便对女学生的私生活指指点点，问这问那，
+眼神从来都不干净。
+
+最恶心的是——
+他们一个装出被动得奖、清清白白的样子，
+一个打着“为你前途着想”的旗号，
+互相成全，互相遮掩，最后资源和话语权都在他们手里。
+凭什么！
+
+然后轮到我：
+“这次名额竞争激烈，优先考虑科研产出更突出的同学。”
+“建议你继续努力，明年还有机会。”
+“老师也很理解你的心情，但评审有统一标准。”
+凭什么！
+
+呵呵。
+统一标准就是：你不是他们那一圈的人。
+
+我有时候会想，是不是要像他们一样才算“成熟”和“懂事”？
+对那些暗示装看不见，对不公平装大度，对自己的委屈装没事。
+然后笑着说一句“老师也不容易”“大家都是为了项目好”。
+
+可我做不到。
+
+我不觉得这有什么“高尚”的。
+我只觉得脏——
+他脏，她也不干净；
+他们捧来捧去的那个世界，比我想象的还要恶心。
+
+我越想越觉得，整个事情都他妈的是个笑话。
+
+那些人表面一套一套，说什么“学生发展”“学术诚信”“公平评定”“综合素质”。
+呵。屁话。
+真正能决定命运的，从来不是成绩、不是努力、不是清醒地熬夜到两三点的我们——  
+是办公室里几个人随口一句“我觉得不错”“人还挺懂事”的破评价。
+凭什么！
+
+懂事？  
+懂他们的事。  
+懂什么时候笑，什么时候闭嘴，什么时候顺从。
+
+沈那种老变态，一张嘴能把人腻得起鸡皮疙瘩，  
+但偏偏有一堆人装没看见，  
+还要说什么：“沈老师科研成果很强”“跟着沈前途很好”。
+
+强？  
+强你妈。  
+论文是学生写的，实验是学生做的，  
+他只会在结题会上端着杯子晃来晃去装大爷。  
+跟着沈前途很好是吧？  
+对女生尤其“好”，我看得太清楚了。
+
+他那些眼神我永远忘不了，  
+像是在市场里挑熟透的水果，  
+嘴上说“指导”“关心”，  
+背后全是下作、龌龊、肮脏的念头。
+
+林澜呢？  
+她装得纯洁又无辜，好像自己真没察觉一样。  
+可每次沈叫她去办公室，她就乖乖去了。  
+每次项目申请要写人名，她永远在第一行。  
+每次答辩、路演、汇报——  
+都刚好轮到她“代表团队发言”。
+
+巧得离谱。  
+巧到让我想吐。
+
+他们互相满足、互相成全、互相利用，  
+一个用资源钓人，  
+一个用乖巧换资源。  
+然后一起被写进“先进个人”“优秀项目”“重点孵化计划”。
+凭什么！
+
+恶不恶心？  
+我看着都想把那些奖状撕烂扔他脸上。
+
+而我呢？  
+我在宿舍里熬夜熬到手抖，  
+在图书馆做实验做到胃痛，  
+每次开会都提心吊胆怕被点名。  
+最后得到的是什么？  
+一个又一个冷冰冰的“不通过”。  
+一封又一封格式化的“建议再接再厉”。
+凭什么！
+
+为什么？  
+因为我不陪笑。  
+因为我不跪。  
+因为我不愿意成为他们那套肮脏规则里的一部分。
+
+真他妈可笑。
+
+如果这个学校真有一天塌在自己造的这一堆烂泥上，  
+我一点都不会惊讶。  
+反正对我来说，  
+这里早就烂透了。
+
+算了，就写到这里吧。
+反正这东西也不会发出去。
+只当是提醒自己——
+
+永远不要再相信所谓的“公平评定”。
+
+    </div>
+
+    <div class="time-line">
+      （未发送草稿 · 自动保存）
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

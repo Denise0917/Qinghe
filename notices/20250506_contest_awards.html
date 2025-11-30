@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>多项编程竞赛学生获奖 - 清河大学</title>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:960px; margin:0 auto; padding:0 14px 40px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; display:flex; gap:22px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .card-article{ margin-top:18px; background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 20px 22px; }
+  .card-article h1{ margin:0 0 10px; font-size:22px; }
+  .meta-bar{ font-size:12px; color:#9aa0a6; padding-bottom:10px; border-bottom:1px solid #202636; margin-bottom:16px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+  h2{ font-size:16px; margin:18px 0 8px; }
+  p{ line-height:1.8; margin:6px 0; }
+
+  .table-wrap{ margin:10px 0 14px; overflow-x:auto; }
+  table{ border-collapse:collapse; width:100%; font-size:13px; }
+  th,td{ border:1px solid #283246; padding:6px 8px; text-align:left; }
+  th{ background:#182132; }
+  tbody tr:nth-child(2n){ background:#111827; }
+
+  .tagline{ margin-top:18px; font-size:12px; color:#7f8896; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card-article">
+    <h1>我校师生在多项编程竞赛中获佳绩</h1>
+    <div class="meta-bar">
+      <span>发布时间：2025-05-06</span>
+      <span>来源：信息学部 · 学生工作办公室</span>
+    </div>
+
+    <p>近日，在 2024–2025 学年多项高校程序设计与算法竞赛中，清河大学信息学部师生表现优异，累计获得省级一等奖 1 项、二等奖 3 项、三等奖若干，充分展现了我校在计算机基础教育和创新实践方面的综合实力。</p>
+
+    <p>其中，由<span class="muted">沈以航教授</span>指导的学生团队在第五届省大学生程序设计竞赛（QHPC）和清河市大学生算法挑战赛中表现突出，本科生<span class="muted">顾岱明（联系邮箱：gdm@stu.qh.edu）</span>、<span class="muted">林澜</span>等同学分获个人及团体奖项。</p>
+
+    <h2>一、主要奖项情况</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:28%">竞赛名称</th>
+            <th style="width:18%">奖项等级</th>
+            <th style="width:26%">获奖学生</th>
+            <th style="width:18%">指导教师</th>
+            <th style="width:10%">时间</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025全国大学生程序设计竞赛（QHPC）</td>
+            <td>团体一等奖</td>
+            <td>顾岱明（队长）、林澜、王若晨</td>
+            <td>沈以航</td>
+            <td>2025-04</td>
+          </tr>
+          <tr>
+            <td>2024世界挑战杯大学生算法挑战赛</td>
+            <td>个人金奖</td>
+            <td>顾岱明</td>
+            <td>沈以航</td>
+            <td>2024-07</td>
+          </tr>
+          <tr>
+            <td>“未来之城”人工智能应用设计赛（程序实现组）</td>
+            <td>二等奖</td>
+            <td>林澜</td>
+            <td>沈以航</td>
+            <td>2024-12</td>
+          </tr>
+          <tr>
+            <td>校级程序设计联赛</td>
+            <td>一等奖</td>
+            <td>顾岱明、林澜</td>
+            <td>沈以航</td>
+            <td>2024-10</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>二、竞赛团队与训练情况</h2>
+    <p>信息学部长期面向本科生开放编程训练营和算法实验班，由沈以航教授牵头，联合多名青年教师共同负责日常训练和竞赛选拔。顾岱明、林澜均为 2021 级信息学部学生，自入学以来多次参加校内外算法竞赛，在数据结构、图论、搜索与优化等方向基础扎实、思维活跃，逐步成长为团队骨干成员。</p>
+
+    <p>在本学年备赛过程中，团队在每周例行训练之外，结合“结构化记忆检索”“多模态交互验证”等科研项目中的真实数据集，设计了一系列接近工程场景的练习题目。学生在解题过程中，不仅巩固了程序设计能力，也初步接触到实验室正在开展的相关研究工作。</p>
+
+    <h2>三、获奖师生代表感言节选</h2>
+    <p><strong>沈以航教授</strong>表示，程序设计竞赛不仅是算法能力的展示，更是团队协作、抗压能力和工程化思维的综合体现。“顾岱明、林澜同学在备赛阶段自觉性很高，经常利用晚上自习和实验间隙调试代码、复盘题目。希望同学们在保持成绩的同时，更加关注身心健康和团队沟通。”</p>
+
+    <p><strong>顾岱明</strong>同学谈到，本次竞赛让他更加意识到“建模与实现之间的细节差距”。“有一道题目和我们实验室正在做的结构化事件抽取很像，最后是我们三个人一起把边界情况讨论清楚才 AC 的。”，最后我们拿到了第一！我们是Top1！</p>
+
+    <p><strong>林澜</strong>同学在赛后反馈中写道：“比起奖项本身，更重要的是在准备过程中学会了如何和队友共享代码、互相 review。很多题目其实就是在有限时间里做清楚‘记录’和‘推理’。”（节选自赛后总结）</p>
+
+    <h2>四、下一步工作安排</h2>
+    <p>信息学部将以本次获奖为契机，继续完善编程竞赛梯度选拔和训练机制，鼓励更多低年级学生参与基础组比赛；同时，鼓励高年级学生将竞赛中形成的优秀算法和系统原型，进一步凝练为课程项目或学术论文，探索“以赛促学、以赛促研”的长效机制。</p>
+
+    <p>学校也将继续在场地、设备和心理支持等方面为参赛学生提供保障，引导同学们在追求成绩的同时，合理安排作息，注意调节情绪和压力，形成健康的学习与备赛文化。</p>
+
+    <p class="tagline">（信息学部 供稿）</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

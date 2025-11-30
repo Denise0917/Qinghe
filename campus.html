@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>校园服务 - 清河大学</title>
+
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/auth.js" defer></script>
+<script src="js/main.js" defer></script>
+<meta name="description" content="清河大学校园服务：校车、图书馆、安保与门禁、后勤报修、网络与VPN、心理中心预约、打印复印、遗失招领等。">
+
+<style>
+  .cols{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+  .sec-h{margin:0;padding:12px 14px 8px;border-bottom:1px solid #202636}
+  .card .body{padding:12px 14px 16px}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .kpi{background:#101624;border:1px solid #202636;border-radius:12px;padding:12px}
+  .kpi .val{font-weight:800;font-size:22px}
+  .list{list-style:none;margin:0;padding:8px 0}
+  .list li{padding:10px 14px;border-bottom:1px dashed #223046}
+  .list li:last-child{border-bottom:none}
+  .table{width:100%;border-collapse:collapse}
+  .table th,.table td{border-bottom:1px solid #202636;padding:10px 8px;text-align:left;vertical-align:top}
+  .tag{display:inline-block;padding:2px 8px;border:1px solid #2c3852;background:#152033;border-radius:999px;font-size:12px;margin-right:8px;white-space:nowrap}
+  .pill{display:inline-block;padding:2px 8px;border:1px solid #2c3852;background:#152033;border-radius:999px;font-size:12px;margin-right:8px}
+  .input, select, textarea{background:#0e1116;border:1px solid #1c2230;border-radius:6px;padding:8px 10px;color:#e8eaee;width:100%;box-sizing:border-box}
+  .note{background:#111a27;border:1px dashed #2b3b56;border-radius:8px;padding:10px 12px}
+  .muted a{color:#9aa7b7}
+  .small{font-size:12px}
+  .sticky{position:sticky;top:12px}
+  .ghost{background:#141a28}
+  .good{color:#8dd48c}
+  .warn{color:#ffb86b}
+  .bad{color:#ff6b6b}
+  .mono{font:12px/1.6 ui-monospace,Consolas,monospace;background:#0d1320;border:1px solid #23304a;border-radius:6px;padding:8px;white-space:pre-wrap}
+  @media (max-width:1100px){ .cols{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin" onclick="openLogin();return false;">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden" onclick="logout();location.reload();return false;">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="index.html">首页</a> · 校园服务
+  </div>
+
+  <div class="cols">
+    <!-- 主栏 -->
+    <main style="display:flex;flex-direction:column;gap:16px;">
+
+      <!-- 运行服务总览 -->
+      <section class="card" id="overview">
+        <h3 class="sec-h">运行服务总览 <span class="muted">CAMPUS SERVICES</span></h3>
+        <div class="body grid-3">
+          <div class="kpi"><div class="muted small">夜班校车（工作日）</div><div class="val">3 条线</div><div class="muted small">最后班次 23:30</div></div>
+          <div class="kpi"><div class="muted small">图书馆开放</div><div class="val">08:00–22:30</div><div class="muted small">期末延长至 24:00</div></div>
+          <div class="kpi"><div class="muted small">后勤报修</div><div class="val">平均 7.2 h</div><div class="muted small">当日解决率 83%</div></div>
+        </div>
+      </section>
+
+      <!-- 夜班校车与班车 -->
+      <section class="card" id="bus">
+        <h3 class="sec-h">校车与夜班 <span class="muted">SHUTTLE</span></h3>
+        <div class="body">
+          <div class="grid-2">
+            <div>
+              <h4 style="margin:0 0 8px;">夜间线路（工作日）</h4>
+              <table class="table">
+                <thead><tr><th>线路</th><th>停靠</th><th>首/末班</th></tr></thead>
+                <tbody>
+                  <tr><td>N1</td><td>西门—图书馆—B-4—东宿舍</td><td>20:00 / 23:30</td></tr>
+                  <tr><td>N2</td><td>南门—体育馆—学活—西宿舍</td><td>20:10 / 23:20</td></tr>
+                  <tr><td>N3</td><td>北门—材料楼—信息学部—B-4</td><td>20:20 / 23:10</td></tr>
+                </tbody>
+              </table>
+              <p class="muted small">提示：晚 22:00 后，步行请尽量结伴同行。</p>
+            </div>
+            <div>
+              <h4 style="margin:0 0 8px;">停靠点公告</h4>
+              <ul class="list">
+                <li><span class="pill">B-4 停靠</span>因设备维护，<strong>21:40–22:20</strong> 期间站台监控历史存在间断（详见“信息化中心维护”）。</li>
+                <li><span class="pill">学生活动中心</span>双选会期间临时增开加班车。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 图书馆与自习 -->
+      <section class="card" id="library">
+        <h3 class="sec-h">图书馆与自习 <span class="muted">LIBRARIES</span></h3>
+        <div class="body grid-2">
+          <div>
+            <h4 style="margin:0 0 8px;">开放时间</h4>
+            <ul class="list">
+              <li>主馆：08:00–22:30（期末延长至 24:00）</li>
+              <li>研修间：9:00–22:00（需预约）</li>
+              <li>电子阅览室：09:00–21:30（校内账号登录）</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 8px;">学习资源</h4>
+            <ul class="list">
+              <li><a href="#">数据库访问（CNKI、Web of Science）</a></li>
+              <li><a href="research.html#pubs">论文检索与引用管理</a></li>
+              <li><a href="#">打印复印与装订服务</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 后勤报修（工单表 + 历史占位） -->
+      <section class="card" id="repair">
+        <h3 class="sec-h">后勤报修 <span class="muted">MAINTENANCE</span></h3>
+        <div class="body">
+          <div class="grid-2">
+            <div>
+              <h4 style="margin:0 0 8px;">在线报修</h4>
+              <form id="ticketForm" onsubmit="submitTicket(event)">
+                <label class="small">地点（楼栋/房间）</label>
+                <input class="input" id="t_place" placeholder="如：B-4-404"/>
+                <label class="small" style="margin-top:8px;">问题类型</label>
+                <select id="t_type" class="input">
+                  <option>门窗/五金</option><option>电气/照明</option><option>网络/弱电</option><option>空调/供暖</option><option>其他</option>
+                </select>
+                <label class="small" style="margin-top:8px;">问题描述</label>
+                <textarea id="t_desc" class="input" rows="4" placeholder="请描述现象与时间…"></textarea>
+                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px;">
+                  <button class="btn ghost" type="button" onclick="clearTicket()">清空</button>
+                  <button class="btn primary" type="submit">提交工单</button>
+                </div>
+                <p class="muted small" style="margin-top:6px;">说明：提交后将在本机保存一个“工单回执号”，便于你下次查看。</p>
+              </form>
+            </div>
+            <div>
+              <h4 style="margin:0 0 8px;">公开记录（节选）</h4>
+              <ul class="list" id="ticketList">
+                <li><span class="pill">已结单</span>B-1-105 投影仪灯泡更换 <span class="muted small">（响应 4h）</span></li>
+                <li><span class="pill">处理中</span>图书馆东门闸机偶发卡纸 <span class="muted small">（响应 6h）</span></li>
+                <li><span class="pill">已结单</span>材料学院 2 楼走廊照明 <span class="muted small">（响应 3h）</span></li>
+              </ul>
+              <div class="note small" style="margin-top:8px;">温馨提示：晚间活动请提前报备；门窗若有松动请勿自行处理。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 安保与门禁 -->
+      <section class="card" id="security">
+        <h3 class="sec-h">安保与门禁 <span class="muted">SECURITY</span></h3>
+        <div class="body grid-2">
+          <div>
+            <h4 style="margin:0 0 8px;">门禁事项</h4>
+            <ul class="list">
+              <li>本科生门禁默认开放 <strong>06:30–22:00</strong>；22:00 后需导师审批。</li>
+              <li>实验楼夜间使用：需<strong>双人同行</strong>并在系统登记活动日志。</li>
+              <li>遗失校园卡请及时挂失（在 <a href="inbox.html">信息门户</a> 中操作）。</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 8px;">B-4 设备维护历史（摘要）</h4>
+            <pre class="mono" id="b4log">[2025-04-28] 更换西侧走廊摄像头电源
+[2025-05-17] 21:30–22:20 B4-CAM-2 信号抖动,监控无画面
+[2025-05-18] 设备恢复，清理缓存，帧率不稳
+[2025-05-25] 站台补光升级</pre>
+            <p class="muted small">完整维护日志见：<a href="/notices/maintenance_20250517_admin.html">信息化中心 · 维护日志（节选）</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 心理中心 -->
+      <section class="card" id="counseling">
+        <h3 class="sec-h">心理支持与辅导 <span class="muted">COUNSELING</span></h3>
+        <div class="body grid-2">
+          <div>
+            <p>可预约个体咨询/团体辅导，提供匿名热线与危机干预。常见主题：学业压力、情绪管理、人际困扰、<span class="muted">学术边界相关困扰</span>等。</p>
+            <ul class="list">
+              <li><a href="counseling.html">在线预约</a>（需校内邮箱）</li>
+              <li>心理支持专线：400-***-****（工作日 9:00–21:00）</li>
+              <li>紧急求助：校园安保 010-****-****（24h）</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 8px;">匿名自评（不采集数据）</h4>
+            <div class="note small">
+              <label><input type="checkbox" id="chkStress"> 最近两周学业/项目压力显著</label><br/>
+              <label><input type="checkbox" id="chkBoundary"> 遇到“学术边界不适”的情形</label><br/>
+              <label><input type="checkbox" id="chkSleep"> 睡眠受影响（入睡困难/早醒）</label>
+              <div style="margin-top:8px;"><button class="btn" onclick="suggestHelp()">获取建议</button></div>
+              <div id="sugg" class="small muted" style="margin-top:8px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 网络与VPN + 打印复印 -->
+      <section class="card" id="it">
+        <h3 class="sec-h">网络与信息化 <span class="muted">IT & VPN</span></h3>
+        <div class="body grid-2">
+          <div>
+            <ul class="list">
+              <li><span class="tag">账号</span>信息门户 / 邮箱 / VPN 统一认证</li>
+              <li><span class="tag">Wi-Fi</span>QHU-WIFI（802.1X） · 访客网络 QHU-Guest</li>
+              <li><span class="tag">VPN</span>支持 SSL/AnyConnect（校外访问图书馆数据库）</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 8px;">打印与自助</h4>
+            <ul class="list">
+              <li>一卡通自助打印（图书馆一层/各学院楼层）</li>
+              <li>毕业论文模板与封皮：<a href="education.html#downloads">教学运行 · 下载中心</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 遗失招领 -->
+      <section class="card" id="lostfound">
+        <h3 class="sec-h">遗失招领 <span class="muted">LOST & FOUND</span></h3>
+        <div class="body grid-2">
+          <div>
+            <ul class="list" id="lostList">
+              <li><span class="pill">寻物</span>黑色雨伞（图书馆 A 区） <span class="muted small">2025-05-16</span></li>
+              <li><span class="pill">招领</span>校园卡（末尾 *317）已交保卫处 <span class="muted small">2025-05-18</span></li>
+            </ul>
+            <p class="muted small">校园卡遗失请第一时间挂失；若涉及证件/钥匙，请到保卫处登记。</p>
+          </div>
+          <div>
+            <h4 style="margin:0 0 8px;">地图与导航</h4>
+            <a href="images/map_qinghe_campus.jpg" target="_blank"><img src="images/map_qinghe_campus.jpg" alt="清河大学校园地图" style="width:100%;border-radius:10px;border:1px solid #2a3347"/></a>
+            <p class="muted small" style="margin-top:6px;">点击查看大图；报修位置请尽量参照地图标注楼栋与房间号。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 紧急联系 -->
+      <section class="card" id="contacts">
+        <h3 class="sec-h">紧急联系 <span class="muted">EMERGENCY</span></h3>
+        <div class="body">
+          <table class="table">
+            <thead><tr><th>部门</th><th>电话</th><th>位置</th></tr></thead>
+            <tbody>
+              <tr><td>校园安保（24h）</td><td>010-****-****</td><td>保卫处值班室</td></tr>
+              <tr><td>后勤报修</td><td>010-****-****</td><td>后勤服务中心</td></tr>
+              <tr><td>心理支持专线</td><td>400-***-****</td><td>学生心理中心</td></tr>
+              <tr><td>校医院急诊</td><td>010-****-****</td><td>校医院一层</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 侧栏 -->
+    <aside class="card side sticky">
+      <div class="block">
+        <h3 style="margin:0 0 8px;">快速入口</h3>
+        <a class="btn" href="#bus">校车</a>
+        <a class="btn" href="#repair">报修</a>
+        <a class="btn" href="#security">安保与门禁</a>
+        <a class="btn" href="#counseling">心理支持</a>
+        <a class="btn" href="#lostfound">遗失招领</a>
+      </div>
+      <div class="block">
+        <h3 style="margin:0 0 8px;">服务状态</h3>
+        <ul class="list" id="svcStatus">
+          <li>网络认证：<span class="good">正常</span></li>
+          <li>图书馆预约：<span class="good">正常</span></li>
+          <li>B-4 西侧监控：<span class="warn">近期维护</span></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<script>
+/* ===== 报修工单（本地存储） ===== */
+function loadTickets(){
+  const list = JSON.parse(localStorage.getItem('qh_tickets')||'[]');
+  const ul = document.getElementById('ticketList');
+  const extra = list.map(t=>`<li><span class="pill">已提交</span>${t.place} · ${t.type}<div class="muted small">${t.desc}</div><div class="muted small">${t.ts}</div></li>`).join('');
+  // 历史示例 + 用户提交条目
+  ul.innerHTML = `
+    <li><span class="pill">历史</span>B-4-404 窗扣松动（已通知物业）<span class="muted small"> · 处理单号：B4231-0509</span></li>
+  ` + ul.innerHTML + extra;
+}
+function submitTicket(e){
+  e.preventDefault();
+  const place = document.getElementById('t_place').value.trim();
+  const type = document.getElementById('t_type').value.trim();
+  const desc = document.getElementById('t_desc').value.trim();
+  if(!place || !desc){ alert('请填写地点与问题描述'); return; }
+  const arr = JSON.parse(localStorage.getItem('qh_tickets')||'[]');
+  const ts = new Date().toLocaleString();
+  arr.unshift({place,type,desc,ts});
+  localStorage.setItem('qh_tickets', JSON.stringify(arr));
+  clearTicket(); loadTickets(); alert('已提交，回执号：QH-'+Date.now().toString().slice(-6));
+}
+function clearTicket(){ document.getElementById('ticketForm').reset(); }
+
+/* ===== 心理中心自助建议（不存储） ===== */
+function suggestHelp(){
+  const s = [];
+  if(document.getElementById('chkStress').checked) s.push("建议预约 45 分钟个体咨询，或参加时间管理/论文写作工作坊。");
+  if(document.getElementById('chkBoundary').checked) s.push("可在预约备注选择“学术边界相关困扰”，由资深老师接待；如涉及紧急情形请先致电专线。");
+  if(document.getElementById('chkSleep').checked) s.push("建议睡眠卫生打卡 7 天，并减少晚间蓝光暴露。");
+  document.getElementById('sugg').textContent = s.length ? s.join(" ") : "祝学习顺利，如需帮助可随时预约。";
+}
+
+/* ===== 顶部用户条与初始化 ===== */
+document.addEventListener('DOMContentLoaded', ()=>{
+  refreshUserBar();
+  loadTickets();
+});
+
+/* ===== 小彩蛋：按 B -> 4 显示一条延迟处理占位（仅在本地显示） ===== */
+(function secretHint(){
+  let seq = [];
+  document.addEventListener('keydown', (e)=>{
+    seq.push(e.key.toUpperCase()); if(seq.length>2) seq.shift();
+    if(seq[0]==='B' && seq[1]==='4'){
+      const ul = document.getElementById('ticketList');
+      const li = document.createElement('li');
+      li.innerHTML = '<span class="pill">延迟处理</span>B-4-231 窗边外侧清理（窗口轨道积尘） <span class="muted small">（等待场地开放）</span>';
+      ul.appendChild(li);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

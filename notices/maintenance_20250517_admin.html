@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>信息化中心：B-4 楼 2025-05-17 当晚监控与维护日志（节选） - 清河大学</title>
+
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<script src="../js/search.js" defer></script>
+
+<style>
+  :root{ color-scheme: dark; }
+  body{
+    margin:0;
+    background:#0c1119;
+    color:#e8eaee;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+  }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{
+    background:#0f1320;
+    border-bottom:1px solid #1d2331;
+    color:#c9ced8;
+    font-size:12px;
+  }
+  .topbar .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:8px 14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{
+    width:52px; height:52px; border-radius:10px;
+    border:1px solid #2a3142; background:#111;
+  }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{
+    background:#0f1320;
+    border-top:1px solid #1d2331;
+    border-bottom:1px solid #1d2331;
+  }
+  .nav .wrap.nav-wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .nav-links{
+    display:flex;
+    gap:22px;
+    flex-wrap:nowrap;
+  }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .nav-search{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:auto;
+  }
+  .nav-search input{
+    width:220px;
+    max-width:260px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #262d3f;
+    background:#0c1119;
+    color:#e8eaee;
+    font-size:13px;
+    outline:none;
+  }
+  .nav-search input::placeholder{ color:#737b8c; }
+  .nav-search input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px;
+    border-radius:999px;
+    border:1px solid #36527a;
+    background:#1f2a3f;
+    color:#e8eaee;
+    font-size:13px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .nav-search button:hover{
+    border-color:#4f7dd9;
+    background:#243455;
+  }
+
+  .card{
+    background:#141822;
+    border:1px solid #202636;
+    border-radius:12px;
+    padding:18px 18px 20px;
+    margin:20px 0 26px;
+  }
+
+  h1{ margin:0 0 10px; font-size:22px; }
+  h2{ margin:20px 0 10px; font-size:18px; }
+  .meta-line{ font-size:12px; color:#9aa0a6; margin-bottom:12px; }
+
+  .note-box{
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius:8px;
+    background:#111724;
+    border:1px dashed #28334a;
+    font-size:12px;
+    color:#9aa0a6;
+    line-height:1.6;
+  }
+
+  table.log-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:8px;
+    font-size:13px;
+  }
+  .log-table th,
+  .log-table td{
+    border:1px solid #232b3b;
+    padding:8px 10px;
+    text-align:left;
+    vertical-align:top;
+  }
+  .log-table th{
+    background:#181f2c;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .log-table tbody tr:nth-child(even){
+    background:#111724;
+  }
+  .tag{
+    display:inline-block;
+    padding:1px 7px;
+    border-radius:999px;
+    border:1px solid #2b3854;
+    background:#162136;
+    font-size:11px;
+    margin-right:4px;
+    color:#cfd6df;
+  }
+
+  footer{
+    background:#0f1320;
+    border-top:1px solid #1d2331;
+    margin-top:24px;
+  }
+  footer .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:18px 14px;
+    color:#97a0ad;
+    font-size:12px;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  /* 登录模态兜底 */
+  #loginMask{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  #loginMask .box{
+    width:380px;
+    background:#141822;
+    border:1px solid #202636;
+    border-radius:12px;
+    padding:16px;
+  }
+  .input{
+    background:#0e1116;
+    border:1px solid #1c2230;
+    border-radius:6px;
+    padding:8px 10px;
+    color:#e8eaee;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .btn{
+    background:#1b2333;
+    border:1px solid #2a3347;
+    border-radius:8px;
+    color:#e8eaee;
+    padding:8px 12px;
+    cursor:pointer;
+  }
+  .btn.primary{
+    background:#21406b;
+    border-color:#2c538a;
+  }
+  .btn:hover{ border-color:#3a4661; }
+
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="muted small" style="margin:10px 2px 6px;">
+    <a href="/index.html">首页</a> ·
+    <a href="/search.html?q=B-4">站内搜索</a> ·
+    信息化中心：B-4 楼监控与维护日志（节选）
+  </div>
+
+  <!-- 非管理员看到的简版说明 -->
+  <div id="nonAdminView" class="card hidden">
+    <h1>B-4 楼 2025-05-17 当晚监控与维护日志（公开摘要）</h1>
+    <div class="meta-line">
+      来源：信息化建设与管理中心　|　版本：公开节选　|　用途：安全教育与案例研讨
+    </div>
+    <p class="small muted">
+      说明：本页为 B-4 楼 2025-05-17 当晚监控与网络异常的公开摘要，仅保留对全体师生有提示意义的部分信息。
+      涉及具体人员、设备编号等敏感内容已被技术处理。如因教学或安全培训需要查阅完整日志，请通过
+      <code>itops@qh.edu</code> 正式提出申请。
+    </p>
+
+    <h2>一、事件概况</h2>
+    <p>
+      2025-05-17 晚间，B-4 楼部分监控画面在 <strong>21:30–22:00</strong> 时间段出现集中离线，
+      同时楼内网络设备记录到短时掉线与重连。经信息化中心与保卫处联合排查，
+      确认为<strong>机房内设备被人为断电并重新上电</strong>所致，非大范围电力故障。
+    </p>
+
+    <h2>二、技术层面初步结论</h2>
+    <ul class="small">
+      <li>离线时间段内，B-4 楼其他用电设施工作正常，未记录到市电异常或 UPS 告警。</li>
+      <li>监控录像服务器与接入交换机日志显示，在 21:31 左右发生“非正常关机/断电”记录。</li>
+      <li>同一时间段内，B-4 楼弱电间门磁与钥匙管理系统存在进入操作记录，疑似为现场人为操作。</li>
+      <li>22:00 前后设备陆续恢复，部分摄像头在重启过程中出现时间戳回退、日志缺口等情况。</li>
+    </ul>
+
+    <div class="note-box">
+      提示：根据《清河大学网络与视频监控管理办法》，
+      任何单位或个人擅自关闭、遮挡、断开校园监控设备，均视为严重违规行为。
+      如发现有摄像头被遮挡、线路被私自拔插等情况，请及时向保卫处或信息化中心报告。
+    </div>
+  </div>
+
+  <!-- 管理员 / 运维账号看到的详细节选 -->
+  <div id="adminView" class="card hidden">
+    <h1>B-4 楼 2025-05-17 当晚监控与维护日志（节选 · 内部使用）</h1>
+    <div class="meta-line">
+      信息化建设与管理中心　|　值班工程师：赵\*　|　班次：夜班（20:00–次日 08:00）
+    </div>
+
+    <p class="small muted">
+      说明：本页为 B-4 楼 2025-05-17 当晚监控与网络异常的内部技术节选，仅供信息化中心、保卫处相关管理人员查阅。
+      请注意保密要求，勿通过非工作渠道传播截图或全文。
+    </p>
+
+    <h2>一、基本信息</h2>
+    <ul class="small">
+      <li>楼宇：B-4 楼（智能感知与交互实验区）</li>
+      <li>相关系统：视频监控子平台（B4-NVR-02）、楼层交换机（SW-B4-F2 / SW-B4-F3）、核心汇聚（CORE-02）</li>
+      <li>异常时间段：<strong>21:30–22:00</strong> 左右，局部摄像头与 NVR 短时离线</li>
+      <li>报警来源：监控平台离线告警 + 保卫处值班室电话通知</li>
+    </ul>
+
+    <h2>二、当晚时间线（按系统日志整理）</h2>
+    <table class="log-table">
+      <thead>
+        <tr>
+          <th style="width:130px;">时间</th>
+          <th style="width:140px;">来源系统</th>
+          <th>事件描述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>21:24</td>
+          <td>监控平台</td>
+          <td>
+            <span class="tag">例行巡检</span>
+            夜班值班工程师通过 Web 控制台确认 B-4 楼监控在线，关键摄像头画面正常，无丢包告警。
+          </td>
+        </tr>
+        <tr>
+          <td>21:31</td>
+          <td>B4-NVR-02</td>
+          <td>
+            <span class="tag">异常关机</span>
+            日志记录 <code>Unexpected power loss</code>，
+            随后设备心跳中断，接入的B-4大部分摄像头在平台侧显示“离线”状态。
+          </td>
+        </tr>
+        <tr>
+          <td>21:32–21:34</td>
+          <td>SW-B4-F2 / F3</td>
+          <td>
+            <span class="tag">端口失联</span>
+            连接至 NVR 的上联端口出现 <code>link-down</code> / <code>link-up</code> 快速切换，
+            但其他楼用户端口在线，未出现掉线，排除学校断电可能。
+          </td>
+        </tr>
+        <tr>
+          <td>21:35</td>
+          <td>监控平台</td>
+          <td>
+            <span class="tag">集中告警</span>
+            B-4 楼 共 18 路摄像头显示“视频信号丢失”，
+            告警类型为“设备离线”，非单一摄像头故障。
+          </td>
+        </tr>
+       
+        <tr>
+          <td>21:29</td>
+          <td>弱电间门磁记录</td>
+          <td>
+            <span class="tag">机房进出</span>
+            B-4 楼二层弱电间门磁记录一次「开门」事件，
+            与当日已备案的常规巡检时间不符；钥匙柜系统同时记录一把「B4-弱电间」钥匙被取用。
+          </td>
+        </tr>
+        <tr>
+          <td>22:03</td>
+          <td>现场操作</td>
+          <td>
+            <span class="tag">恢复供电</span>
+            在确认无触电风险后，值班管理员重新开启排插总控开关，
+            NVR 设备开始自检、重启，前面板指示灯恢复正常。
+          </td>
+        </tr>
+        <tr>
+          <td>22:12</td>
+          <td>监控平台</td>
+          <td>
+            <span class="tag">画面恢复</span>
+            B4-NVR-02 重新上线，B-4摄像头陆续恢复画面。
+          </td>
+        </tr>
+        <tr>
+          <td>22:23</td>
+          <td>值班记录</td>
+          <td>
+            <span class="tag">事件登记</span>
+            完成《夜间监控异常处理登记表》电子填报，
+            对疑似人为操作部分做“待进一步核实”标注，并建议与保卫处联合排查相关钥匙使用记录。
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>三、技术分析（节选）</h2>
+    <ul class="small">
+      <li>综合监控、电力、网络三方日志，<strong>未</strong>发现市电中断或 UPS 故障的证据。</li>
+      <li>异常仅影响到 B4-NVR-02 所在插座排插，其它接入同一机柜电路的设备运行稳定。</li>
+      <li>弱电间当晚存在一次额外开门记录，与常规巡检时间不匹配，且钥匙借出人身份需由保卫处进一步核查。</li>
+      <li>从时间轴看，排插总控处于「关闭」状态的时间段与 NVR 离线时间高度重合，可合理推断为<strong>人为关闭排插总控</strong>导致设备掉电。</li>
+    </ul>
+
+    <h2>四、后续处理建议</h2>
+    <ol class="small">
+      <li>建议对 B-4 楼弱电间钥匙使用实行更严格登记，增加刷卡记录与视频联动留痕。</li>
+      <li>建议将 NVR 与关键交换机电源迁移至单独受控回路，避免通过普通排插开关即可关闭。</li>
+      <li>建议对夜班值班及保卫巡逻人员开展一次“监控设备不得私自断电”专题培训。</li>
+      <li>如后续发现类似人为操作，应按《校园监控与网络设施管理办法》启动问责流程。</li>
+    </ol>
+
+    <div class="note-box">
+      注：本页为技术节选，完整日志（含设备序列号、MAC 地址、操作人信息等）存储于信息化中心内部系统，
+      仅供事故调查使用。如需调取，请通过部门负责人按流程向中心提交书面申请。
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div>
+      <a href="../overview.html">学校概况</a> ·
+      <a href="../organization.html">组织机构</a> ·
+      <a href="../education.html">教育教学</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态 -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">
+      示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code>
+    </p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025A0917"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 简单的“管理员视图”控制：admin / IT / 保卫处管理员看完整版，其它账号看公开摘要
+  document.addEventListener('DOMContentLoaded', function(){
+    var adminCard = document.getElementById('adminView');
+    var nonCard   = document.getElementById('nonAdminView');
+
+    function showAdmin(){
+      if(adminCard) adminCard.classList.remove('hidden');
+      if(nonCard)   nonCard.classList.add('hidden');
+    }
+    function showNonAdmin(){
+      if(nonCard)   nonCard.classList.remove('hidden');
+      if(adminCard) adminCard.classList.add('hidden');
+    }
+
+    if(typeof getAuth !== 'function'){
+      showNonAdmin();
+      return;
+    }
+
+    var auth = getAuth();
+    if(!auth){
+      // 未登录默认公开摘要
+      showNonAdmin();
+      return;
+    }
+
+    // 简单判断：admin 角色 或 特定内部账号视为有权限
+    if(auth.role === 'admin' || auth.id === 'U-IT' || auth.id === 'U-ZGQ' || auth.id === 'U-SEC'){
+      showAdmin();
+    }else{
+      showNonAdmin();
+    }
+  });
+</script>
+
+</body>
+</html>

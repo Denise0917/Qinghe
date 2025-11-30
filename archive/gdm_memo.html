@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>个人备忘（未发送草稿） - 清河大学</title>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee;
+        font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331;
+           color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px;
+                 display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px;
+            border-radius:999px; border:1px solid #3a465f;
+            font-size:12px; background:#203047; color:#aee; }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px;
+              border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px;
+              display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .nav-links{ display:flex; gap:22px; flex-wrap:nowrap; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  /* 右侧站内搜索（与全站统一） */
+  .nav-search{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:auto;
+  }
+  .nav-search input{
+    width:220px;
+    max-width:260px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #262d3f;
+    background:#0c1119;
+    color:#e8eaee;
+    font-size:13px;
+    outline:none;
+  }
+  .nav-search input::placeholder{ color:#737b8c; }
+  .nav-search input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px;
+    border-radius:999px;
+    border:1px solid #36527a;
+    background:#1f2a3f;
+    color:#e8eaee;
+    font-size:13px;
+    cursor:pointer;
+  }
+  .nav-search button:hover{
+    border-color:#4f7dd9;
+    background:#243455;
+  }
+
+  /* 备忘录卡片 */
+  .card{
+    background:#141822; border:1px solid #202636;
+    border-radius:12px; padding:18px 18px 20px; margin:20px 0 26px;
+  }
+  h1{ margin:0 0 10px; font-size:22px; }
+  .meta-line{ font-size:12px; color:#9aa0a6; margin-bottom:12px; }
+
+  .memo-wrap{
+    margin-top:10px;
+    padding:14px 16px 18px;
+    border-radius:10px;
+    background:#101521;
+    border:1px dashed #2a3245;
+  }
+  .memo-title{
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:8px;
+    color:#f5c96a;
+  }
+  .memo-meta{
+    font-size:12px;
+    color:#8891a1;
+    margin-bottom:12px;
+  }
+  .memo-body{
+    font-family: "SF Mono","JetBrains Mono",Consolas,monospace;
+    font-size:16px;          /* 字体稍微大一点 */
+    line-height:1.7;
+    white-space:pre-wrap;
+    color:#e5e9f5;
+  }
+
+  .back-link{
+    margin-top:6px;
+    font-size:12px;
+  }
+  .back-link a{
+    color:#9aa7ff;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px;
+                color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 兜底登录模态（main.js 会自动复用） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55);
+              display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636;
+                   border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px;
+          padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px;
+        color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="../index.html">首页</a> · <a href="../search.html?q=%E9%A1%BE%E5%B2%AD%E6%98%8E">站内搜索</a> · 个人备忘（节选）
+  </div>
+
+  <div class="card">
+    <h1>个人备忘（未发送草稿）</h1>
+    <div class="meta-line">
+      文件来源：本地草稿缓存（疑似未发送邮件） · 仅节选片段
+    </div>
+
+    <div class="memo-wrap">
+      <div class="memo-title">【仅自己可见】</div>
+      <div class="memo-meta">时间戳：2025-03-30 23:41　|　署名：G.D.M</div>
+      <div class="memo-body">
+我到底是哪里不如他？
+
+从大一开始我就看着她。只要她一笑，我的脑子就像被什么点燃一样。  
+ 
+可是她从来不给我机会。哪怕一点点暗示都没有。
+
+偏偏他随便伸个手，她就跟着走了。
+
+他们之间的那些“指导”“单独谈话”“深夜加班”，
+只要是正常人都看得出来是什么性质。  
+她却装得若无其事，好像那是天经地义，好像她就是生来要被“特别照顾”的人。  
+恶心。
+
+凭什么。
+凭什么他就可以得到她？  
+凭什么她那副姿态、那种配合的样子，只留给他？  
+凭什么我努力这么久，却永远连门槛都碰不到？
+
+她不是天真，也不是无辜。  
+她知道自己在做什么。  
+她知道利用别人、靠近别人、交换别人期待的东西意味着什么。  
+可笑的是,我居然曾经相信她干净。
+
+私下不知道跟沈玩过多少遍了！
+婊子！
+
+我得不到的东西，别人也别想得到！ 
+我得不到的全部都要毁灭！
+哈哈哈哈哈哈哈哈哈哈
+没有人可以赢我。
+
+陈思芸最近怎么这么烦啊
+最近总是找我干嘛！
+一点眼力都没有，活该评不上奖学金，你也是一个臭婊子，
+你以为我喜欢你吗？
+
+你不过是一个刚好出现、刚好顺手的出口。  
+你以为我喜欢你吗？你对我重要吗？
+不是。  
+你只是好用——能听话、能依赖、能满足我。
+
+
+你越来越黏人，越来越烦，   
+等我觉得厌了，自然会甩掉你。  
+一个工具没有使用价值的时候，就应该被丢回原地。
+
+      </div>
+    </div>
+
+    <div class="back-link">
+      <a href="javascript:history.back();">← 返回上一页</a> ·
+      <a href="../search.html?q=%E9%A1%BE%E5%B2%AD%E6%98%8E">返回搜索结果</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态 -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>清河大学 · QH-CCTV B-4 监控终端</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind（方便快速布局，如果不想用可以自己改成自定义 CSS） -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: #02030a;
+      color: #e2e8f0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .osd-font {
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* 背景：轻微监控屏幕感（可按需删减） */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 12px;
+      border: 1px solid rgba(148,163,209,.4);
+      box-shadow:
+        0 0 0 1px rgba(15,23,42,.85),
+        0 0 40px rgba(0,0,0,.9) inset;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* --- 监视器核心样式 --- */
+    .monitor-glass {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+    }
+
+    .monitor-scanlines {
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.2) 50%,
+        rgba(0,0,0,0.2)
+      );
+      background-size: 100% 4px;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+      opacity: 0.6;
+    }
+
+    .monitor-grain {
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.18;
+      animation: grainShift 0.25s steps(4) infinite;
+      pointer-events: none;
+      z-index: 15;
+      mix-blend-mode: overlay;
+    }
+
+    @keyframes grainShift {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(-10%, -10%); }
+    }
+
+    /* 昼夜 / 红外模式 */
+    .mode-day {
+      filter: contrast(1.08) brightness(0.92) sepia(0.15) saturate(0.7);
+    }
+    .mode-night {
+      filter: grayscale(100%) sepia(100%) hue-rotate(90deg) saturate(280%) brightness(0.85) contrast(1.3);
+    }
+    .mode-ir {
+      filter: grayscale(100%) contrast(1.5) brightness(1.1);
+    }
+
+    /* PTZ 画面过渡 */
+    #feed-image {
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .ptz-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      transition: all 0.1s;
+      font-size: 12px;
+    }
+    .ptz-btn:active {
+      background: #3b82f6;
+      color: white;
+      border-color: #60a5fa;
+      transform: scale(0.95);
+    }
+
+    .rec-dot {
+      animation: blink 1s steps(2, start) infinite;
+    }
+    @keyframes blink { to { visibility: hidden; } }
+
+    /* 自定义滚动条（侧边栏） */
+    ::-webkit-scrollbar {
+      width: 8px;
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col">
+
+  <!-- 顶部栏：改成清河大学世界观 -->
+  <header class="h-14 bg-[#020617] border-b border-[#1e293b] flex items-center justify-between px-4 shrink-0">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-red-600 rounded flex items-center justify-center shadow-[0_0_10px_rgba(248,113,113,0.6)]">
+        <span class="material-symbols-outlined text-white">visibility</span>
+      </div>
+      <div>
+        <h1 class="font-bold text-gray-100 tracking-wider text-sm">
+          清河大学 · <span class="text-red-400">QH-CCTV</span>
+        </h1>
+        <div class="text-[10px] text-gray-500 flex gap-2">
+          <span>CASE: QH-2025-0517</span>
+          <span class="text-green-500 font-bold">● ONLINE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4 text-right">
+      <div class="hidden md:block text-[10px] text-gray-500 font-mono">
+        终端 ID：B4-CAM-04 · 校园保卫处
+      </div>
+      <div>
+        <div id="sys-time" class="text-lg md:text-xl font-bold text-gray-100 osd-font leading-none">--:--:--</div>
+        <div id="sys-date" class="text-[10px] text-gray-500 font-mono">--------</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体 -->
+  <div class="flex-1 flex overflow-hidden bg-[#02030a]">
+
+    <!-- 左侧列表：简单保留几个摄像头占位 -->
+    <aside class="w-64 bg-[#020617] border-r border-[#1e293b] flex flex-col shrink-0 hidden md:flex">
+      <div class="p-3 bg-[#020820] border-b border-[#1e293b]">
+        <h2 class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.24em]">CAMERA LIST</h2>
+      </div>
+      <div class="flex-1 overflow-y-auto text-[11px]">
+        <!-- CAM 01 -->
+        <div class="p-3 border-b border-[#111827] opacity-50 cursor-not-allowed">
+          <div class="flex justify-between mb-1">
+            <span class="font-bold text-gray-500">CAM 01 (正门)</span>
+            <span class="text-[9px] bg-red-900/40 text-red-400 px-1 rounded">OFFLINE</span>
+          </div>
+          <div class="h-12 bg-black relative overflow-hidden rounded border border-[#1f2937] flex items-center justify-center text-[9px] text-gray-600">
+            NO SIGNAL
+          </div>
+        </div>
+
+        <!-- CAM 02 -->
+        <div class="p-3 border-b border-[#111827] opacity-60 cursor-not-allowed">
+          <div class="flex justify-between mb-1">
+            <span class="font-bold text-gray-500">CAM 02 (心理中心)</span>
+            <span class="text-[9px] bg-gray-800 text-gray-400 px-1 rounded">MAINT.</span>
+          </div>
+          <div class="h-12 bg-black relative overflow-hidden rounded border border-[#1f2937] flex items-center justify-center text-[9px] text-gray-600">
+            DISABLED
+          </div>
+        </div>
+
+        <!-- CAM 03 -->
+        <div class="p-3 border-b border-[#111827] opacity-60 cursor-not-allowed">
+          <div class="flex justify-between mb-1">
+            <span class="font-bold text-gray-500">CAM 03 (信息化中心)</span>
+            <span class="text-[9px] bg-gray-800 text-gray-400 px-1 rounded">NO FEED</span>
+          </div>
+          <div class="h-12 bg-black relative overflow-hidden rounded border border-[#1f2937] flex items-center justify-center text-[9px] text-gray-600">
+            SIGNAL LOST
+          </div>
+        </div>
+
+        <!-- CAM 04（当前） -->
+        <div class="p-3 border-b border-[#111827] bg-[#020b1c] border-l-2 border-l-red-500">
+          <div class="flex justify-between mb-1">
+            <span class="font-bold text-red-400">CAM 04 (B-4 走廊)</span>
+            <span class="text-[9px] bg-green-900/40 text-green-400 px-1 rounded rec-dot">REC</span>
+          </div>
+          <div class="text-[10px] text-gray-400 mb-1">
+            最后检测到异常：<span id="motion-time">--:--:--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 简单环境信息 -->
+      <div class="p-3 border-t border-[#1e293b] bg-[#020617] text-[10px] font-mono text-gray-400 grid grid-cols-2 gap-y-1">
+        <div>TEMP: <span class="text-gray-100">18°C</span></div>
+        <div>HUM: <span class="text-gray-100">45%</span></div>
+        <div>LUX: <span class="text-gray-100">0.2</span></div>
+        <div>IR: <span class="text-green-400">AUTO</span></div>
+      </div>
+    </aside>
+
+    <!-- 中间监视器 -->
+    <main class="flex-1 flex flex-col items-center justify-center p-3 md:p-6 bg-[#02030a]">
+      <!-- 屏幕本体 -->
+      <div class="relative w-full max-w-5xl aspect-video bg-black shadow-[0_0_40px_rgba(0,0,0,0.9)] border border-[#111827] rounded-sm monitor-glass group">
+        <div class="w-full h-full overflow-hidden relative">
+          <!-- ★ 这里改成你要的监视器图片：\images\jk.png ★ -->
+          <img
+            id="feed-image"
+            src="images/jk.png"
+            alt="B-4 走廊监控画面"
+            class="w-full h-full object-cover transform mode-night"
+            style="transform: scale(1.4) translate(0%, 0%);"
+          >
+        </div>
+
+        <!-- 噪点 + 扫描线 -->
+        <div class="monitor-grain"></div>
+        <div class="monitor-scanlines"></div>
+
+        <!-- OSD 叠字 -->
+        <div class="absolute inset-0 p-3 md:p-5 pointer-events-none flex flex-col justify-between z-30">
+          <div class="flex justify-between items-start">
+            <div class="bg-black/50 px-2 py-1 rounded">
+              <div class="text-sm md:text-lg font-bold text-white osd-font tracking-[0.3em]">
+                QH-CCTV · B-4
+              </div>
+              <div class="text-[9px] md:text-[11px] text-gray-300 osd-font">
+                CAM 04 / CORRIDOR · NORTH
+              </div>
+            </div>
+            <div class="bg-black/50 px-2 py-1 rounded text-right">
+              <div class="text-lg md:text-2xl font-bold text-white osd-font tracking-[0.18em] osd-timer">--:--:--</div>
+              <div class="text-[9px] text-gray-300 osd-font">
+                QH-2025-0517
+              </div>
+            </div>
+          </div>
+
+          <!-- 十字中心 -->
+          <div class="absolute top-1/2 left-1/2 w-8 h-8 border border-white/25 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center opacity-30">
+            <div class="w-1 h-1 bg-white/70"></div>
+          </div>
+
+          <div class="flex justify-between items-end">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-600 rec-dot shadow-[0_0_5px_red]"></div>
+              <span class="text-[11px] font-bold text-red-400 tracking-[0.2em]">REC</span>
+            </div>
+            <div class="text-right text-[10px] text-gray-300 osd-font">
+              <p>PTZ: DIGITAL ONLY</p>
+              <p>ZOOM: <span id="zoom-level">1.4</span>x</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 悬浮箭头提示 -->
+        <div class="absolute inset-0 z-40 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-2">
+          <div class="flex justify-center">
+            <span class="material-symbols-outlined text-white/40 text-4xl">keyboard_arrow_up</span>
+          </div>
+          <div class="flex justify-between px-4">
+            <span class="material-symbols-outlined text-white/40 text-4xl">keyboard_arrow_left</span>
+            <span class="material-symbols-outlined text-white/40 text-4xl">keyboard_arrow_right</span>
+          </div>
+          <div class="flex justify-center">
+            <span class="material-symbols-outlined text-white/40 text-4xl">keyboard_arrow_down</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下方控制条 -->
+      <div class="mt-4 w-full max-w-5xl bg-[#020617] border border-[#1e293b] rounded p-3 flex flex-col md:flex-row gap-4 items-center justify-between">
+        <!-- 模式切换 -->
+        <div class="flex gap-1 bg-[#02030a] p-1 rounded border border-[#1e293b] text-xs">
+          <button onclick="setMode('day')" class="px-3 py-1 rounded text-gray-300 hover:bg-[#1e293b] hover:text-white flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">wb_sunny</span> 日间
+          </button>
+          <button onclick="setMode('night')" class="px-3 py-1 rounded text-green-300 hover:bg-[#1e293b] hover:text-green-300 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">night_sight_auto</span> 夜视
+          </button>
+          <button onclick="setMode('ir')" class="px-3 py-1 rounded text-gray-300 hover:bg-[#1e293b] hover:text-white flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">infrared</span> IR
+          </button>
+        </div>
+
+        <!-- PTZ D-PAD -->
+        <div class="flex items-center gap-4">
+          <div class="text-[10px] text-gray-500 font-bold -rotate-90">PTZ</div>
+          <div class="grid grid-cols-3 gap-1">
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center" onclick="movePTZ(-1, -1)">↖</button>
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center" onclick="movePTZ(0, -1)">↑</button>
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center" onclick="movePTZ(1, -1)">↗</button>
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center" onclick="movePTZ(-1, 0)">←</button>
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center text-white font-bold" onclick="resetPTZ()">●</button>
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center" onclick="movePTZ(1, 0)">→</button>
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center" onclick="movePTZ(-1, 1)">↙</button>
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center" onclick="movePTZ(0, 1)">↓</button>
+            <button class="ptz-btn w-8 h-8 rounded flex items-center justify-center" onclick="movePTZ(1, 1)">↘</button>
+          </div>
+        </div>
+
+        <!-- ZOOM -->
+        <div class="flex items-center gap-2 w-48 text-xs">
+          <span class="material-symbols-outlined text-gray-500 text-sm">zoom_in</span>
+          <input
+            id="zoom-slider"
+            type="range"
+            min="1"
+            max="3"
+            step="0.1"
+            value="1.4"
+            class="w-full h-1 bg-[#1f2937] rounded-lg appearance-none cursor-pointer"
+            oninput="updateZoom(this.value)"
+          >
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // --- PTZ 状态 ---
+    let panX = 0;
+    let panY = 0;
+    let scale = 1.4;
+
+    function updateTransform() {
+      const img = document.getElementById('feed-image');
+      img.style.transform = `scale(${scale}) translate(${panX}%, ${panY}%)`;
+      document.getElementById('zoom-level').innerText = scale.toFixed(1);
+    }
+
+    function movePTZ(dx, dy) {
+      const step = 5;
+      // 视觉上：按右 → 画面向左偏移，所以这里用减号
+      panX -= dx * step;
+      panY -= dy * step;
+
+      const limit = (scale - 1) * 40; // 粗略限制，可自行调
+      panX = Math.max(-limit, Math.min(limit, panX));
+      panY = Math.max(-limit, Math.min(limit, panY));
+
+      updateTransform();
+    }
+
+    function resetPTZ() {
+      panX = 0;
+      panY = 0;
+      updateTransform();
+    }
+
+    function updateZoom(val) {
+      scale = parseFloat(val);
+      updateTransform();
+    }
+
+    function setMode(mode) {
+      const img = document.getElementById('feed-image');
+      img.classList.remove('mode-day', 'mode-night', 'mode-ir');
+      img.classList.add(`mode-${mode}`);
+    }
+
+    // --- 时间 / OSD ---
+    function updateTime() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
+      const dateStr = now.toLocaleDateString('zh-CN').replace(/\//g, '-');
+
+      const sysTime = document.getElementById('sys-time');
+      const sysDate = document.getElementById('sys-date');
+      if (sysTime) sysTime.textContent = timeStr;
+      if (sysDate) sysDate.textContent = dateStr;
+
+      document.querySelectorAll('.osd-timer').forEach(el => el.textContent = timeStr);
+
+      const motion = document.getElementById('motion-time');
+      if (motion && motion.textContent === '--:--:--') {
+        // 初始时把“最后检测到异常”也填上一个时间，让画面更真实一点
+        motion.textContent = timeStr;
+      }
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // 键盘方向键控制 PTZ
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "ArrowUp") movePTZ(0, -1);
+      if (e.key === "ArrowDown") movePTZ(0, 1);
+      if (e.key === "ArrowLeft") movePTZ(-1, 0);
+      if (e.key === "ArrowRight") movePTZ(1, 0);
+    });
+
+    // 初始模式：夜视（和 B-4 案件氛围统一）
+    setMode('night');
+  </script>
+</body>
+</html>

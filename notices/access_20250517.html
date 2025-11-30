@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>保卫处：B-4 楼门禁刷卡记录（节选，2025-05-17，当晚） - 清河大学</title>
+
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+
+<meta name="description" content="清河大学保卫处：B-4 教学楼 2025-05-17 当晚门禁刷卡记录（管理员可见），含楼宇外门、楼层与教室门禁事件，已做脱敏处理。">
+
+<style>
+  .doc{padding:0}
+  .sec-h{margin:0;padding:12px 14px 8px;border-bottom:1px solid #202636}
+  .doc .body{padding:12px 14px 16px}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+  .input,select{background:#0e1116;border:1px solid #1c2230;border-radius:6px;padding:8px 10px;color:#e8eaee}
+  .table{width:100%;border-collapse:collapse}
+  .table th,.table td{border-bottom:1px solid #202636;padding:10px 8px;text-align:left;vertical-align:top}
+  .table th{cursor:pointer}
+  .pill{display:inline-block;padding:2px 8px;border:1px solid #2c3852;background:#152033;border-radius:999px;font-size:12px;margin-right:8px;white-space:nowrap}
+  .note{background:#111a27;border:1px dashed #2b3b56;border-radius:8px;padding:10px 12px}
+  .badge{display:inline-block;border:1px solid #2b3854;background:#162136;border-radius:999px;padding:2px 8px;font-size:12px}
+  .RES-ok{color:#b8e986}
+  .RES-deny{color:#ff9e9e}
+  .RES-override{color:#ffd166}
+  .muted.small code{background:#0f1420;border:1px solid #223048;border-radius:4px;padding:0 4px}
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin" onclick="openLogin();return false;">登录</a>
+      <a href="#" id="btnLogout" class="hidden" onclick="logout();location.href='../index.html';return false;">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="../index.html">首页</a> · 校安档案 · B-4 楼门禁刷卡记录（节选）
+  </div>
+
+  <article id="content" class="card doc hidden">
+    <h3 class="sec-h">B-4 楼门禁刷卡记录（节选）— 2025-05-17 晚</h3>
+    <div class="body">
+      <div class="note">
+        覆盖时间：<strong>16:00–</strong>；
+        数据字段：时间、门点、持卡人/凭证、结果、方式、备注。所有身份信息已做脱敏处理。<br/>
+        对照建议：与 <a href="/notices/maintenance_20250517_admin.html" data-requires="admin">信息化中心维护日志（节选）</a> 核对时间线。注：断电时，门禁也会失效。
+      </div>
+
+      <div class="toolbar">
+        <input id="kw" class="input" placeholder="关键词：231 / 外门 / 失败 / 主卡…">
+        <select id="doorSel" class="input">
+          <option value="">门点：全部</option>
+          <option value="外门（北侧）">外门（北侧）</option>
+          <option value="二层楼门">南门</option>
+        </select>
+        <select id="whoSel" class="input">
+          <option value="">持卡人/凭证：全部</option>
+          <option value="S-21A0421">S-21A0421（学生）</option>
+          <option value="S-21D0001">S-21D0001（学生）</option>
+          <option value="STAFF-ZGQ">STAFF-ZGQ（管理员）</option>
+          <option value="未知凭证">未知凭证</option>
+        </select>
+        <select id="resSel" class="input">
+          <option value="">结果：全部</option>
+          <option value="通过">通过</option>
+          <option value="拒绝">拒绝</option>
+          <option value="手动开门">手动开门</option>
+        </select>
+        <input id="tFrom" class="input" type="time" value="16:00" style="width:130px">
+        <span class="muted small">至</span>
+        <input id="tTo" class="input" type="time" value="22:30" style="width:130px">
+        <button class="btn" onclick="doFilter()">检索</button>
+        <button class="btn" onclick="resetFilter()">重置</button>
+        <button class="btn" onclick="exportCSV()">导出 CSV</button>
+      </div>
+
+      <table class="table" id="logTable">
+        <thead>
+          <tr>
+            <th data-k="time">时间</th>
+            <th data-k="door">门点</th>
+            <th data-k="who">持卡人/凭证</th>
+            <th data-k="res">结果</th>
+            <th data-k="how">方式</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <p class="muted small" style="margin-top:8px;">
+        注：标记为 <span class="badge">手动开门</span> 的记录来自管理员主卡或机械开锁操作，详细责任需结合当班记录核对。
+      </p>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div>页面更新：2025-05-18 00:10</div>
+  </div>
+</footer>
+
+<script>
+/* ------------------- 兜底访问校验（直链进入时） ------------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  try{ refreshUserBar(); }catch(e){}
+  const auth = (typeof getAuth==='function') ? getAuth() : null;
+
+  if (!auth) {
+    if (typeof openNotice === 'function') {
+      openNotice({
+        title: '需要登录',
+        html: '该页面仅向管理员开放。请在首页使用管理员账号登录后再访问。',
+        okText: '返回首页',
+        onOk: ()=> location.href = '../index.html',
+        cancelText: '取消'
+      });
+    } else {
+      location.href = '../index.html';
+    }
+    return;
+  }
+
+  if (auth.role !== 'admin') {
+    if (typeof showToast === 'function') showToast('权限不足：该页面仅向管理员开放。',{type:'error'});
+    setTimeout(()=> location.href = '../index.html', 800);
+    return;
+  }
+
+  // 管理员：展示内容并初始化表格
+  document.getElementById('content').classList.remove('hidden');
+  doFilter();
+});
+
+/* ------------------- 门禁记录数据（节选，已脱敏） ------------------- */
+const RAW = [
+  // time, door, who, res, how, note
+  {time:'18:01:23', door:'外门（北侧）', who:'S-21X0103', res:'通过', how:'学生卡', note:'进入楼内'},
+  {time:'19:02:10', door:'外门（北侧）', who:'S-21X0103', res:'通过', how:'学生卡', note:'离开'},
+  {time:'18:41:55', door:'外门（北侧）', who:'S-21X0102', res:'通过', how:'学生卡', note:'进入楼内'},
+
+
+{time:'19:10:33', door:'外门（北侧）', who:'S-22X0101', res:'通过', how:'学生卡', note:'离开'},
+{time:'19:18:27', door:'外门（北侧）', who:'S-23A0421', res:'通过', how:'学生卡', note:'离开'},
+{time:'19:26:48', door:'外门（北侧）', who:'S-21X0102', res:'通过', how:'学生卡', note:'离开'},
+{time:'19:41:22', door:'外门（北侧）', who:'S-23A0871', res:'通过', how:'学生卡', note:'离开'},
+{time:'19:55:03', door:'外门（北侧）', who:'S-24X0169', res:'通过', how:'学生卡', note:'离开'},
+
+  {time:'21:12:54', door:'外门（北侧）',     who:'S-21A0421',     res:'通过', how:'学生卡',   note:'进入楼内'},
+  {time:'21:25:23', door:'外门（北侧）',     who:'S-21A0831',     res:'通过', how:'学生卡',   note:'进入楼内'},
+  {time:'22:03:17', door:'南门',            who:'S-21D0001',     res:'通过', how:'学生卡',   note:'离开'},
+  {time:'22:11:10', door:'外门（北侧）',     who:'S-21A0421',     res:'通过', how:'学生卡',   note:'离开'},
+ 
+];
+
+const tbody = document.querySelector('#logTable tbody');
+let sortKey='time', sortAsc=true;
+
+function inRange(t, f, to){ return (!f || t>=f) && (!to || t<=to); }
+
+function render(list){
+  tbody.innerHTML = list.map(r=>{
+    const resClass = r.res==='通过' ? 'RES-ok' : (r.res==='拒绝' ? 'RES-deny' : 'RES-override');
+    return `<tr>
+      <td>${r.time}</td>
+      <td>${r.door}</td>
+      <td>${r.who}</td>
+      <td class="${resClass}">${r.res}</td>
+      <td>${r.how}</td>
+      <td title="${r.note}">${r.note}</td>
+    </tr>`;
+  }).join('');
+}
+
+function doFilter(){
+  const kw=(document.getElementById('kw').value||'').trim().toLowerCase();
+  const door=document.getElementById('doorSel').value.trim();
+  const who=document.getElementById('whoSel').value.trim();
+  const res=document.getElementById('resSel').value.trim();
+  const f=(document.getElementById('tFrom').value||'00:00')+':00';
+  const t=(document.getElementById('tTo').value||'23:59')+':59';
+
+  let rows = RAW.filter(r=>{
+    const hitKw  = kw ? (r.note+' '+r.door+' '+r.how+' '+r.who).toLowerCase().includes(kw) : true;
+    const hitDoor= door ? r.door===door : true;
+    const hitWho = who ? r.who===who : true;
+    const hitRes = res ? r.res===res : true;
+    const hitT   = inRange(r.time, f, t);
+    return hitKw && hitDoor && hitWho && hitRes && hitT;
+  });
+
+  rows.sort((a,b)=>{
+    if(sortKey==='time') return (sortAsc?1:-1)*a.time.localeCompare(b.time);
+    if(sortKey==='door') return (sortAsc?1:-1)*a.door.localeCompare(b.door);
+    if(sortKey==='who')  return (sortAsc?1:-1)*a.who.localeCompare(b.who);
+    if(sortKey==='res')  return (sortAsc?1:-1)*a.res.localeCompare(b.res);
+    return 0;
+  });
+
+  render(rows);
+}
+
+function resetFilter(){
+  document.getElementById('kw').value='';
+  document.getElementById('doorSel').value='';
+  document.getElementById('whoSel').value='';
+  document.getElementById('resSel').value='';
+  document.getElementById('tFrom').value='21:00';
+  document.getElementById('tTo').value='22:30';
+  sortKey='time'; sortAsc=true; doFilter();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('#logTable thead th[data-k]').forEach(th=>{
+    th.addEventListener('click', ()=>{
+      const k=th.dataset.k;
+      if(sortKey===k) sortAsc=!sortAsc; else { sortKey=k; sortAsc=true; }
+      doFilter();
+    });
+  });
+});
+
+/* 导出 CSV（简版） */
+function exportCSV(){
+  const head = ['时间','门点','持卡人/凭证','结果','方式','备注'];
+  const rows = Array.from(tbody.querySelectorAll('tr')).map(tr=>{
+    const tds = tr.querySelectorAll('td');
+    return [tds[0].innerText, tds[1].innerText, tds[2].innerText, tds[3].innerText, tds[4].innerText, tds[5].innerText.replace(/\n/g,' ')];
+  });
+  const csv = [head].concat(rows).map(r=> r.map(x=> `"${String(x).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='B4_access_20250517.csv'; a.click();
+  setTimeout(()=> URL.revokeObjectURL(a.href), 500);
+}
+</script>
+</body>
+</html>
