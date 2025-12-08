@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>关于 2025-05-17 事件相关资料归档说明（内部）</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<style>
+  :root{ color-scheme: dark; }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    background:#05070d;
+    color:#e8eaee;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,"Noto Sans SC","PingFang SC",sans-serif;
+  }
+  a{ color:#9ec5ff; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+
+  .wrap{
+    max-width:980px;
+    margin:0 auto;
+    padding:24px 16px 40px;
+  }
+
+  header{
+    margin-bottom:20px;
+    border-bottom:1px solid #1d2334;
+    padding-bottom:14px;
+  }
+  header h1{
+    margin:0 0 8px;
+    font-size:22px;
+    letter-spacing:.5px;
+  }
+  header .meta{
+    font-size:12px;
+    color:#9299ad;
+  }
+
+  .card{
+    background:#101422;
+    border-radius:14px;
+    border:1px solid #232a3d;
+    padding:18px 16px 16px;
+    margin-bottom:18px;
+    box-shadow:0 10px 26px rgba(0,0,0,.55);
+  }
+  .card h2{
+    margin:0 0 10px;
+    font-size:18px;
+  }
+  .card h3{
+    margin:16px 0 6px;
+    font-size:15px;
+  }
+  .small{ font-size:12px; }
+  .muted{ color:#9ca3b7; }
+
+  .people-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:10px;
+    margin-top:6px;
+  }
+  .pbox{
+    background:#0b0f1a;
+    border-radius:10px;
+    border:1px solid #242b3e;
+    padding:10px 10px 8px;
+    font-size:12px;
+  }
+  .pbox strong{ font-size:13px; }
+
+  .pbox ul{
+    margin:6px 0 0;
+    padding-left:18px;
+  }
+
+  /* 拼图区域 */
+  .puzzle-intro{
+    font-size:13px;
+    color:#c7ccda;
+    line-height:1.7;
+    margin-bottom:12px;
+  }
+
+  .event-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .event-list li{
+    background:#0b101c;
+    border:1px solid #262f45;
+    border-radius:10px;
+    padding:10px 10px;
+    margin-bottom:8px;
+    font-size:13px;
+    line-height:1.6;
+    cursor:grab;
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+  }
+  .event-list li.dragging{
+    opacity:.55;
+  }
+  .event-index{
+    flex:0 0 auto;
+    width:22px;
+    height:22px;
+    border-radius:999px;
+    border:1px solid #3b4868;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    color:#cfd5e7;
+    background:#13192a;
+    margin-top:2px;
+  }
+  .event-body{
+    flex:1;
+  }
+  .event-tag{
+    display:inline-block;
+    padding:1px 6px;
+    border-radius:999px;
+    border:1px solid #374462;
+    background:#171f32;
+    font-size:11px;
+    color:#aeb7cb;
+    margin-bottom:3px;
+  }
+  .hint{
+    font-size:12px;
+    color:#9098ad;
+    margin:6px 0 0;
+  }
+
+  .btn-row{
+    margin-top:10px;
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    border-radius:999px;
+    border:1px solid #2f3b56;
+    background:#182135;
+    color:#e8ecf7;
+    padding:7px 14px;
+    font-size:13px;
+    cursor:pointer;
+  }
+  .btn:hover{ border-color:#3d4c6f; background:#1c2640; }
+
+  .result{
+    margin-top:8px;
+    font-size:13px;
+  }
+  .result.ok{
+    color:#5ee3a6;
+  }
+  .result.error{
+    color:#fca5a5;
+  }
+
+  .final-wrap{
+    margin-top:16px;
+    padding-top:10px;
+    border-top:1px dashed #30384f;
+    text-align:right;
+  }
+  .final-btn{
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:999px;
+    border:1px solid #38bdf8;
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+    color:#f9fbff;
+    font-size:13px;
+    text-decoration:none;
+    box-shadow:0 0 0 1px rgba(15,118,210,.35);
+  }
+  .final-btn:hover{
+    filter:brightness(1.05);
+    text-decoration:none;
+  }
+
+  @media (max-width:600px){
+    header h1{ font-size:18px; }
+    .wrap{ padding:18px 12px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>关于 2025-05-17 事件相关资料归档说明（内部）</h1>
+    <div class="meta">
+      清河大学事件工作专班（内部资料）　|　编制日期：2025-06-30　|　仅供校内调查与研讨使用
+    </div>
+  </header>
+
+  <section class="card">
+    <h2>一、说明</h2>
+    <p class="small muted">
+      本页汇总保卫处门禁记录、信息化中心监控维护日志、学生心理中心谈话时间记录等材料，抽取
+      2025-05-17 晚间 B-4 楼相关的<strong>七个关键时间节点</strong>。  
+      你可以在不改变事实内容的前提下，尝试拼接出当晚事件的完整时间线。
+    </p>
+    <p class="small muted">
+      不同的排列顺序将对应完全不同的“叙事版本”。请仅依据本页提供的客观片段进行推理，
+      避免代入任何先入为主的“印象”。当你给出与内部研判一致的顺序时，将会解锁一个新的入口。
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>二、人物与已知片段</h2>
+    <p class="small muted">
+      下列信息为从不同渠道抽取的“只言片语”，并非完整证词，仅列出与时间线相关的重点。
+    </p>
+
+    <div class="people-grid">
+      <div class="pbox">
+        <strong>沈以航（导师）</strong>
+        <ul>
+          <li>曾通过邮件，约一名女学生于17日晚于 B-4-404 讨论。</li>
+          <li>通过邮件让管理员关闭B-4 某段监控：约在 <strong>21:30 -22:00前后</strong>  。</li>
+          <li>保卫处门禁系统显示，当晚 <strong>未记录其刷卡离楼</strong>。</li>
+        </ul>
+      </div>
+
+      <div class="pbox">
+        <strong>林澜（学生）</strong>
+        <ul>
+          <li>保卫处门禁记录：<strong>21:25 之后不久</strong>，学生编号以 <code>S-21A0831</code> 开头的卡片进入 B-4 楼。</li>
+          <li>心理中心记录：此前一周曾预约面谈，提到希望“更换导师”。</li>
+          <li>公安机关勘验记录：坠落时间推测约为 <strong>21:55–22:00</strong> 区间。</li>
+        </ul>
+      </div>
+
+      <div class="pbox">
+        <strong>顾岱明（学生）</strong>
+        <ul>
+          <li>相关邮箱中，有同日傍晚收到的邀请邮件，时间约在 <strong>17:00 左右</strong>，内容提到“今晚来 B-4-404 一趟”。</li>
+          <li>门禁记录显示，其学号对应的卡片于 <strong>22:03 左右</strong>离开 B-4 南门。</li>
+          <li>个人备忘（未发送草稿）：“得不到的全部都要毁灭”。</li>
+        </ul>
+      </div>
+
+      <div class="pbox">
+        <strong>陈思芸（学生）</strong>
+        <ul>
+          <li>门禁记录：<strong>21:12 左右</strong>，其卡片首先进入 B-4 外门北侧；约 <strong>22:11</strong> 再次刷卡离开。</li>
+          <li>其备忘中有很大的怨念。</li>
+          <li>事件后不久，在新邮箱中向某导师致谢，提到“终于也被列入推免名单”。</li>
+        </ul>
+      </div>
+
+      <div class="pbox">
+        <strong>张国权（管理员）</strong>
+        <ul>
+          <li>信息化中心维护日志：<strong>21:30–22:00</strong>，B-4 楼部分监控信号异常中断，经排查为“本地设备断开”。</li>
+          <li>其本人邮件中提到“按他要求照旧把那一段画面关掉”，语境显示“他”指代某位导师。</li>
+          <li>人事处 6 月人员安排通告中，张因“工作时间玩忽职守，造成重大事故”被解除聘用。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>三、时间线拼接（请拖拽排序）</h2>
+    <p class="puzzle-intro">
+      下方为根据现有材料整理出的<strong>七个关键节点</strong>。  
+      请通过拖拽卡片，将它们从上到下排列成你认为最合理的时间顺序。  
+      点击“提交顺序”后，系统会告诉你当前有多少事件处于正确位置——当全部对齐时，将解锁后续页面。
+    </p>
+
+    <ol id="eventList" class="event-list">
+      <!-- 正确 ID 顺序应为：
+           c_enter → ls_enter → g_enter → s_leave → ll_fall → g_leave → c_leave
+      -->
+      <li draggable="true" data-id="c_enter">
+        <div class="event-index">?</div>
+        <div class="event-body">
+          <div class="event-tag">陈思芸 · 进入 B-4</div>
+          一名学号以 <code>S-21A0421</code> 开头的学生卡在晚间刷卡进入 B-4 北侧外门，进入后在楼内停留时间较长。
+        </div>
+      </li>
+
+      <li draggable="true" data-id="g_leave">
+        <div class="event-index">?</div>
+        <div class="event-body">
+          <div class="event-tag">顾岱明 · 离开 B-4</div>
+          门禁系统记录到学号以 <code>S-21D0001</code> 开头的学生卡，从 B-4 南门刷卡离开，
+          时间落在监控恢复之后不久。
+        </div>
+      </li>
+
+      <li draggable="true" data-id="s_leave">
+        <div class="event-index">?</div>
+        <div class="event-body">
+          <div class="event-tag">沈以航 · 匆忙离开 404 附近区域</div>
+          根据信息化中心对走廊残余画面与电梯按钮记录的综合分析，一名成年男性在监控中断期间
+          从 B-4离开，未在门禁系统中留下刷卡记录。
+        </div>
+      </li>
+
+      <li draggable="true" data-id="ls_enter">
+        <div class="event-index">?</div>
+        <div class="event-body">
+          <div class="event-tag">林澜 &amp; 沈以航 · 进入 404 教室</div>
+          保卫处记录显示，一名女学生在 <strong>21:25</strong> 之后刷卡进入 B-4，
+          随后根据零星监控画面与当事人邮箱，可推断其与指导教师在 4 层 404 教室附近会合。
+        </div>
+      </li>
+
+      <li draggable="true" data-id="c_leave">
+        <div class="event-index">?</div>
+        <div class="event-body">
+          <div class="event-tag">陈思芸 · 离开 B-4</div>
+          与最早进入 B-4 的同一卡号，在当晚较后时间从北侧外门刷卡离开。
+        </div>
+      </li>
+
+      <li draggable="true" data-id="g_enter">
+        <div class="event-index">?</div>
+        <div class="event-body">
+          <div class="event-tag">顾岱明 · 进入 404 教室</div>
+          根据相关邮件记录，一名男学生在夜间较晚时间进入 B-4，
+          并出现在 4 层教室区域，其到达时间撞到导师与女学生的见面。
+        </div>
+      </li>
+
+      <li draggable="true" data-id="ll_fall">
+        <div class="event-index">?</div>
+        <div class="event-body">
+          <div class="event-tag">林澜 · 坠落</div>
+          公安机关勘验报告综合地面血迹、路灯自动亮度调整记录以及附近目击者听到的坠地声时间，
+          将坠落时刻限定在 <strong>21:55–22:00</strong> 的狭窄区间内。
+        </div>
+      </li>
+    </ol>
+
+    <p class="hint">
+      提示：你可以多次调整顺序。每次提交后，系统会反馈“当前有多少个事件落在正确位置”，
+      但不会标出具体是哪一些。
+    </p>
+
+    <div class="btn-row">
+      <button id="btnReset" class="btn">恢复初始顺序</button>
+      <button id="btnCheck" class="btn">提交顺序</button>
+    </div>
+
+    <div id="result" class="result"></div>
+
+    <div id="finalBtnWrap" class="final-wrap hidden">
+      <a href="/20250630_case_epilogue.html" class="final-btn">
+        查看最终结论与结局
+      </a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const list      = document.getElementById('eventList');
+  const btnCheck  = document.getElementById('btnCheck');
+  const btnReset  = document.getElementById('btnReset');
+  const resultBox = document.getElementById('result');
+  const finalWrap = document.getElementById('finalBtnWrap');
+
+  if(!list) return;
+
+  // 正确顺序（按 data-id）
+  const CORRECT = [
+    'c_enter',    // 陈进楼
+    'ls_enter',   // 林 & 沈 进 404 附近
+    'g_enter',    // 顾进楼 / 到达 404
+    's_leave',    // 沈离开
+    'll_fall',    // 林坠楼
+    'g_leave',    // 顾离开
+    'c_leave'     // 陈离开
+  ];
+
+  // 记录初始顺序，方便“恢复”
+  const initialOrder = Array.from(list.querySelectorAll('li')).map(li => li.dataset.id);
+
+  let draggingEl = null;
+
+  // ---------- 拖拽逻辑 ----------
+  list.addEventListener('dragstart', function(e){
+    const li = e.target.closest('li');
+    if(!li) return;
+    draggingEl = li;
+    li.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    // 某些浏览器需要 setData 才能激活拖拽
+    e.dataTransfer.setData('text/plain', li.dataset.id || '');
+  });
+
+  list.addEventListener('dragend', function(e){
+    if(draggingEl){
+      draggingEl.classList.remove('dragging');
+      draggingEl = null;
+    }
+  });
+
+  list.addEventListener('dragover', function(e){
+    e.preventDefault();
+    const target = e.target.closest('li');
+    if(!target || !draggingEl || target === draggingEl) return;
+
+    const rect = target.getBoundingClientRect();
+    const offset = e.clientY - rect.top;
+    const shouldAfter = offset > rect.height / 2;
+
+    if(shouldAfter){
+      target.after(draggingEl);
+    }else{
+      target.before(draggingEl);
+    }
+  });
+
+  list.addEventListener('drop', function(e){
+    e.preventDefault();
+    // 主要逻辑在 dragover 里已完成，这里不再处理
+  });
+
+  // ---------- 获取当前顺序 ----------
+  function getCurrentOrder(){
+    return Array.from(list.querySelectorAll('li')).map(li => li.dataset.id);
+  }
+
+  // ---------- 提交校验 ----------
+  btnCheck.addEventListener('click', function(){
+    const order = getCurrentOrder();
+    if(order.length !== CORRECT.length){
+      resultBox.textContent = '内部错误：事件数量不完整。';
+      resultBox.className = 'result error';
+      return;
+    }
+
+    let rightPos = 0;
+    for(let i=0;i<CORRECT.length;i++){
+      if(order[i] === CORRECT[i]) rightPos++;
+    }
+
+    if(rightPos === CORRECT.length){
+      resultBox.textContent = '校验通过：你已成功还原当晚的关键时间线。';
+      resultBox.className = 'result ok';
+      finalWrap.classList.remove('hidden');
+    }else{
+      resultBox.textContent =
+        '顺序仍有偏差：目前共有 ' + rightPos +
+        ' 个事件处于正确位置。你可以根据已有线索继续调整。';
+      resultBox.className = 'result error';
+    }
+  });
+
+  // ---------- 恢复初始顺序 ----------
+  btnReset.addEventListener('click', function(){
+    const map = {};
+    Array.from(list.querySelectorAll('li')).forEach(li=>{
+      map[li.dataset.id] = li;
+    });
+    initialOrder.forEach(id=>{
+      if(map[id]) list.appendChild(map[id]);
+    });
+    resultBox.textContent = '';
+    resultBox.className = 'result';
+  });
+
+})();
+</script>
+</body>
+</html>

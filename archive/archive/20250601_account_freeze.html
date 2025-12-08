@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>学生账号封存与家属阅览说明 - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none!important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .nav-links{ display:flex; gap:22px; flex-wrap:nowrap; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .nav-search{ display:flex; align-items:center; gap:6px; margin-left:auto; }
+  .nav-search input{
+    width:220px; max-width:260px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #262d3f;
+    background:#0c1119;
+    color:#e8eaee;
+    font-size:13px;
+    outline:none;
+  }
+  .nav-search input::placeholder{ color:#737b8c; }
+  .nav-search input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px;
+    border-radius:999px;
+    border:1px solid #36527a;
+    background:#1f2a3f;
+    color:#e8eaee;
+    font-size:13px;
+    cursor:pointer;
+  }
+  .nav-search button:hover{
+    border-color:#4f7dd9;
+    background:#243455;
+  }
+
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 18px 20px; margin:20px 0 26px; }
+  h1{ margin:0 0 10px; font-size:22px; }
+  h2{ margin:18px 0 10px; font-size:18px; }
+  p{ line-height:1.7; font-size:14px; }
+  ol,ul{ font-size:14px; line-height:1.7; padding-left:1.4em; }
+  .meta-line{ font-size:12px; color:#9aa0a6; margin-bottom:12px; }
+  .box-note{
+    margin-top:14px;
+    padding:10px 12px;
+    border-radius:8px;
+    background:#111724;
+    border:1px dashed #28334a;
+    font-size:12px;
+    color:#9aa0a6;
+    line-height:1.6;
+  }
+  .example{
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius:8px;
+    background:#101624;
+    border:1px solid #28334a;
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="/inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="/index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap">
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h1>学生账号封存与家属阅览说明</h1>
+    <div class="meta-line">
+      发布日期：2025-06-01　|　发布单位：学生工作部 · 信息化中心
+    </div>
+
+    <p class="small muted">
+      为妥善处理特殊事件后学生账号及相关数据，保障当事人及家属合法权益，根据国家有关档案、数据安全与个人信息保护规定，学校对学生账号封存及家属阅览作如下说明。
+    </p>
+
+    <h2>一、账号封存的适用情形</h2>
+    <ol>
+      <li>学生因重大伤亡事故、突发事件等原因，经相关部门核实确认不再在校就读的；</li>
+      <li>司法机关依法要求对相关账号进行保护性封存的；</li>
+      <li>学校认为为维护当事人名誉、隐私及公共秩序，有必要临时限制账号访问的其它情形。</li>
+    </ol>
+    <p>上述情形发生后，学校将对学生统一身份账号、校园邮箱等进行封存处理，暂停正常登录与使用。</p>
+
+    <h2>二、封存后保留与限制公开的信息</h2>
+    <p>账号封存后，系统会在技术上执行以下操作：</p>
+    <ul>
+      <li>保留：学籍基本信息、选课与成绩记录、奖助学金与荣誉记录、部分系统通知邮件等，用于后续档案查证和统计分析；</li>
+      <li>限制访问：校园邮箱中除系统通知以外的大部分往来邮件，仅在必要情况下、依法依规范围内提供给家属或司法机关查询；</li>
+      <li>停止展示：与当事人个人隐私高度相关、不影响学籍与奖惩认定的信息不再对普通用户开放。</li>
+    </ul>
+
+    <h2>三、永不对外开放的内容</h2>
+    <p>为最大限度保护当事人及他人隐私，以下内容在任何情况下不向无关人员开放：</p>
+    <ul>
+      <li>即时通讯记录（含内部协作工具、聊天记录等）；</li>
+      <li>个人草稿、未发送邮件、备忘录等高度私密内容；</li>
+      <li>浏览历史、搜索记录、系统行为日志等行为轨迹数据；</li>
+      <li>涉及第三人隐私、尚在调查或争议中的敏感材料。</li>
+    </ul>
+    <p>如司法机关依法调取相关数据，学校将按照法律程序，在必要范围内予以配合。</p>
+
+    <h2>四、家属阅览申请与“核验码”生成规则</h2>
+    <p>
+      已故学生的法定监护人、直系亲属如因合理事由，确需临时查阅相关学籍与奖学金记录、部分系统通知邮件的，可通过学生工作部提出书面申请，并按下列规则生成“家属核验码”，用于在指定页面完成一次性身份核验。
+    </p>
+
+    <ol>
+      <li>确认学生宿舍房间号（如：西苑 1 栋 <strong>123</strong> 宿舍）；</li>
+      <li>确认事件日期的“月日”四位数字（如：1 月 1 日 → <strong>0101</strong>）；</li>
+      <li>确认学生学号后四位（如：学号 2010A0001 → 后四位 <strong>0001</strong>）。</li>
+    </ol>
+
+    <div class="example">
+      <strong>示例（仅用于说明，不指涉具体学生）：</strong><br/>
+      某学生信息如下：宿舍房间号为 <strong>123</strong>，相关事件日期为 <strong>1 月 1 日</strong>，学号为 <strong>2010A0001</strong>。<br/>
+      则其家属核验码生成方式为：<br/>
+      <code>宿舍房间号 + 日期（月日四位） + 学号后四位</code>，即：<br/>
+      <strong>12301010001</strong><br/>
+      家属在学校提供的“账号解封申请页面”中输入该核验码并通过线下材料审核后，可获得限定时长的只读访问权限。
+    </div>
+
+    <p>
+      请注意：家属核验码为一次性、本地验证使用，不得向校外无关人员扩散。任何以“代办查阅”“付费获取数据”为名的行为，均与学校无关，请提高警惕。
+    </p>
+    <h2>五、家属解封入口与使用说明</h2>
+    <p>
+      审核通过并持有有效核验码的家属，可前往本校信息化中心提供的
+      <a href="ll_family_unlock.html">《家属解封入口》</a> 页面，输入核验码完成验证。
+    </p>
+    <p>
+      验证成功后，系统将在限定时间内（24 小时）允许使用
+      <span class="hl">已封存学生的统一身份账号</span> 登录部分校园系统，
+      以只读方式查看其在校期间的课程与奖助学金记录、部分校园邮箱邮件等信息。
+    </p>
+    <p>
+      家属在阅览过程中，不得擅自下载或传播涉及他人隐私的内容。学校会对解封操作保留技术日志，
+      如发现有违反规定使用的，将视情节向有关部门报告。
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态（main.js 会自动复用） -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code> 　密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

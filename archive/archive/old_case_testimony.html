@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>【匿名自述】关于那几年和实验室的事 - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<script src="../js/search.js" defer></script>
+
+<style>
+  :root{ color-scheme: dark; }
+  body{
+    margin:0;
+    background:#05060b;
+    color:#e8eaee;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+  }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{
+    background:#0f1320;
+    border-bottom:1px solid #1d2331;
+    color:#c9ced8;
+    font-size:12px;
+  }
+  .topbar .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:8px 14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{
+    width:52px; height:52px; border-radius:10px;
+    border:1px solid #2a3142; background:#111;
+  }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap.nav-wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .nav-links{
+    display:flex;
+    gap:22px;
+    flex-wrap:nowrap;
+  }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  /* 右侧站内搜索 */
+  .nav-search{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:auto;
+  }
+  .nav-search input{
+    width:220px;
+    max-width:260px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #262d3f;
+    background:#0c1119;
+    color:#e8eaee;
+    font-size:13px;
+    outline:none;
+  }
+  .nav-search input::placeholder{ color:#737b8c; }
+  .nav-search input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px;
+    border-radius:999px;
+    border:1px solid #36527a;
+    background:#1f2a3f;
+    color:#e8eaee;
+    font-size:13px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .nav-search button:hover{
+    border-color:#4f7dd9;
+    background:#243455;
+  }
+
+  /* 卡片 */
+  .card{
+    background:#11131f;
+    border:1px solid #242b3d;
+    border-radius:12px;
+    padding:18px 18px 20px;
+    margin:20px 0 26px;
+    box-shadow:0 8px 24px rgba(0,0,0,.5);
+  }
+
+  h1{
+    margin:0 0 10px;
+    font-size:22px;
+    letter-spacing:1px;
+  }
+  .meta-line{
+    font-size:12px;
+    color:#878da0;
+    margin-bottom:12px;
+  }
+
+  /* 手写体 + 打字区域 */
+  .story-wrap{
+    margin-top:12px;
+    padding:14px 12px 10px;
+    background:radial-gradient(circle at top, #181d2a 0, #090b12 55%, #05060b 100%);
+    border-radius:10px;
+    border:1px dashed #2a3142;
+    position:relative;
+    overflow:hidden;
+    min-height:220px;
+  }
+
+  .story-hand{
+    font-family:"KaiTi","STKaiti","FZXiYuan-M01","Songti SC","SimSun",cursive;
+    font-size:16px;
+    line-height:1.8;
+    white-space:pre-wrap;
+    word-break:break-word;
+  }
+
+  /* 血红高亮关键字 */
+  .blood{
+    color:#ff4b5c;
+    text-shadow:0 0 4px rgba(255,75,92,.6);
+  }
+
+  /* 打字光标效果 */
+  .caret{
+    display:inline-block;
+    width:10px;
+    margin-left:2px;
+    border-left:2px solid #e8eaee;
+    animation:blink 0.9s steps(1) infinite;
+  }
+  @keyframes blink{
+    0%,49%{ opacity:1; }
+    50%,100%{ opacity:0; }
+  }
+
+  footer{
+    background:#0f1320;
+    border-top:1px solid #1d2331;
+    margin-top:24px;
+  }
+  footer .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:18px 14px;
+    color:#97a0ad;
+    font-size:12px;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  /* 兜底登录模态（main.js 会复用） */
+  #loginMask{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  #loginMask .box{
+    width:380px;
+    background:#141822;
+    border:1px solid #202636;
+    border-radius:12px;
+    padding:16px;
+  }
+  .input{
+    background:#0e1116;
+    border:1px solid #1c2230;
+    border-radius:6px;
+    padding:8px 10px;
+    color:#e8eaee;
+    width:100%;
+    box-sizing:border-box;
+  }
+  .btn{
+    background:#1b2333;
+    border:1px solid #2a3347;
+    border-radius:8px;
+    color:#e8eaee;
+    padding:8px 12px;
+    cursor:pointer;
+  }
+  .btn.primary{
+    background:#21406b;
+    border-color:#2c538a;
+  }
+  .btn:hover{ border-color:#3a4661; }
+  .blood{
+  color:#ff4b5c;
+  text-shadow:0 0 4px rgba(255,75,92,.8);
+}
+
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="muted small" style="margin:10px 2px 6px;">
+    <a href="/index.html">首页</a> · <a href="/search.html?q=%E5%AE%9E%E9%AA%8C%E5%AE%A4">站内搜索</a> · 匿名自述
+  </div>
+
+  <div class="card">
+    <h1>【匿名自述】我再也逃不出去了</h1>
+    <div class="meta-line">
+      来源：学生电脑文档　|　发布时间：若干年前（节选）　
+    </div>
+
+    <p class="small muted">
+      说明：以下文字为当年自杀的学生在校心理服务系统中留下的自述节选，为保护当事人，
+      已去除具体姓名与班级，仅保留她的主观感受描述。
+    </p>
+
+    <div class="story-wrap">
+      <!-- 打字呈现区域 -->
+      <div id="storyText" class="story-hand"></div>
+      <span id="caret" class="caret"></span>
+
+      <!-- 隐藏的原始 HTML 内容：这里写完整自述 -->
+      <div id="storySource" class="hidden">
+        大一刚进校的时候，我是那种被老师点名表扬的<strong>好学生</strong>。<br><br>
+        课坐前三排，作业提前交，晚上在图书馆待到熄灯，天真地以为——只要我够用力，这个世界就会给我一条笔直、干净的路。<br><br>
+        后来，我进了那间被学长学姐反复提起的 <span class="blood">实验室</span>。<br><br>
+        大家说，那位<span class="blood">老师</span>是学院的招牌，项目多，资源多，手里还握着推免名额。<br>
+        他们半开玩笑地劝我：“你要是被他看上，前途就稳了一半。”<br><br>
+        一开始，我也把这当成一种“幸运”。<br><br>
+        但很快我发现，所谓“做项目”，不只是代码、模型和论文。<br><br>
+        是无休止的加班，是别人可以回寝室，我要一个人留在 B-4，把一行一行的日志补到深夜。<br>
+        是所有人都默认，他可以随时改我的计划、占用我的周末，因为“这是机会”。<br><br>
+        更糟的是，那些和学术无关的细节。<br><br>
+        他会盯着我的衣服、发型，评价我的“气质”“形象”，说“你这样不像做研究的”“你笑一下会更有亲和力”。<br>
+        这些话堆在一起的时候，你会慢慢怀疑，是不是自己哪里都不对。<br><br>
+        他习惯在实验室只剩我们两个人的时候，把话题从模型推到所谓的“关心”。<br><br>
+        问我有没有谈恋爱，问我家里是不是“把所有希望都压在你身上”，问我会不会觉得“自己太乖、太听话，没有存在感”。<br>
+        每一次，在我想要结束话题的时候，他都会补一句：“你放心，<span class="blood">老师</span>是站在你这边的。”<br><br>
+        慢慢地，“关心”变成了交换。<br><br>
+        某些杂务只有我会被点名去做，说是“锻炼你”；<br>
+        某些场合只有我被要求出现，说是“你比较合适”；<br>
+        在别人面前，他会提我的名字，当着我的面又提醒：“别忘了是谁帮你争取到这些。”<br><br>
+        我开始分不清，哪些是真正的要求，哪些只是他在一点点试探边界。<br><br>
+        有几次，他发消息让我晚上去 <span class="blood">B-4</span> 的教室，说要“单独聊聊你的规划”。<br>
+        我知道他要对我做什么。<br>
+        那些谈话里，推免、奖学金、项目名额和我个人的边界被拧在一起，好像我所有的路，都必须从他身边绕过去。<br><br>
+        我害怕说“不”。<br><br>
+        害怕一旦拒绝，我就会被贴上“情绪化”“不好带”的标签；害怕我说出来之后，别人只会问我一句：“你确定不是误会吗？”<br>
+        更害怕的是，只要他随便动动嘴，我就会从名单里被划掉。<br><br>
+        因为我的不敢反抗，他变本加厉。<br>
+        那段时间，我的生活被压成了两点一线：<span class="blood">实验室</span> 和寝室。<br><br>
+        在寝室，我装作什么都没发生，和舍友讨论考试、综测；<br>
+        在实验室，我努力对自己重复：“再忍一下就好了。”<br><br>
+        但身体骗不了人。<br><br>
+        我开始严重失眠，半夜醒来，耳边都是键盘声和他压低的语气。<br>
+        每次路过那栋楼，我都会下意识地绕远一点；<br>
+        在走廊听到有人叫他的名字，我的第一反应永远是躲开。<br>
+        他让我感到恶心。<br>
+        我的身上沾上了他的味道，怎么也洗不掉。<br>
+        我试过去心理中心，在门口站了很久。<br>
+        我想，如果我把这一切讲出来，是不是就可以解脱了。<br>
+        有人可以帮帮我吗。<br><br>
+        我付出一切，换来一串好看的履历，可是当我把名字写在论文和项目后面的时候，脑子里浮现的不是成就感，而是那间永远开着冷色灯的 <span class="blood">实验室</span>。<br><br>
+        我曾经真的很喜欢这里。<br>
+        喜欢夜里窗外的风声，喜欢屏幕上缓慢跑完的进度条，喜欢白板上被写得乱七八糟的公式。<br>
+        但现在，只要闭上眼睛，我能想起的，却是那双一直盯着我、充斥着赤裸裸欲望的眼睛。<br><br>
+        如果你看到这里，说明我没有机会再删除这个文档了。<br><br>
+        如果你也经历我的一切，<br>
+        请你至少替自己记住一点：<br><br>
+        当一个人被迫在“前途”和“边界”之间二选一的时候，<br>
+        真正该被追问的人，从来不应该是那个被压在下面、被迫微笑的人。<br>
+      </div>
+    </div>
+
+    <p class="small muted" style="margin-top:10px;">
+      * 注：若浏览器禁止自动播放，可点击页面任意位置开启。
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div>
+      <a href="/overview.html">学校概况</a> ·
+      <a href="/organization.html">组织机构</a> ·
+      <a href="/education.html">教育教学</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 登录模态兜底 -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">
+      示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code>
+    </p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025A0917"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+<!-- 背景音乐 & 打字音效（需要你自己提供文件） -->
+<audio id="bgm" src="../audio/bg_murmur.mp3" loop preload="auto"></audio>
+<audio id="sndType" src="../audio/typewriter_soft.mp3" loop preload="auto"></audio>
+
+<script>
+  // ---- 打字机逻辑（支持 HTML 标签，不会把 <span> 打出来） ----
+  const TYPING_NORMAL = 95;   // 普通字间隔
+  const TYPING_COMMA  = 210;  // 逗号/顿号
+  const TYPING_PERIOD = 320;  // 句号/问号等
+
+  function highlightKeywords(){
+    const box = document.getElementById('storyText');
+    if(!box) return;
+    let html = box.innerHTML;
+
+    // 简单关键词高亮（只会遇到 <br>，不用太复杂）
+    html = html
+      .replace(/实验室/g, '<span class="blood">实验室</span>')
+      .replace(/B-4/g, '<span class="blood">B-4</span>')
+      .replace(/老师/g, '<span class="blood">老师</span>');
+
+    box.innerHTML = html;
+  }
+  function nextDelay(ch){
+    if (/[,，、]/.test(ch)) return TYPING_COMMA;
+    if (/[。！？?!]/.test(ch)) return TYPING_PERIOD;
+    return TYPING_NORMAL;
+  }
+
+  function startTyping(){
+    const srcEl   = document.getElementById('storySource');
+    const outEl   = document.getElementById('storyText');
+    const caretEl = document.getElementById('caret');
+    if(!srcEl || !outEl || !caretEl) return;
+
+    const html = srcEl.innerHTML;  // 原始 HTML
+    let i = 0;
+
+    outEl.innerHTML = '';
+    caretEl.style.display = 'inline-block';
+
+    playTypingSound();
+
+    function step(){
+      if(i >= html.length){
+        caretEl.style.display = 'none';
+        stopTypingSound();
+        return;
+      }
+
+      if(html[i] === '<'){
+        // 整个标签一次性插入
+        let j = i;
+        while(j < html.length && html[j] !== '>') j++;
+        const tag = html.slice(i, j+1);
+        outEl.innerHTML += tag;
+        i = j + 1;
+        setTimeout(step, TYPING_NORMAL);
+        return;
+      }
+
+      const ch = html[i];
+      outEl.innerHTML += ch;
+      i++;
+      setTimeout(step, nextDelay(ch));
+    }
+
+    step();
+  }
+
+  // ---- 背景音乐 & 打字音效 ----
+  function tryPlayBgm(){
+    const bgm = document.getElementById('bgm');
+    if(!bgm) return;
+    bgm.volume = 0.4;
+    bgm.play().catch(()=>{ /* 自动播放可能被拦截，交给用户点击 */ });
+  }
+
+  function playTypingSound(){
+    const snd = document.getElementById('sndType');
+    if(!snd) return;
+    snd.currentTime = 0;
+    snd.volume = 0.55;
+    snd.play().catch(()=>{});
+  }
+
+  function stopTypingSound(){
+    const snd = document.getElementById('sndType');
+    if(!snd) return;
+    snd.pause();
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    // 尝试自动开 BGM
+    tryPlayBgm();
+    // 开始打字
+    startTyping();
+
+    // 若自动播放被拦截，第一次点击时再尝试播放 BGM
+    document.body.addEventListener('click', ()=>{
+      tryPlayBgm();
+    }, { once:true });
+  });
+</script>
+
+</body>
+</html>

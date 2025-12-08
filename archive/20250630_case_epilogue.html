@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>2025-06-30 · CASE EPILOGUE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 机械感等宽字体 -->
+   <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      background: #000;
+      color: #c8f5d4;
+      font-family: 'Share Tech Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      overflow: hidden;
+    }
+    .text-wrapper {
+      max-width: 960px;
+      width: 100%;
+      font-size: 15px;
+      line-height: 1.9;
+      letter-spacing: 0.08em;
+      white-space: pre-wrap;
+    }
+    @media (min-width: 768px) {
+      .text-wrapper {
+        font-size: 16px;
+      }
+    }
+    #text {
+      display: inline;
+    }
+    .cursor {
+      display: inline-block;
+      width: 0.7em;
+      margin-left: 2px;
+      border-bottom: 2px solid #9af2c5;
+      transform: translateY(2px);
+      animation: blink 0.8s steps(1, end) infinite;
+    }
+    .cursor.stopped {
+      animation: none;
+      opacity: 0.8;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="text-wrapper">
+    <span id="text"></span><span id="cursor" class="cursor"></span>
+  </div>
+
+  <script>
+    // 一句一句出现，上一句消失后再出现下一句
+    const lines = [
+      "那天晚上，陈思芸提前来到了 404 室，",
+      "她在这里等顾岱明，想要鼓起勇气，向他告白。",
+      "她一边整理实验桌，一边在心里排练每一句话，想象着门被推开的声音。",
+      "却没想到，先来的不是顾岱明。",
+      "走廊里突然响起脚步声和钥匙触碰锁孔的轻响。",
+      "实验室规范里写得清清楚楚：",
+      "晚上不能留在实验室。",
+      "陈思芸下意识地退进了角落的阴影里。",
+      "门打开了，走进来两个人，是沈教授和林澜。",
+      "一开始他们压着声音说话，语气很轻，陈思芸听不清，",
+      "只能捕捉到支离破碎的词，空气里都是压抑和焦躁。",
+      "直到沈教授气急败坏，她才听见沈教授那一句压低的、几乎是挤出来的话：",
+      "“我把奖学金、所有的项目都给你了，你现在为我付出一下，不是很应该吗？”",
+      "陈思芸还来不及消化这句话，",
+      "404 的门口就传来了顾岱明熟悉的声音，敲门声打断了那场逼迫。",
+      "沈教授像被惊醒了一样，匆忙从另一侧离开，",
+      "实验室里只剩下还在慌乱中的林澜。",
+      "顾岱明推门而入，他应该是发现了什么",
+      "却没有询问前因后果，只是冷冷地看着林澜，",
+      "嘴里是“没想到你是这种人”之类的指责。",
+      "林澜声音发抖地说“不是的”，",
+      "陈思芸在暗处看见她一边解释，一边下意识地往后退，退到了窗边。",
+      "他们情绪越发激烈，顾岱明突然伸手推了她，",
+      "像是要结束这一场让他厌烦的对话。",
+      "谁也没想到，老旧的窗框早就松动了，",
+      "只在空气里发出一声极轻的响，支撑就彻底断掉了。",
+      "林澜从 404 的窗边坠了下去，",
+      "惨白的身影在夜色和楼层之间划出一道瞬间消失的线。",
+      "实验室里只剩下椅子轻轻晃动的声音，",
+      "顾岱明愣了几秒，然后像逃命一样冲出了门。",
+      "角落里的陈思芸捂着嘴，连哭声都发不出来，",
+      "她知道自己刚刚看见了什么。",
+      "她一直以为自己看清了每一个人，",
+      "却在这一刻才明白，她误会了林澜，也看错了顾岱明。",
+      "那天夜里，陈最后一个走出 404 室，",
+      "把灯关上，仿佛能连同那段不断重演的记忆一起关掉。",
+      "但后来每当她闭上眼，",
+      "耳边还是会响起",
+      "窗框断裂时细微却致命的一声响。",
+      "",
+      "谢谢你的观看！"
+    ];
+
+    const textEl = document.getElementById('text');
+    const cursorEl = document.getElementById('cursor');
+
+    const typingSpeed = 80;   // 单个字符间隔（毫秒）
+    const linePause = 1000;    // 一整句显示完后停顿时间（毫秒）
+
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+      if (lineIndex >= lines.length) {
+        // 所有句子结束
+        cursorEl.classList.add('stopped');
+        return;
+      }
+
+      const currentLine = lines[lineIndex];
+
+      if (charIndex <= currentLine.length) {
+        // 正在打当前这一句
+        const visible = currentLine.slice(0, charIndex);
+        textEl.textContent = visible;
+        charIndex++;
+        setTimeout(typeLine, typingSpeed);
+      } else {
+        // 当前一句已经完整出现
+        if (lineIndex === lines.length - 1) {
+          // 最后一行：停在这里，不再清空、不再继续
+          cursorEl.classList.add('stopped');
+          return;
+        }
+        // 其他行：短暂停顿后清空，再进入下一句
+        setTimeout(() => {
+          textEl.textContent = "";
+          charIndex = 0;
+          lineIndex++;
+          typeLine();
+        }, linePause);
+      }
+    }
+
+    window.addEventListener('load', () => {
+      // 黑屏先静一下再开始打字
+      setTimeout(typeLine, 900);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>站内搜索 - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/main.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/search.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .nav-wrap{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+  .nav-links{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+
+  /* 卡片通用 */
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:0; overflow:hidden; }
+
+  /* 搜索页布局 */
+  .search-wrap{ margin:20px 0 26px; }
+  .search-head{ margin-bottom:12px; }
+  .search-head h2{ margin:0 0 6px; font-size:22px; }
+  .search-head p{ margin:0; font-size:13px; color:#9aa0a6; }
+
+  /* ============================
+     大搜索框（百度风格 · 深色适配）
+     ============================ */
+  .big-search-box{
+    margin: 40px auto 30px;
+    display: flex;
+    justify-content: center;
+  }
+  .big-search-form{
+    width: 100%;
+    max-width: 780px;
+    display: flex;
+    align-items: center;
+    background: #141822;
+    border: 1px solid #2a3344;
+    padding: 0;
+    border-radius: 60px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,.35);
+  }
+  .big-search-form input{
+    flex: 1;
+    height: 56px;
+    padding: 0 22px;
+    font-size: 17px;
+    color: #e8eaee;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+  .big-search-form input::placeholder{
+    color: #707b8c;
+  }
+  .big-search-form button{
+    height: 56px;
+    padding: 0 28px;
+    font-size: 17px;
+    color: #fff;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border: none;
+    border-radius: 0 60px 60px 0;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .big-search-form button:hover{
+    background: linear-gradient(135deg, #5393ff, #2b73fd);
+  }
+
+  .search-results{
+    margin-top: 4px;
+    padding:12px 14px;
+  }
+  .search-item{
+    padding:10px 4px;
+    border-bottom:1px dashed #223046;
+  }
+  .search-item:last-child{ border-bottom:none; }
+  .search-item .title a{
+    font-size:15px;
+    color:#e9edf4;
+  }
+  .search-item .title a:hover{ text-decoration:underline; }
+  .search-item .meta{
+    margin-top:4px;
+    font-size:12px;
+    color:#9aa0a6;
+  }
+  .search-item .tag{
+    display:inline-block;
+    padding:1px 7px;
+    border-radius:999px;
+    border:1px solid #2b3854;
+    background:#162136;
+    margin-right:4px;
+  }
+  .search-item .snippet{
+    margin-top:6px;
+    font-size:13px;
+    color:#c3cad5;
+    line-height:1.5;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 登录模态兜底（main.js 会注入样式也会复用） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="overview.html">学校概况</a>
+      <a href="organization.html">组织机构</a>
+      <a href="education.html">教育教学</a>
+      <a href="research.html">科学研究</a>
+      <a href="admission.html">招生就业</a>
+      <a href="campus.html">校园服务</a>
+      <a href="faculty.html">教师队伍</a>
+      <a href="archive.html">校史档案</a>
+    </div>
+  </div>
+</div>
+
+<!-- 搜索主体 -->
+<div class="container">
+  <div class="search-wrap">
+    <div class="search-head">
+      <h2>站内搜索</h2>
+      <p>可搜索与 <span class="muted">B-4、门禁记录、奖学金、心理中心、实验室项目</span> 等相关内容。</p>
+    </div>
+
+    <!-- 中部大搜索框 -->
+    <div class="big-search-box">
+      <form class="big-search-form" action="search.html" method="get">
+        <input
+          type="text"
+          id="searchQuery"
+          name="q"
+          placeholder="请输入关键词，例如：B-4、奖学金、心理中心…"
+          autocomplete="off"
+        >
+        <button type="submit">搜索一下</button>
+      </form>
+    </div>
+
+    <!-- 搜索结果列表：search.js 会填充这个容器 -->
+    <div id="searchResults" class="search-results card">
+      <!-- 初始为空，由 search.js 根据 ?q= 渲染 -->
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态（main.js 会自动复用） -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：player@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

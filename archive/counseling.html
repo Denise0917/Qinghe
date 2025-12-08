@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>学生心理中心预约 - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/main.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/counseling.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1000px; margin:0 auto; padding:0 14px 40px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; display:flex; gap:22px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .card{ margin-top:18px; background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 20px 22px; }
+  .card h1{ margin:0 0 8px; font-size:22px; }
+  .card h2{ margin:18px 0 10px; font-size:16px; }
+
+  .meta-bar{ font-size:12px; color:#9aa0a6; padding-bottom:10px; border-bottom:1px solid #202636; margin-bottom:10px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+  .c-header{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  .c-header-left{ display:flex; flex-direction:column; gap:4px; }
+  .badge-role{ display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid #33415d; font-size:12px; background:#192338; }
+
+  .c-tip{ margin-top:8px; font-size:12px; color:#7c8594; }
+
+  .table-wrap{ margin-top:10px; overflow-x:auto; }
+  table{ border-collapse:collapse; width:100%; font-size:13px; }
+  th,td{ border:1px solid #283246; padding:6px 8px; text-align:left; }
+  th{ background:#182132; }
+  tbody tr:nth-child(2n){ background:#101722; }
+
+  .status-finished{ color:#7dd47c; }
+  .status-booked{ color:#ffd166; }
+  .status-cancel{ color:#ff6b6b; }
+
+  .reason{ font-size:12px; color:#9aa0a6; line-height:1.6; }
+
+  .c-access{ text-align:center; padding:30px 10px; }
+  .c-access p{ margin:4px 0; }
+  .c-btn{ display:inline-block; margin-top:14px; padding:8px 16px; border-radius:999px; border:1px solid #2c3c5a; background:#1c2536; color:#e8eaee; cursor:pointer; font-size:14px; }
+  .c-btn:hover{ border-color:#3b4d74; }
+
+  .hotline{ margin-top:16px; padding:10px 12px; border-radius:8px; background:#101726; border:1px dashed #283247; font-size:12px; color:#a8b2c3; }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    if (typeof getAuth !== 'function') return;
+    const a = getAuth();
+    if (!a || a.id !== 'U-LL') return;
+
+    const container = document.querySelector('.container');
+    if (!container) return;
+    if (document.getElementById('frozenBanner')) return;
+
+    const div = document.createElement('div');
+    div.id = 'frozenBanner';
+    div.className = 'card';
+    div.style.marginTop = '14px';
+    div.innerHTML = `
+      <p class="small" style="margin:0;">
+        当前为 <span style="color:#f5c96a;font-weight:600;">封存账号的只读视图</span>，
+        部分操作（修改、删除、回复邮件等）已被关闭，仅供家属核查学习与奖助记录之用。
+      </p>
+    `;
+    container.insertBefore(div, container.firstChild);
+  });
+</script>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 访问控制：未登录 / 非学生 -->
+  <div class="card" id="cAccessCard">
+    <div class="c-access">
+      <h1 style="margin-bottom:12px;">学生心理中心预约</h1>
+      <p id="cAccessMsg">本系统仅向在校学生开放，请先登录学生账号。</p>
+      <button class="c-btn" id="cBtnLogin">使用学生账号登录</button>
+      <p class="c-tip">友情提醒：当情绪持续低落、睡眠明显变差或影响到学习生活时，欢迎尽早与专业老师沟通。</p>
+      <div class="hotline">
+        心理支持专线：400-8xx-xxxx（工作日 9:00–21:00）<br/>
+        校园安保 24h：010-xxxx-xxxx（遇突发情况请第一时间报警求助）。
+      </div>
+    </div>
+  </div>
+
+  <!-- 主内容：仅学生账号可见 -->
+  <div class="card hidden" id="cMainCard">
+    <div class="c-header">
+      <div class="c-header-left">
+        <h1>我的心理预约记录</h1>
+        <div class="meta-bar" style="border:none;padding:0;margin:0;">
+          <span>当前账号：<span id="cUser">-</span></span>
+          <span>服务单位：清河大学学生心理中心</span>
+        </div>
+        <div class="c-tip">
+          说明：为保护隐私，仅展示预约时间、形式与处理状态，不展示具体谈话内容。预约记录仅本人可见。
+        </div>
+      </div>
+      <div>
+        <span class="badge-role" id="cRoleTag">在校学生</span>
+      </div>
+    </div>
+
+    <h2>一、预约与咨询记录</h2>
+    <div class="table-wrap">
+      <p class="small muted">
+  说明：部分记录因涉及个人隐私或敏感议题，已由来访者申请加锁，
+  仅在输入约定口令后方可查看详细备注。
+</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:20%">预约时间</th>
+            <th style="width:16%">服务形式</th>
+            <th style="width:16%">状态</th>
+            <th style="width:48%">备注说明（仅系统可见）</th>
+          </tr>
+        </thead>
+        <tbody id="cTableBody">
+          <!-- counseling.js 填充 -->
+        </tbody>
+      </table>
+    </div>
+
+    <h2>二、心理健康小提示</h2>
+    <p class="small">
+      学习压力、人际关系变化、科研与竞赛带来的紧张情绪，都是大学阶段常见的心理困扰。当你发现自己长时间难以入睡、注意力明显下降、对平时喜欢的事情提不起兴趣，
+      或者反复出现“如果我消失就好了”之类的想法时，都是值得认真对待的信号。
+    </p>
+    <p class="small">
+      学校心理中心提供预约面谈、团体辅导和危机干预等服务。中心会严格保护来访学生隐私，未经本人同意不会将具体谈话内容对外透露（法律法规另有规定的除外）。
+      如遇紧急危险，请立即联系校园安保或公安机关，优先确保人身安全。
+    </p>
+
+    <div class="hotline">
+      如需紧急支持，可拨打：心理支持专线 400-8xx-xxxx（工作日 9:00–21:00）。<br/>
+      校园安保 24 小时电话：010-xxxx-xxxx。
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

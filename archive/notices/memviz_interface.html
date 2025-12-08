@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>项目：记忆可视化接口（MemViz Interface） - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+
+<meta name="description" content="清河大学信息学部沈以航教授主持：记忆可视化接口（MemViz Interface）。项目以结构化记忆建模与可解释人机交互为核心，荣获2025优秀实践项目。">
+<style>
+  .doc{padding:0}
+  .sec-h{margin:0;padding:12px 14px 8px;border-bottom:1px solid #202636}
+  .doc .body{padding:12px 14px 18px}
+  .sub{color:#9aa0a6}
+  .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px}
+  .kpi .item{background:#0f1420;border:1px solid #1f2839;border-radius:12px;padding:12px}
+  .kpi .n{font-size:22px;font-weight:800}
+  .badge{display:inline-block;border:1px solid #2b3854;background:#162136;border-radius:999px;padding:2px 8px;font-size:12px;color:#cdd6e3}
+  .highlight{background:#101828;border:1px solid #203048;border-radius:12px;padding:12px 14px;margin:12px 0}
+  .list-dot{margin:6px 0 12px 18px}
+  .list-dot li{margin:6px 0}
+  .timeline{border-left:2px solid #2b3a56;margin:8px 0 4px 8px;padding-left:12px}
+  .timeline .t{margin:6px 0}
+  .tag{display:inline-block;padding:2px 8px;border:1px solid #2c3852;background:#152033;border-radius:999px;font-size:12px;margin-right:6px}
+  .btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .quote{font-style:italic;color:#cfd6df}
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin" onclick="openLogin();return false;">登录</a>
+      <a href="#" id="btnLogout" class="hidden" onclick="logout();location.reload();return false;">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="../index.html">首页</a> · <a href="../research.html">科学研究</a> · 记忆可视化接口（MemViz Interface）
+  </div>
+
+  <article class="card doc">
+    <h3 class="sec-h">项目：记忆可视化接口（MemViz Interface） <span class="badge">2025 优秀实践项目</span></h3>
+    <div class="body">
+
+      <p class="sub">主持：<strong>沈以航 教授</strong>（信息学部 智能感知与交互实验室 ISIL）｜方向：结构化记忆建模、可解释人机交互、事件级检索</p>
+
+      <div class="highlight">
+        <p class="quote">“让复杂的机器‘记忆’被人看见、能被核对、可以被质疑。”</p>
+        <p>MemViz 以<strong>结构化记忆图谱</strong>为核心，将模型内部的时序记忆、实体与事件因果链路通过可视化界面呈现，并提供<strong>可追溯</strong>、<strong>可审计</strong>的交互工具，使研究者与业务人员能够快速定位决策依据与不确定区间。</p>
+      </div>
+
+      <div class="kpi">
+        <div class="item"><div class="n">3.6×</div><div class="sub">人机协作任务查错效率提升</div></div>
+        <div class="item"><div class="n">1.2×</div><div class="sub">复杂查询成功率提升</div></div>
+        <div class="item"><div class="n">180+</div><div class="sub">可解释交互组件</div></div>
+        <div class="item"><div class="n">8</div><div class="sub">场景化原型系统</div></div>
+      </div>
+
+      <h4>一、关键创新</h4>
+      <ul class="list-dot">
+        <li><strong>结构化记忆图谱：</strong>把模型中“谁-何时-何地-做了什么-因为什么”抽成事件节点，支持时序与因果双视图联动。</li>
+        <li><strong>不确定性显式标注：</strong>引入置信区间与证据热区，帮助用户识别“可能出错的位置”。</li>
+        <li><strong>多模态对齐校核：</strong>文本、图像、日志三路证据对齐，跨模态冲突自动高亮并给出校核建议。</li>
+        <li><strong>可审计交互日志：</strong>每次用户操作都写入审计轨迹，便于复现实验与合规检查。</li>
+      </ul>
+
+      <h4>二、成果与荣誉</h4>
+      <ul class="list-dot">
+        <li>获得校级“<strong>2025 优秀实践项目</strong>”称号。</li>
+        <li>形成 2 套开放协议与 1 套人机评估基准（MemViz-Bench）。</li>
+        <li>在学院教学中落地“可解释人机协作”实训课程原型。</li>
+      </ul>
+
+      <h4>三、应用价值</h4>
+      <ul class="list-dot">
+        <li><span class="tag">教学教务</span>科研复现实验辅助审计与溯源。</li>
+        <li><span class="tag">运维分析</span>复杂告警的因果链排查与跨模态取证。</li>
+        <li><span class="tag">知识发现</span>事件抽取后的结构化检索与证据汇总。</li>
+      </ul>
+
+      <h4>四、时间线</h4>
+      <div class="timeline">
+        <div class="t"><strong>2024-09</strong> · 立项；确定“结构化记忆图谱 + 交互评估”的总体路线。</div>
+        <div class="t"><strong>2025-01</strong> · 完成原型 v0.9；通过学院中期评审。</div>
+        <div class="t"><strong>2025-05</strong> · 发布 v1.0 并在多门课程试用；获“优秀实践项目”。</div>
+      </div>
+
+      <h4>五、项目团队</h4>
+      <ul class="list-dot">
+        <li><strong>负责人：</strong>沈以航 教授（总体设计与学术把关）。</li>
+        <p class="small muted">
+  联系方式：shen.yh@qh.edu
+</p>
+        <li><strong>主要成员：</strong>顾岱明（直博生，结构化记忆检索与评测）、林澜（本科生，多模态交互验证与数据采集）、实验室成员若干。</li>
+        <li><strong>合作单位：</strong>校信息化中心、图书馆数据组。</li>
+      </ul>
+
+      <div class="highlight">
+        <p><strong>导师表扬：</strong>项目自立项以来，沈以航教授以高标准推进研发，持续优化学生训练与研究规范。多名学生在其指导下完成从“实验日志、可视化设计”到“学术表达”的全过程训练，体现了沈教授在“<em>以研究促教学、以教学为研究赋能</em>”方面的鲜明特色。</p>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn primary" href="../research.html">返回科研总览</a>
+        <a class="btn" href="../faculty.html#SYH">查看导师主页</a>
+        <a class="btn" href="../archive.html#projects">项目归档</a>
+      </div>
+
+      <p class="muted small" style="margin-top:10px;">注：演示视频与交互样例在校内网络开放。涉及学生隐私的数据已脱敏处理。</p>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div>页面更新：2025-07-15</div>
+  </div>
+</footer>
+</body>
+</html>

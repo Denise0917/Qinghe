@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>家属解封入口 - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; display:flex; gap:22px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+  .nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .nav-links{display:flex;gap:22px;flex-wrap:nowrap;}
+  .nav-search{display:flex;align-items:center;gap:6px;margin-left:auto;}
+  .nav-search input{
+    width:220px;max-width:260px;padding:6px 10px;border-radius:999px;
+    border:1px solid #262d3f;background:#0c1119;color:#e8eaee;font-size:13px;outline:none;
+  }
+  .nav-search input::placeholder{color:#737b8c;}
+  .nav-search input:focus{border-color:#3b82f6;box-shadow:0 0 0 1px rgba(59,130,246,.35);}
+  .nav-search button{
+    padding:5px 12px;border-radius:999px;border:1px solid #36527a;
+    background:#1f2a3f;color:#e8eaee;font-size:13px;cursor:pointer;
+  }
+  .nav-search button:hover{border-color:#4f7dd9;background:#243455;}
+
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 18px 20px; margin:20px 0 26px; }
+  h1{ margin:0 0 10px; font-size:22px; }
+  p{ font-size:14px; line-height:1.7; }
+
+  .unlock-form{
+    margin-top:14px;
+    padding:14px 16px;
+    border-radius:10px;
+    background:#111724;
+    border:1px solid #202636;
+  }
+  .unlock-form label{
+    display:block;
+    font-size:13px;
+    margin-bottom:4px;
+  }
+  .unlock-form input{
+    width:100%;
+    box-sizing:border-box;
+    padding:8px 10px;
+    border-radius:6px;
+    border:1px solid #262d3f;
+    background:#0c1119;
+    color:#e8eaee;
+    font-size:14px;
+    outline:none;
+  }
+  .unlock-form input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .unlock-actions{
+    margin-top:10px;
+    display:flex;
+    gap:8px;
+    justify-content:flex-end;
+    align-items:center;
+  }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 14px; cursor:pointer; font-size:14px; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+  .msg-ok{ color:#7de38b; }
+  .msg-err{ color:#ff6b6b; }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 兜底登录模态 */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="muted small" style="margin:10px 2px 6px;">
+    <a href="../index.html">首页</a> · <a href="20250601_account_freeze.html">学生账号封存说明</a> · 家属解封入口
+  </div>
+
+  <div class="card">
+    <h1>家属解封入口（实验性）</h1>
+    <p class="small muted">
+      本入口仅供已完成线下身份核验、并由学生处告知生成规则的家属使用。
+      请输入核验码，以解锁已封存学生账号的部分只读权限。
+    </p>
+
+    <form id="unlockForm" class="unlock-form">
+      <label for="codeInput">核验码</label>
+      <input
+        id="codeInput"
+        type="text"
+        placeholder="例如：12301010001（宿舍号 + 日期 + 学号后四位）"
+        autocomplete="off"
+      />
+      <div class="unlock-actions">
+        <span id="unlockMsg" class="small muted"></span>
+        <button type="submit" class="btn primary">验证核验码</button>
+      </div>
+    </form>
+
+    <p class="small muted" style="margin-top:10px;">
+      * 解封成功后，请使用学生本人的校园账号登录，例如：
+      <code>lin.lan@stu.qh.edu</code>。
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态 -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2025A0917"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 这里要和 auth.js 里的常量一致
+  const EXPECT_CODE = '41205170831'; // 412（宿舍）+ 20250517（日期）+ 0831（学号后四位）
+
+  document.addEventListener('DOMContentLoaded', function(){
+    const form = document.getElementById('unlockForm');
+    const input = document.getElementById('codeInput');
+    const msg = document.getElementById('unlockMsg');
+
+    if(!form || !input || !msg) return;
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const v = (input.value || '').trim().replace(/\s+/g, '');
+
+      if(!v){
+        msg.textContent = '请输入核验码。';
+        msg.className = 'small msg-err';
+        return;
+      }
+
+      if(v === EXPECT_CODE){
+        try{
+          localStorage.setItem('qh_ll_family_unlock', '1');
+        }catch(e){}
+
+        msg.textContent = '核验码验证通过。现在可以使用 lin.lan@stu.qh.edu / qh-2021 登录查看封存账号资料。';
+        msg.className = 'small msg-ok';
+
+        // 轻微延迟后跳转到收件箱（你可以改成别的入口页）
+        setTimeout(function(){
+          window.location.href = '/index.html';
+        }, 1800);
+      }else{
+        msg.textContent = '核验码错误，请检查宿舍号、日期与学号后四位是否正确。';
+        msg.className = 'small msg-err';
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

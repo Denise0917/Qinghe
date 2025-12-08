@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>张国权个人备忘（未发送草稿） - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  /* 顶部导航 + 搜索条 */
+  .nav-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .nav-links{
+    display:flex;
+    gap:22px;
+    flex-wrap:nowrap;
+  }
+  .nav-search{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:auto;
+  }
+  .nav-search input{
+    width:220px;
+    max-width:260px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #262d3f;
+    background:#0c1119;
+    color:#e8eaee;
+    font-size:13px;
+    outline:none;
+  }
+  .nav-search input::placeholder{
+    color:#737b8c;
+  }
+  .nav-search input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px;
+    border-radius:999px;
+    border:1px solid #36527a;
+    background:#1f2a3f;
+    color:#e8eaee;
+    font-size:13px;
+    cursor:pointer;
+  }
+  .nav-search button:hover{
+    border-color:#4f7dd9;
+    background:#243455;
+  }
+
+  /* 内容卡片 */
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 18px 20px; margin:20px 0 26px; }
+  h1{ margin:0 0 10px; font-size:22px; }
+  .meta-line{ font-size:12px; color:#9aa0a6; margin-bottom:12px; }
+
+  .note-body{
+    font-size:14px;
+    line-height:1.8;
+    white-space:pre-wrap;
+  }
+  .note-body p{ margin:0 0 10px; }
+
+  .tag-pill{
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:999px;
+    border:1px solid #2b3854;
+    background:#162136;
+    font-size:12px;
+    color:#cdd6e3;
+    margin-right:6px;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 登录模态兜底（main.js 会复用） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="/search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、投诉、监控…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="muted small" style="margin:10px 2px 6px;">
+    <a href="../index.html">首页</a> · <a href="../archive.html">校史档案 / 记录</a> · 个人备忘草稿
+  </div>
+
+  <div class="card">
+    <h1>张国权个人备忘（未发送草稿）</h1>
+    <div class="meta-line">
+      备注：疑似由保卫处职工 <strong>张某</strong> 在值班电脑上编辑并保存的本地文本片段，后被系统自动备份。
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <span class="tag-pill">B-4 楼</span>
+      <span class="tag-pill">监控</span>
+      <span class="tag-pill">投诉</span>
+    </div>
+
+    <div class="note-body">
+【值班随记——未保存稿】
+
+今天又收到他的邮件了，一看内容我就明白是怎么回事，他肯定又要对哪个女学生下手了。
+
+又让我在 21:30 到 22:00 这段时间把B-4的监控关掉，真是个人渣。这种说法我听得太多了。
+
+说句难听的，我早就不是第一次配合这种事情了。
+
+好几年之前，那会儿也是他先找上我，提前打招呼，说某个晚上要在 B-4 楼有事情，要我别多问。那天我本来只想照常值个班，结果上楼去巡了一圈，在教室门口听到里面有动静——那种声音，不用细想也知道是在干什么，反正和正常上课、谈工作完全不沾边。
+
+我没有上去打断，没有去敲门，更没有去报告。说白了，我就站在走廊那边，像个看热闹的人一样，明明知道不对，还故意装作什么都不知道。
+
+后来他走了，我自己又推门进去看了一眼。那个女学生完全没有反应了，可是我实在没见过......
+
+第二天听说那个学生出事了，真他妈晦气，我心里发凉，千万别查到我头上。
+
+事实证明，事情最后真没落到我身上。那阵子各种消息在校里压下来，我也就默认这事算过去了。现在的学生心理一届不如一届，希望这次不会再出事！
+
+那个沈教授的能量真的大啊，这种事情都能压下去，这次我也跟着去看看，
+
+妈的，今年怎么总有人投诉。说实话，有些话我确实说过，图一时嘴快，图个下流笑话，觉得夜里值班无聊。结果现在都写进投诉里了，一个字都没给我少。
+
+看着那些投诉，我心里一半是不服，一半是烦。我承认自己嘴脏、眼神坏，可真让我挨个去记到底盯了谁、说了谁，我也记不住。倒是很想知道，到底是谁写的那些东西。要是让我知道是谁背后老是戳我两刀，我肯定不会放过她。
+
+至于沈教授，说好听点是“王牌导师”，项目多、名气大，说难听点就是仗着手里有资源，习惯了别人围着他转。还威胁我不许说出去，我完了你也别想好过
+
+    </div>
+
+    <p class="small muted" style="margin-top:10px;">
+      说明：以上内容为系统残留文本，经技术还原后整理。
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态（main.js 会自动复用） -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：linjing@stu.qh.edu 或 2021D0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

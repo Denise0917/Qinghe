@@ -1,0 +1,587 @@
+:root{
+  color-scheme: dark;
+}
+
+/* 全局基础 */
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+body{
+  margin:0;
+  background:#0c1119;
+  color:#e8eaee;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+}
+
+a{
+  color:#cfd6df;
+  text-decoration:none;
+}
+a:hover{
+  text-decoration:underline;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 14px;
+}
+
+.muted{
+  color:#9aa0a6;
+}
+.small{
+  font-size:12px;
+}
+
+/* 图片自适应，防止撑爆小屏 */
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* 顶部细栏 */
+.topbar{
+  background:#0f1320;
+  border-bottom:1px solid #1d2331;
+  color:#c9ced8;
+  font-size:12px;
+}
+.topbar .wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:8px 14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.badge-u{
+  display:inline-block;
+  margin-left:6px;
+  padding:1px 6px;
+  border-radius:999px;
+  border:1px solid #3a465f;
+  font-size:12px;
+  background:#203047;
+  color:#aee;
+}
+
+/* 品牌与主导航上方区域 */
+.mast{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 14px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 0;
+}
+.brand img{
+  width:52px;
+  height:52px;
+  border-radius:10px;
+  border:1px solid #2a3142;
+  background:#111;
+}
+.brand .cn{
+  font-weight:800;
+  font-size:24px;
+  letter-spacing:.5px;
+}
+.brand .en{
+  font-size:12px;
+  color:#98a0ab;
+}
+
+/* 主导航 */
+.nav{
+  background:#0f1320;
+  border-top:1px solid #1d2331;
+  border-bottom:1px solid #1d2331;
+}
+.nav .wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 14px;
+}
+
+/* 导航内部布局：左侧链接 + 右侧搜索 */
+.nav-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+}
+
+.nav a{
+  display:inline-block;
+  padding:12px 0;
+  color:#e8eaee;
+}
+.nav a:hover{
+  color:#fff;
+}
+
+/* 站内搜索 */
+.nav-search{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto;
+}
+.nav-search input{
+  background:#0e1116;
+  border:1px solid #1c2230;
+  border-radius:999px;
+  padding:6px 10px;
+  color:#e8eaee;
+  font-size:13px;
+  min-width:180px;
+}
+.nav-search button{
+  border-radius:999px;
+  border:1px solid #2a3347;
+  background:#1b2333;
+  color:#e8eaee;
+  padding:6px 12px;
+  font-size:13px;
+  cursor:pointer;
+}
+.nav-search button:hover{
+  border-color:#3a4661;
+}
+
+/* 轮播 */
+.hero{
+  margin:14px 0;
+  background:#0f1320;
+  border:1px solid #202636;
+  border-radius:14px;
+  overflow:hidden;
+  position:relative;
+  height:360px; /* PC 端固定高度 */
+}
+.hero-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .6s ease;
+}
+.hero-slide.active{
+  opacity:1;
+}
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  opacity:.95;
+}
+.hero .caption{
+  position:absolute;
+  left:16px;
+  bottom:14px;
+  background:rgba(0,0,0,.35);
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:12px;
+}
+.hero-dots{
+  position:absolute;
+  right:16px;
+  bottom:16px;
+  display:flex;
+  gap:6px;
+}
+.hero-dots button{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  border:none;
+  padding:0;
+  background:#5c667a;
+  cursor:pointer;
+}
+.hero-dots button.active{
+  background:#e8eaee;
+}
+
+/* 栏目布局（四列） */
+.grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr 320px;
+  gap:16px;
+  margin:16px 0 24px;
+}
+
+.card{
+  background:#141822;
+  border:1px solid #202636;
+  border-radius:12px;
+  padding:0;
+  overflow:hidden;
+}
+.card h3{
+  margin:0;
+  padding:12px 14px 8px;
+  border-bottom:1px solid #202636;
+}
+
+.list{
+  list-style:none;
+  margin:0;
+  padding:8px 0;
+}
+.list li{
+  padding:10px 14px;
+  border-bottom:1px dashed #223046;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.list li:last-child{
+  border-bottom:none;
+}
+.pill{
+  display:inline-block;
+  padding:2px 8px;
+  border:1px solid #2c3852;
+  background:#152033;
+  border-radius:999px;
+  font-size:12px;
+  margin-right:8px;
+}
+
+/* 快速通道 + 日历 */
+.side .block{
+  padding:10px 14px;
+  border-bottom:1px solid #202636;
+}
+.side .btn{
+  display:block;
+  margin:8px 0;
+  padding:10px 10px;
+  text-align:center;
+  border:1px solid #2a3347;
+  background:#1b2333;
+  border-radius:10px;
+  color:#e8eaee;
+}
+.side .btn:hover{
+  border-color:#3a4661;
+}
+.cal li{
+  display:flex;
+  justify-content:space-between;
+}
+
+/* 登录模态 */
+#loginMask{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+#loginMask .box{
+  width:380px;
+  background:#141822;
+  border:1px solid #202636;
+  border-radius:12px;
+  padding:16px;
+}
+.input{
+  background:#0e1116;
+  border:1px solid #1c2230;
+  border-radius:6px;
+  padding:8px 10px;
+  color:#e8eaee;
+  width:100%;
+}
+.btn{
+  background:#1b2333;
+  border:1px solid #2a3347;
+  border-radius:8px;
+  color:#e8eaee;
+  padding:8px 12px;
+  cursor:pointer;
+}
+.btn.primary{
+  background:#21406b;
+  border-color:#2c538a;
+}
+.btn:hover{
+  border-color:#3a4661;
+}
+
+/* 页脚 */
+footer{
+  background:#0f1320;
+  border-top:1px solid #1d2331;
+  margin-top:24px;
+}
+footer .wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:18px 14px;
+  color:#97a0ad;
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* News v2 */
+.news-card{
+  padding:0;
+  border:1px solid #1e2636;
+  border-radius:14px;
+  background:#111622;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+}
+.news-head{
+  padding:14px 16px;
+  border-bottom:1px solid #1f2839;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.news-head h3{
+  margin:0;
+  font-size:16px;
+}
+.news-list{
+  list-style:none;
+  margin:0;
+  padding:4px 0;
+}
+.news-item{
+  display:grid;
+  grid-template-columns:90px 1fr 92px;
+  gap:14px;
+  align-items:flex-start;
+  padding:14px 16px;
+  border-bottom:1px dashed #223048;
+  transition:background .18s,border-color .18s;
+}
+.news-item:last-child{
+  border-bottom:none;
+}
+.news-item:hover{
+  background:#0f1420;
+  border-color:#2b3a56;
+}
+.news-tag-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#9aa7b7;
+}
+.news-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#586a89;
+  opacity:.9;
+}
+.news-item[data-urgent="true"] .news-dot{
+  background:#ff6b6b;
+}
+.news-tag{
+  padding:2px 8px;
+  border:1px solid #2b3854;
+  background:#162136;
+  border-radius:999px;
+  font-size:12px;
+  color:#cdd6e3;
+  white-space:nowrap;
+}
+.news-title a{
+  color:#e9edf4;
+  text-decoration:none;
+}
+.news-title a:hover{
+  text-decoration:underline;
+}
+.news-title{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  line-height:1.45;
+}
+.news-date{
+  justify-self:end;
+  color:#9aa0a6;
+  font-size:12px;
+  white-space:nowrap;
+}
+.news-foot{
+  padding:10px 16px;
+}
+.link-ghost{
+  color:#aeb7c6;
+  font-size:12px;
+}
+.link-ghost:hover{
+  text-decoration:underline;
+}
+
+/* ========== 响应式：平板（<=1024px） ========== */
+@media (max-width:1024px){
+
+  /* 顶部小条允许换行 */
+  .topbar .wrap{
+    flex-wrap:wrap;
+    row-gap:4px;
+  }
+
+  /* 四列 → 两列（新闻 + 通知一列，科研 + 右侧一列） */
+  .grid{
+    grid-template-columns:minmax(0,1.6fr) minmax(0,1.1fr);
+    grid-auto-rows:auto;
+  }
+
+  /* 第 3 个块（学术科研）占满两列 */
+  .grid > :nth-child(3){
+    grid-column:1 / -1;
+  }
+
+  /* 轮播稍微矮一点 */
+  .hero{
+    height:280px;
+  }
+
+  /* 登录弹窗稍微窄一点 */
+  #loginMask .box{
+    width:360px;
+  }
+}
+
+/* ========== 响应式：手机（<=768px） ========== */
+@media (max-width:768px){
+
+  /* 外层容器两边缩一点 */
+  .container{
+    padding:0 10px;
+  }
+
+  /* 顶部条、页脚改成上下排 */
+  .topbar .wrap,
+  footer .wrap{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+
+  /* 品牌区域缩小一点 */
+  .brand{
+    padding:10px 0;
+  }
+  .brand img{
+    width:44px;
+    height:44px;
+  }
+  .brand .cn{
+    font-size:20px;
+  }
+
+  /* 导航：上下布局，搜索框独占一行 */
+  .nav .wrap{
+    padding:0 10px;
+  }
+  .nav-wrap{
+    flex-direction:column;
+    align-items:stretch;
+    gap:4px;
+  }
+  .nav-links{
+    flex-wrap:wrap;
+    row-gap:4px;
+  }
+  .nav a{
+    padding:8px 0;
+    font-size:14px;
+  }
+  .nav-search{
+    width:100%;
+    margin-left:0;
+  }
+  .nav-search input{
+    flex:1;
+    min-width:0;
+  }
+
+  /* 轮播：高度降低，避免太占屏 */
+  .hero{
+    height:220px;
+  }
+
+  /* 四列区块 → 单列纵向排 */
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  /* 新闻项：标题和日期竖排，更适合窄屏 */
+  .news-item{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto;
+    row-gap:8px;
+  }
+  .news-date{
+    justify-self:start;
+  }
+
+  /* 快速通道按钮稍微大一点，方便点 */
+  .side .btn{
+    font-size:14px;
+    padding:10px 12px;
+  }
+
+  /* 登录弹窗适配小屏 */
+  #loginMask .box{
+    width:92vw;
+    max-width:420px;
+    margin:0 4vw;
+  }
+}
+/* ==== 兜底：手机端布局简化，保证新闻/公告一定能显示 ==== */
+@media (max-width: 768px) {
+  /* 不用网格了，直接纵向一列排 */
+  .grid{
+    display:block;          /* 取消 grid 布局 */
+    margin:16px 0 24px;
+  }
+
+  /* 四个区块依次往下排 */
+  .grid > *{
+    width:100%;
+    margin-bottom:12px;
+  }
+
+  /* 卡片内部保持原来的样式 */
+  .card,
+  .news-card{
+    border-radius:12px;
+  }
+}

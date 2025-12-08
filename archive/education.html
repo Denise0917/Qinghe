@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>教育教学 - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/auth.js" defer></script>
+<script src="js/main.js" defer></script>
+<meta name="description" content="清河大学教育教学：导师制教学模式、教学运行与校历、考试安排、奖学金评比、常见问题与表单下载。">
+<meta name="robots" content="index,follow">
+<style>
+  .cols{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+  .sec-h{margin:0;padding:12px 14px 8px;border-bottom:1px solid #202636}
+  .meta{display:flex;gap:12px;align-items:center;color:#9aa0a6;font-size:12px;padding:8px 14px;border-bottom:1px solid #202636}
+  .alert{background:#131b28;border:1px solid #2a3a56;border-radius:10px;padding:10px 12px}
+  .alert.warn{border-color:#775b2a;background:#1c1710}
+  .alert.info{border-color:#2e4a7a;background:#0f1623}
+  .toolbar{display:flex;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid #202636}
+  .table{width:100%;border-collapse:collapse}
+  .table th,.table td{border-bottom:1px solid #202636;padding:10px 8px;text-align:left;vertical-align:top}
+  .table th{color:#cfd6df;font-weight:600}
+  .tag{display:inline-block;padding:2px 8px;border:1px solid #2c3852;background:#152033;border-radius:999px;font-size:12px;margin-right:6px;white-space:nowrap}
+  .kbd{font:12px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;background:#0d1320;border:1px solid #23304a;border-radius:4px;padding:1px 6px;color:#cfd6df}
+  .step{counter-reset: s}
+  .step li{counter-increment:s;list-style:none;padding:10px 0;border-bottom:1px dashed #223046}
+  .step li::before{content: counter(s) ".";display:inline-block;width:20px;color:#9aa0a6}
+  .dl-list{list-style:none;margin:0;padding:8px 0}
+  .dl-list li{padding:10px 14px;border-bottom:1px dashed #223046;display:flex;justify-content:space-between;gap:10px}
+  .dl-list li:last-child{border-bottom:none}
+  .faq dt{font-weight:700;margin:10px 0 6px}
+  .faq dd{margin:0 0 10px 0;color:#cfd6df}
+  .sticky{position:sticky;top:12px}
+  @media (max-width:1100px){ .cols{grid-template-columns:1fr} .sticky{position:static} }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin" onclick="openLogin();return false;">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden" onclick="logout();location.reload();return false;">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="index.html">首页</a> · 教育教学
+  </div>
+
+  <div class="cols">
+    <!-- 主栏 -->
+    <main style="display:flex;flex-direction:column;gap:16px;">
+
+      <!-- 通知与元信息栏 -->
+      <section class="card">
+        <h3 class="sec-h">教学运行公告 <span class="muted">TEACHING UPDATES</span></h3>
+        <div class="meta">
+          <span>发布单位：教务处</span>
+          <span>最后更新：<time datetime="2025-09-01T09:30:00">2025-09-01 09:30</time></span>
+          <span>联系人：<a href="mailto:jwc@qh.edu">jwc@qh.edu</a></span>
+        </div>
+        <div style="padding:12px 14px;display:grid;gap:10px">
+          <div class="alert info">【提示】本学期仍实行 <strong>导师制</strong> 导学面谈（至少 2 次），请在第 4、12 周前完成预约与记录。</div>
+          <div class="alert warn">【考试提醒】期末考试冲突申报截止至 <span class="kbd">第 10 周周三 17:00</span>，过期不再受理。</div>
+        </div>
+      </section>
+
+      <!-- 教学模式：导师制（更“制度化”呈现） -->
+      <section class="card" id="mentor">
+        <h3 class="sec-h">教学模式：导师制 <span class="muted">MENTOR SYSTEM</span></h3>
+        <div style="padding:10px 14px 14px;">
+          <p>清河大学实行<strong>导师制</strong>，覆盖本科与研究生阶段。导师负责学生的学业规划、课程修读、科研训练与发展指导。以下制度自 <strong>2025-2026 学年</strong> 起执行：</p>
+          <table class="table" style="margin-top:6px">
+            <thead><tr><th>类别</th><th>对象</th><th>要求</th><th>记录与考核</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>学业导师（本科）</td>
+                <td>全体本科生</td>
+                <td>每学期至少 2 次面谈；制定/更新《个人课程修读计划》</td>
+                <td>在线提交面谈纪要，学院复核；纳入综合测评</td>
+              </tr>
+              <tr>
+                <td>学术导师（研究生）</td>
+                <td>全体研究生</td>
+                <td>入学第 1 学期完成课题组轮转与方向确定；建立培养方案</td>
+                <td>培养方案备案，期中/期末考核；论文开题前须完成中期检查</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="step" style="margin-top:10px">
+            <li><strong>预约：</strong>登录统一门户 → 导师预约 → 选择时段；</li>
+            <li><strong>面谈：</strong>围绕课程、成绩、科研训练、竞赛与升学/就业；</li>
+            <li><strong>记录：</strong>学生提交纪要，导师在线确认；</li>
+            <li><strong>抽查：</strong>学院与教务处按比例抽查原始记录。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 校历（关键节点） + ics 下载 -->
+      <section class="card" id="calendar">
+        <h3 class="sec-h">校历（2025-2026 学年） <span class="muted">ACADEMIC CALENDAR</span></h3>
+        <div class="toolbar">
+          <button class="btn" data-cal="fall">秋季学期</button>
+          <button class="btn ghost" data-cal="spring">春季学期</button>
+          <a class="btn" href="files/QHU_AcademicCalendar_2025-2026.ics" download>下载 iCal 文件</a>
+        </div>
+        <div id="calPanel" style="padding:10px 14px 14px">
+          <table class="table" id="calTable">
+            <thead><tr><th>周次</th><th>日期</th><th>事项</th><th>说明</th></tr></thead>
+            <tbody><!-- 动态填充 --></tbody>
+          </table>
+          <p class="muted small" style="margin-top:6px;">如与学院安排冲突，以学院通知为准。</p>
+        </div>
+      </section>
+
+      <!-- 考试安排（按课程代码更真实） -->
+      <section class="card" id="exams">
+        <h3 class="sec-h">期末考试安排 <span class="muted">EXAM SCHEDULE</span></h3>
+        <div class="toolbar">
+          <input id="examKw" class="input" placeholder="按课程/代码/学院/教室搜索，如：CS102、线代、A3-201"/>
+          <select id="examWeek" class="input" style="max-width:160px">
+            <option value="">全部周次</option>
+            <option value="12">第12周</option>
+            <option value="13">第13周</option>
+            <option value="14">第14周</option>
+          </select>
+          <button class="btn" onclick="filterExams()">筛选</button>
+          <button class="btn ghost" onclick="resetExams()">重置</button>
+        </div>
+        <div style="padding:0 14px 14px;">
+          <table class="table" id="examTable">
+            <thead>
+              <tr><th>课程（代码）</th><th>学院</th><th>日期</th><th>周次</th><th>时间</th><th>教室</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+              <tr data-k="数据结构 CS102 信息学部 A楼" data-w="12">
+                <td>CS102 数据结构</td><td>信息学部</td><td>12-18</td><td>12</td><td>09:00–11:00</td><td>A3-201</td><td>闭卷</td>
+              </tr>
+              <tr data-k="材料力学 ME205 材料学院 实验楼" data-w="12">
+                <td>ME205 材料力学</td><td>材料学院</td><td>12-19</td><td>12</td><td>14:00–16:00</td><td>M2-105</td><td>允许携带计算器</td>
+              </tr>
+              <tr data-k="线性代数 MA104 理学院 B楼" data-w="13">
+                <td>MA104 线性代数</td><td>理学院</td><td>12-23</td><td>13</td><td>09:00–11:00</td><td>B1-308</td><td>闭卷</td>
+              </tr>
+              <tr data-k="工程制图 ME110 机械学院 C楼" data-w="14">
+                <td>ME110 工程制图</td><td>机械学院</td><td>12-27</td><td>14</td><td>14:00–16:30</td><td>C2-210</td><td>携带绘图工具</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="muted small" style="margin-top:8px;">考试冲突处理：请在第 10 周前通过考试中心提交《考试冲突申报表》。</p>
+        </div>
+      </section>
+
+      <!-- 奖学金评比（政策化 + 流程 + 常见问题） -->
+      <section class="card" id="scholarship">
+        <h3 class="sec-h">奖学金评比 <span class="muted">SCHOLARSHIPS</span></h3>
+        <div class="meta">
+          <span>政策依据：清河大学学〔2025〕12 号（虚构）</span>
+          <span>受理窗口：第 10–12 周</span>
+          <span>咨询：<a href="mailto:aids@qh.edu">学生资助中心</a></span>
+        </div>
+        <div style="padding:10px 14px 14px;">
+          <table class="table">
+            <thead><tr><th>类别</th><th>对象</th><th>核心条件</th><th>额度（￥）</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>学业优秀奖</td><td>本科/研究生</td>
+                <td>学分绩点年级前 10%；无不及格；导师评价“良好以上”</td><td>3,000 / 5,000 / 10,000</td>
+              </tr>
+              <tr>
+                <td>科研创新奖</td><td>本科/研究生</td>
+                <td>论文/竞赛国家级奖励/发明专利等等值成果</td><td>5,000 起</td>
+              </tr>
+              <tr>
+                <td>社会实践奖</td><td>本科</td>
+                <td>志愿服务或实践满 60 学时；学院评估“良好以上”</td><td>2,000</td>
+              </tr>
+              <tr>
+                <td>助学金</td><td>本科/研究生</td>
+                <td>通过家庭经济困难认定；学习态度端正</td><td>2,000–6,000</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="alert" style="margin-top:10px;">
+            <strong>评审流程：</strong> 学生申请 → 导师初审 → 学院评议公示（3 日） → 学校复核 → 发文。
+            <br><span class="muted small">导师意见记入评审档案；公示期内可在线申请复核。</span>
+          </div>
+
+          <dl class="faq" style="margin-top:10px;">
+            <dt>Q1：GPA 与排名如何折算？</dt>
+            <dd>以学院统一算法为准；辅修与重修科目均计入，缓考科目按实际成绩折算。</dd>
+            <dt>Q2：科研创新奖是否可以团队申报？</dt>
+            <dd>支持团队申报，但需注明署名次序与贡献说明，经导师与学院审定。</dd>
+            <dt>Q3：助学金是否与勤工助学冲突？</dt>
+            <dd>不冲突，二者可同时申请，但资助额度与岗位安排将统筹考虑。</dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 表单与模板下载（更贴近教务真实场景） -->
+      <section class="card" id="downloads">
+        <h3 class="sec-h">表单与模板下载 <span class="muted">DOWNLOADS</span></h3>
+        <ul class="dl-list">
+          <li><a href="files/Course_Plan_Template.docx" download>个人课程修读计划模板（DOCX）</a><span class="muted small">导师签字后提交学院</span></li>
+          <li><a href="files/Exam_Conflict_Application.pdf" download>考试冲突申报表（PDF）</a><span class="muted small">第 10 周截止</span></li>
+          <li><a href="files/Scholarship_Apply_Form.docx" download>奖学金申请表（DOCX）</a><span class="muted small">附导师推荐意见</span></li>
+          <li><a href="files/Teaching_Schedule.xlsx" download>教学周历模板（XLSX）</a><span class="muted small">学院教务用</span></li>
+          <li><a href="files/QHU_AcademicCalendar_2025-2026.ics" download>2025-2026 学年 iCal（ICS）</a><span class="muted small">导入手机/日历</span></li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- 侧栏 -->
+    <aside class="card side sticky">
+      <div class="block">
+        <h3 style="margin:0 0 8px;">快速入口</h3>
+        <a class="btn" href="#mentor">导师制</a>
+        <a class="btn" href="#calendar">校历</a>
+        <a class="btn" href="#exams">考试安排</a>
+        <a class="btn" href="#scholarship">奖学金</a>
+        <a class="btn" href="#downloads">下载</a>
+      </div>
+      <div class="block">
+        <h3 style="margin:0 0 8px;">教务联系方式</h3>
+        <p class="muted small" style="margin:6px 0;">教务处：<a href="mailto:jwc@qh.edu">jwc@qh.edu</a> · (000) 1234 6701</p>
+        <p class="muted small" style="margin:6px 0;">考试中心：<a href="mailto:exam@qh.edu">exam@qh.edu</a> · (000) 1234 6706</p>
+        <p class="muted small" style="margin:6px 0;">学生资助中心：<a href="mailto:aids@qh.edu">aids@qh.edu</a> · (000) 1234 6710</p>
+        <div class="note small" style="margin-top:8px;">声明：本页信息为剧情演示，所有单位与数据均为虚构。</div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 登录模态框（沿用首页） -->
+<div id="loginMask" class="hidden">
+  <div class="box">
+    <h3 style="margin:0 0 8px">学生登录</h3>
+    <p class="small">示例：学号 2025A0317 / 邮箱 qinghe.s@stu.qinghe.edu　密码 qh-2025</p>
+    <label class="small">学号或邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：2025A0317 或 qinghe.s@stu.qinghe.edu"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" onclick="closeLogin()">取消</button>
+      <button class="btn primary" onclick="doLogin()">登录</button>
+    </div>
+  </div>
+</div>
+
+<!-- 页面内脚本：校历数据与考试过滤 -->
+<script>
+  // === 校历数据（更真实的“周次+事项”） ===
+  const CAL_FALL = [
+    { w: 0, date: "08-31 ~ 09-01", what: "新生报到", note: "本科/研究生分批次" },
+    { w: 1, date: "09-02 ~ 09-08", what: "第 1 教学周", note: "正式上课" },
+    { w: 4, date: "09-30", what: "补退选截止", note: "教务系统 23:59 截止" },
+    { w:10, date: "10-28 ~ 11-01", what: "期中教学检查", note: "学院抽查听课" },
+    { w:15, date: "12-02", what: "导师第二次面谈", note: "完成纪要与确认" },
+    { w:17, date: "12-16 ~ 12-27", what: "期末考试", note: "详见考试安排" },
+    { w:18, date: "12-30", what: "成绩提交截止", note: "任课教师提交" }
+  ];
+  const CAL_SPRING = [
+    { w: 1, date: "03-03 ~ 03-09", what: "第 1 教学周", note: "开学上课" },
+    { w: 2, date: "03-10", what: "补退选截止", note: "教务系统 23:59 截止" },
+    { w: 9, date: "05-05 ~ 05-16", what: "期中考试/测评", note: "以学院通知为准" },
+    { w:16, date: "06-23 ~ 07-04", what: "期末考试", note: "详见考试安排" }
+  ];
+  let curCal = "fall";
+
+  function renderCalendar(){
+    const tbody = document.querySelector("#calTable tbody");
+    const data = curCal === "fall" ? CAL_FALL : CAL_SPRING;
+    tbody.innerHTML = data.map(i => `
+      <tr>
+        <td>第 ${i.w} 周</td>
+        <td>${i.date}</td>
+        <td>${i.what}</td>
+        <td>${i.note||""}</td>
+      </tr>
+    `).join("");
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // 校历切换
+    renderCalendar();
+    document.querySelectorAll('[data-cal]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('[data-cal]').forEach(b=>b.classList.toggle('ghost', b!==btn));
+        curCal = btn.dataset.cal;
+        renderCalendar();
+      });
+    });
+  });
+
+  // === 考试筛选（按关键词+周次） ===
+  function filterExams(){
+    const kw = (document.getElementById('examKw').value || '').trim().toLowerCase();
+    const wk = (document.getElementById('examWeek').value || '').trim();
+    const rows = document.querySelectorAll('#examTable tbody tr');
+    rows.forEach(tr => {
+      const hay = (tr.dataset.k || '').toLowerCase() + ' ' + tr.textContent.toLowerCase();
+      const w = tr.dataset.w || '';
+      const m1 = kw ? hay.includes(kw) : true;
+      const m2 = wk ? (w === wk) : true;
+      tr.style.display = (m1 && m2) ? '' : 'none';
+    });
+  }
+  function resetExams(){
+    document.getElementById('examKw').value = '';
+    document.getElementById('examWeek').value = '';
+    filterExams();
+  }
+</script>
+
+</body>
+</html>

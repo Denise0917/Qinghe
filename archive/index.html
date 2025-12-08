@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>清河大学 - 官方网站</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/main.js" defer></script>
+<script src="js/auth.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{ margin:0; background:#0c1119; color:#e8eaee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif; }
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  /* 顶部细栏 */
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  /* 品牌与主导航 */
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap{ max-width:1200px; margin:0 auto; padding:0 14px; display:flex; gap:22px; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+/* 轮播 */
+  .hero{
+    margin:14px 0;
+    background:#0f1320;
+    border:1px solid #202636;
+    border-radius:14px;
+    overflow:hidden;
+    position:relative;
+    height:360px; /* 固定高度，方便轮播 */
+  }
+  .hero-slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity .6s ease;
+  }
+  .hero-slide.active{
+    opacity:1;
+  }
+  .hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    opacity:.95;
+  }
+  .hero .caption{
+    position:absolute;
+    left:16px;
+    bottom:14px;
+    background:rgba(0,0,0,.35);
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:12px;
+  }
+  .hero-dots{
+    position:absolute;
+    right:16px;
+    bottom:16px;
+    display:flex;
+    gap:6px;
+  }
+  .hero-dots button{
+    width:8px;
+    height:8px;
+    border-radius:999px;
+    border:none;
+    padding:0;
+    background:#5c667a;
+    cursor:pointer;
+  }
+  .hero-dots button.active{
+    background:#e8eaee;
+  }
+
+
+  /* 栏目布局 */
+  .grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr 320px; gap:16px; margin:16px 0 24px; }
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:0; overflow:hidden; }
+  .card h3{ margin:0; padding:12px 14px 8px; border-bottom:1px solid #202636; }
+  .list{ list-style:none; margin:0; padding:8px 0; }
+  .list li{ padding:10px 14px; border-bottom:1px dashed #223046; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .list li:last-child{ border-bottom:none; }
+  .pill{ display:inline-block; padding:2px 8px; border:1px solid #2c3852; background:#152033; border-radius:999px; font-size:12px; margin-right:8px; }
+
+  /* 快速通道 + 日历 */
+  .side .block{ padding:10px 14px; border-bottom:1px solid #202636; }
+  .side .btn{ display:block; margin:8px 0; padding:10px 10px; text-align:center; border:1px solid #2a3347; background:#1b2333; border-radius:10px; color:#e8eaee; }
+  .side .btn:hover{ border-color:#3a4661; }
+  .cal li{ display:flex; justify-content:space-between; }
+
+  /* 登录模态（main.js 会注入/复用；这里兜底） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* News v2 */
+  .news-card{padding:0;border:1px solid #1e2636;border-radius:14px;background:#111622;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .news-head{padding:14px 16px;border-bottom:1px solid #1f2839;display:flex;align-items:center;justify-content:space-between}
+  .news-head h3{margin:0;font-size:16px}
+  .news-list{list-style:none;margin:0;padding:4px 0}
+  .news-item{display:grid;grid-template-columns:90px 1fr 92px;gap:14px;align-items:flex-start;padding:14px 16px;border-bottom:1px dashed #223048;transition:background .18s,border-color .18s}
+  .news-item:last-child{border-bottom:none}
+  .news-item:hover{background:#0f1420;border-color:#2b3a56}
+  .news-tag-wrap{display:flex;align-items:center;gap:8px;color:#9aa7b7}
+  .news-dot{width:8px;height:8px;border-radius:50%;background:#586a89;opacity:.9}
+  .news-item[data-urgent="true"] .news-dot{background:#ff6b6b}
+  .news-tag{padding:2px 8px;border:1px solid #2b3854;background:#162136;border-radius:999px;font-size:12px;color:#cdd6e3;white-space:nowrap}
+  .news-title a{color:#e9edf4;text-decoration:none}
+  .news-title a:hover{text-decoration:underline}
+  .news-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.45}
+  .news-date{justify-self:end;color:#9aa0a6;font-size:12px;white-space:nowrap}
+  .news-foot{padding:10px 16px}
+  .link-ghost{color:#aeb7c6;font-size:12px}
+  .link-ghost:hover{text-decoration:underline}
+  /* ========= 手机端适配（写在 index 的 <style> 里就行） ========= */
+@media (max-width: 768px) {
+
+  /* 轮播高度不用死 360px，避免占太多屏幕 */
+  .hero{
+    height:auto;
+    min-height:220px;
+  }
+
+  /* 容器两边稍微缩一点 */
+  .container{
+    padding:0 10px;
+  }
+
+  /* 关键：四列布局在手机上改成一列竖排 */
+  .grid{
+    display:block;              /* 不用 grid 了 */
+    margin:16px 0 24px;
+  }
+
+  .grid > *{
+    width:100%;
+    margin-bottom:12px;         /* 每个卡片之间留一点间距 */
+  }
+
+  /* 通用：顶部条、页脚允许竖排（可选） */
+  .topbar .wrap,
+  footer .wrap{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<!-- 轮播 -->
+<div class="container">
+  <div class="hero" id="hero">
+    <div class="hero-slide active">
+      <img src="images/1.jpg" alt="校园风光 1"/>
+      <div class="caption">校园风光 · 北门</div>
+    </div>
+    <div class="hero-slide">
+      <img src="images/2.jpg" alt="校园风光 2"/>
+      <div class="caption">校园风光 · 夜景</div>
+    </div>
+    <div class="hero-slide">
+      <img src="images/3.jpg" alt="校园风光 3"/>
+      <div class="caption">校园风光 · 操场</div>
+    </div>
+
+    <div class="hero-dots">
+      <button class="active" aria-label="第 1 张"></button>
+      <button aria-label="第 2 张"></button>
+      <button aria-label="第 3 张"></button>
+    </div>
+  </div>
+
+  <!-- 主体四列 -->
+  <div class="grid">
+    <!-- 新闻（美化版） -->
+    <div class="news-card" id="newsCard">
+      <div class="news-head">
+        <h3>新闻 <span class="muted">NEWS</span></h3>
+      </div>
+      <ul id="newsList" class="news-list"></ul>
+    </div>
+
+    <!-- 通知公告 -->
+    <div class="card">
+      <h3>通知公告 <span class="muted">NOTICE</span></h3>
+      <ul class="list" id="noticeList">
+        <li id="liFinalNotice" class="hidden">
+    <a href="notices/20250630_case_archive_internal.html">
+      关于 2025-05-17 事件相关资料归档说明（内部）
+    </a>
+    <span class="muted small">2025-06-30</span>
+  </li>
+        <li><a href="notices/20250518_incident.html">关于 2025-05-17 事件的情况通报</a><span class="muted small">2025-05-18</span></li>
+        <li><a href="#" data-action="showExamNotice">期末考试安排公布（请登录教务系统）</a><span class="muted small">2025 秋季学期</span></li>
+        <li><a href="notices/20200901_lab_night_rules.html">实验室夜间使用规范（2020 修订）</a><span class="muted small">2020-09-01</span></li>
+        <li><a href="notices/20250519_counseling.html">学生心理中心开通“心理支持专线”</a><span class="muted small">2025-05-19</span></li>
+        <li><a href="notices/maintenance_report.html">近期学校设备维修申报表</a><span class="muted small">2025-05-10</span></li>
+        <li>
+  <a href="notices/20250915_recommendation_list.html">
+    关于公布 2025 届推免及直博拟录取名单的通知（部分）
+  </a>
+  <span class="muted small">2025-09-15</span>
+</li>
+<li><a href="notices/20250620_staff_changes.html">
+  关于部分教职工岗位调整及聘用关系的通知
+</a><span class="muted small">2025-06-20</span></li>
+
+
+      </ul>
+    </div>
+
+    <!-- 学术科研 -->
+    <div class="card">
+      <h3>学术科研 <span class="muted">RESEARCH</span></h3>
+      <ul class="list">
+        <li><span class="pill">项目</span><a href="notices/memviz_interface.html">“记忆可视化接口”获优秀实践项目</a><span class="muted small">2025-07-15</span></li>
+        <li><span class="pill">论文</span><a href="notices/trust_hci_course.html">可信人机交互课程改革试点结题</a><span class="muted small">2024-12-30</span></li>
+        <li><span class="pill">竞赛</span><a href="notices/20250506_contest_awards.html">多项编程竞赛学生获奖</a><span class="muted small">2025-05-06</span></li>
+      </ul>
+    </div>
+
+    <!-- 右侧：快捷入口 & 日历 -->
+    <div class="card side">
+      <div class="block">
+        <h3 style="margin:0 0 8px">快速通道 <span class="muted">QUICK LINKS</span></h3>
+        <a class="btn" href="scholarship.html">奖学金申报系统</a>
+        <a class="btn" href="counseling.html">学生心理中心预约</a>
+        <a class="btn" href="inbox.html">VPN / 邮箱</a>
+        <a class="btn" href="notices/20200901_lab_night_rules.html">实验室规范</a>
+      </div>
+      <div class="block">
+        <h3 style="margin:0 0 8px">校园活动 <span class="muted">CALENDAR</span></h3>
+        <ul class="list cal">
+          <li><span>图书馆夜读活动</span><span class="muted small">周三 19:00</span></li>
+          <li><span>实验室安全培训</span><span class="muted small">周五 14:30</span></li>
+          <li><span>校史馆志愿者招募</span><span class="muted small">本周内</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态（main.js 会自动注入/复用） -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code> 密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：player@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+<!-- 仅数据：把 NEWS 放在首页，main.js 会自动读取 -->
+<script>
+  window.NEWS_DATA = [
+    { date: "2025-05-18", title: "关于 2025-05-17 事件的情况通报（最终）", href: "notices/20250518_notice.html", tag: "通报", urgent: true },
+    // 管理员专属材料
+    { date: "2025-05-17", title: "信息化中心：B-4 楼当晚维护日志（节选）", href: "notices/maintenance_20250517_admin.html", tag: "技术", adminOnly: true },
+    { date: "2025-05-17", title: "保卫处：B-4 门禁刷卡记录（节选）", href: "notices/access_20250517.html", tag: "安保", adminOnly: true },
+    // 其它
+    { date: "2025-09-01", title: "清河大学 2025 级新生开学典礼举行", href: "notices/20250901_opening.html", tag: "校园" },
+    { date: "2025-08-20", title: "我校与清河市政府签署战略合作协议", href: "notices/20250820_coop.html", tag: "合作" },
+    { date: "2025-08-05", title: "暑期社会实践团队返校汇报", href: "notices/20250805_practice.html", tag: "实践" },
+    { date: "2025-05-19", title: "心理中心：面向全体学生开通“事件心理支持专线”", href: "notices/20250519_counseling.html", tag: "服务" }
+  ];
+</script>
+<!-- 轮播脚本（简单自动轮播 + 点选） -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dots button');
+    if (!slides.length) return;
+
+    let index = 0;
+    let timer = null;
+
+    function showSlide(i) {
+      slides[index].classList.remove('active');
+      dots[index].classList.remove('active');
+      index = i;
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+    }
+
+    function nextSlide() {
+      const i = (index + 1) % slides.length;
+      showSlide(i);
+    }
+
+    // 点击小圆点切换
+    dots.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        showSlide(i);
+        // 重置自动轮播计时
+        clearInterval(timer);
+        timer = setInterval(nextSlide, 5000);
+      });
+    });
+
+    // 自动轮播
+    timer = setInterval(nextSlide, 5000);
+  });
+</script>
+</body>
+</html>

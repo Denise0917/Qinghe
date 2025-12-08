@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>校史档案 - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/auth.js" defer></script>
+<script src="js/main.js" defer></script>
+<meta name="description" content="清河大学校史档案：沿革时间轴、数字档案检索、影像与图册、信息公开与借阅申请。含事件材料公开目录（节选）。">
+
+<style>
+  .cols{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+  .sec-h{margin:0;padding:12px 14px 8px;border-bottom:1px solid #202636}
+  .card .body{padding:12px 14px 16px}
+  .list{list-style:none;margin:0;padding:8px 0}
+  .list li{padding:10px 14px;border-bottom:1px dashed #223046}
+  .list li:last-child{border-bottom:none}
+  .small{font-size:12px} .muted a{color:#9aa7b7}
+  .pill{display:inline-block;padding:2px 8px;border:1px solid #2c3852;background:#152033;border-radius:999px;font-size:12px;margin-right:8px}
+  .tag{display:inline-block;padding:2px 8px;border:1px solid #2c3852;background:#152033;border-radius:999px;font-size:12px;margin-right:8px;white-space:nowrap}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .table{width:100%;border-collapse:collapse}
+  .table th,.table td{border-bottom:1px solid #202636;padding:10px 8px;text-align:left;vertical-align:top}
+  .table th{color:#cfd6df;font-weight:600;cursor:pointer}
+  .input, select, textarea{background:#0e1116;border:1px solid #1c2230;border-radius:6px;padding:8px 10px;color:#e8eaee;width:100%;box-sizing:border-box}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid #2a3347}
+  .note{background:#111a27;border:1px dashed #2b3b56;border-radius:8px;padding:10px 12px}
+  .sticky{position:sticky;top:12px}
+  .ghost{background:#141a28}
+  .mono{font:12px/1.6 ui-monospace,Consolas,monospace;background:#0d1320;border:1px solid #23304a;border-radius:6px;padding:8px;white-space:pre-wrap}
+  .truncate{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.45}
+  @media (max-width:1100px){ .cols{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} .grid-3,.gallery{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin" onclick="openLogin();return false;">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden" onclick="logout();location.reload();return false;">退出</a>
+      <a href="index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <!-- 左侧导航链接 -->
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+
+    <!-- 右侧站内搜索 -->
+    <form class="nav-search" id="siteSearchForm" action="search.html">
+      <input
+        type="text"
+        id="siteSearchInput"
+        name="q"
+        placeholder="搜索：B-4、门禁记录、奖学金…"
+        autocomplete="off"
+      />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" style="margin-top:12px;">
+  <div class="muted small" style="margin:6px 2px 10px;">
+    <a href="index.html">首页</a> · 校史档案
+  </div>
+
+  <div class="cols">
+    <!-- 主栏 -->
+    <main style="display:flex;flex-direction:column;gap:16px;">
+
+      <!-- 校史沿革 -->
+      <section class="card" id="timeline">
+        <h3 class="sec-h">校史沿革 <span class="muted">HISTORY TIMELINE</span></h3>
+        <div class="body">
+          <ul class="list" id="tl">
+            <li><span class="pill">1958</span> 清河大学肇建，设工学、理学两科</li>
+            <li><span class="pill">1978</span> 恢复招生，成立计算机研究室</li>
+            <li><span class="pill">1998</span> 信息学部成立</li>
+            <li><span class="pill">2015</span> 智能感知与交互实验室（ISIL）挂牌</li>
+            <li><span class="pill">2022</span> 省重点实验室入选</li>
+            <li><span class="pill">2025</span> 校史馆升级开放 · “清河记忆”数字化项目启动</li>
+          </ul>
+          <button class="btn ghost" onclick="toggleTL()">收起/展开</button>
+        </div>
+      </section>
+
+      <!-- 数字档案检索 -->
+      <section class="card" id="search">
+        <h3 class="sec-h">数字档案检索 <span class="muted">DIGITAL ARCHIVES</span></h3>
+        <div class="body">
+          <div class="grid-3" style="margin-bottom:10px;">
+            <input id="kw" class="input" placeholder="关键词（标题/摘要/编号），如：门禁、维护、公告…"/>
+            <select id="yearSel" class="input"><option value="">全部年份</option></select>
+            <select id="typeSel" class="input">
+              <option value="">全部类型</option>
+              <option>通告</option><option>会议纪要</option><option>维护日志</option><option>门禁记录</option><option>照片/影像</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:8px;">
+            <button class="btn" onclick="doFilter()">检索</button>
+            <button class="btn ghost" onclick="resetFilter()">重置</button>
+            <button class="btn" onclick="exportJSON()">导出结果 JSON</button>
+          </div>
+          <table class="table" id="arcTable">
+            <thead>
+              <tr>
+                <th data-sort="date">日期</th>
+                <th>标题</th>
+                <th data-sort="type">类型</th>
+                <th>编号</th>
+                <th>公开级别</th>
+              </tr>
+            </thead>
+            <tbody><!-- JS 渲染 --></tbody>
+          </table>
+          <div class="note small" style="margin-top:8px;">
+            注：检索结果为已公开或经脱敏处理的目录项；涉及个人隐私、实验室敏感信息的原件不在网上展示。
+          </div>
+        </div>
+      </section>
+
+      <!-- 事件材料公开目录（节选） -->
+      <section class="card" id="events">
+        <h3 class="sec-h">事件材料公开目录（节选） <span class="muted">OPEN INDEX (EXCERPT)</span></h3>
+        <div class="body">
+          <ul class="list">
+            <li>
+              <span class="tag">通报</span>
+              <a class="link" href="notices/20250518_incident.html">关于 2025-05-17 事件的情况通报（更新版）</a>
+              <span class="muted small">· 校办发布</span>
+            </li>
+            <li>
+              <span class="tag">门禁记录</span>
+              <a class="link" href="notices/access_20250517.html">B-4 楼门禁刷卡记录（节选）</a>
+              <span class="muted small">· 保卫处</span>
+            </li>
+            <li>
+              <span class="tag">维护日志</span>
+              <a class="link" href="notices/maintenance_20250517_admin.html">信息化中心设备维护记录（含 21:40–22:20 信号异常）</a>
+              <span class="muted small">· 信息化中心</span>
+            </li>
+            <li>
+              <span class="tag">心理支持</span>
+              <a class="link" href="counseling.html">学生心理中心：事件后续心理支持专线</a>
+              <span class="muted small">· 学工部</span>
+            </li>
+          </ul>
+          <p class="muted small">说明：以上目录项为对社会公开部分；完整材料需依法依规申请阅览。</p>
+        </div>
+      </section>
+
+      <!-- 影像与图册 -->
+      <section class="card" id="gallery">
+        <h3 class="sec-h">影像与图册 <span class="muted">GALLERY</span></h3>
+        <div class="body">
+          <div class="gallery">
+            <a href="images/hero_campus_day.jpg" target="_blank"><img src="images/hero_campus_day.jpg" alt="清河大学主楼（白天）"/></a>
+            <a href="images/hero_campus_night.jpg" target="_blank"><img src="images/hero_campus_night.jpg" alt="清河大学主楼（夜景）"/></a>
+            <a href="images/hero_campus_close.jpg" target="_blank"><img src="images/hero_campus_close.jpg" alt="宿舍外景特写"/></a>
+          </div>
+          <p class="muted small" style="margin-top:6px;">更多历史影像征集中，欢迎校友提供素材。</p>
+        </div>
+      </section>
+
+      <!-- 档案借阅 / 信息公开申请 -->
+      <section class="card" id="request">
+        <h3 class="sec-h">档案借阅与信息公开申请 <span class="muted">REQUEST</span></h3>
+        <div class="body grid-2">
+          <div>
+            <form id="reqForm" onsubmit="submitReq(event)">
+              <label class="small">申请人（姓名/学号或工号）</label>
+              <input id="r_name" class="input" placeholder="如：张三 / 2025A0317"/>
+              <label class="small" style="margin-top:8px;">联系方式（邮箱）</label>
+              <input id="r_mail" class="input" placeholder="如：you@stu.qh.edu"/>
+              <label class="small" style="margin-top:8px;">申请事项</label>
+              <select id="r_type" class="input">
+                <option>学籍/成绩证明</option>
+                <option>科研项目材料查阅</option>
+                <option>其他</option>
+              </select>
+              <label class="small" style="margin-top:8px;">所需档案关键字/编号</label>
+              <input id="r_kw" class="input" placeholder="如：成绩单"/>
+              <label class="small" style="margin-top:8px;">用途说明</label>
+              <textarea id="r_desc" class="input" rows="4" placeholder="请简要说明用途…"></textarea>
+              <div class="note small" style="margin:8px 0;">
+                温馨提示：依法保护个人隐私与科研安全，部分材料仅提供经脱敏的查阅副本。
+              </div>
+              <div style="display:flex;gap:8px;justify-content:flex-end">
+                <button class="btn ghost" type="button" onclick="clearReq()">清空</button>
+                <button class="btn primary" type="submit">提交申请</button>
+              </div>
+            </form>
+          </div>
+          <div>
+            <h4 style="margin:0 0 8px;">我的申请记录</h4>
+            <ul class="list" id="reqList">
+              <li class="small muted">登录后将展示最近 5 条记录。</li>
+            </ul>
+            <p class="muted small">说明：仅保存在本机以便你回查，正式以邮箱回执为准。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 开放数据（试运行，暂未开放） -->
+      <section class="card" id="open">
+        <h3 class="sec-h">开放数据（试运行） <span class="muted">OPEN DATA</span></h3>
+        <div class="body">
+          <p class="small muted">以下为示例 API 返回（固定示例，非真实接口）：</p>
+          <pre class="mono" id="openData"></pre>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 侧栏 -->
+    <aside class="card side sticky">
+      <div class="block">
+        <h3 style="margin:0 0 8px;">快速入口</h3>
+        <a class="btn" href="#search">数字档案检索</a>
+        <a class="btn" href="#events">公开目录</a>
+        <a class="btn" href="#request">申请与借阅</a>
+        <a class="btn" href="#gallery">影像图册</a>
+      </div>
+      <div class="block">
+        <h3 style="margin:0 0 8px;">档案室联系方式</h3>
+        <p class="small">校史馆 · 一层<br/>档案室：010-****-****<br/>邮箱：archive@qh.edu</p>
+        <p class="small muted">开放时间：工作日 9:00–11:30 / 14:00–17:00</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="overview.html">学校概况</a> · <a href="organization.html">组织机构</a> · <a href="education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<script>
+/* ====== 时间轴折叠 ====== */
+let tlCollapsed = false;
+function toggleTL(){
+  const ul = document.getElementById('tl');
+  if(!tlCollapsed){
+    // 折叠为最近三条
+    [...ul.children].forEach((li,idx)=>{ if(idx<ul.children.length-3) li.style.display='none'; });
+  }else{
+    [...ul.children].forEach(li=> li.style.display='');
+  }
+  tlCollapsed = !tlCollapsed;
+}
+
+/* ====== 档案目录数据（可继续扩充） ====== */
+const ARCH = [
+  {date:'2025-05-18', title:'关于 2025-05-17 事件的情况通报（更新版）', type:'通告',   code:'QH-AN-20250518-01', public:'公开', href:'notices/20250518_incident.html'},
+  {date:'2025-05-17', title:'B-4 门禁刷卡记录（节选）',                      type:'门禁记录', code:'QH-SC-20250517-AC', public:'公开节选', href:'notices/access_20250517.html'},
+  {date:'2025-05-17', title:'信息化中心维护记录（B4-CAM-2 信号抖动）',       type:'维护日志', code:'QH-IT-20250517-02', public:'公开节选', href:'notices/maintenance_20250517_admin.html'},
+  {date:'2025-05-19', title:'心理中心：事件后续心理支持专线开通',            type:'通告',   code:'QH-SS-20250519-PS', public:'公开', href:'counseling.html'},
+  {date:'2024-12-30', title:'可信人机交互课程改革试点结题报告',                type:'会议纪要', code:'QH-EDU-20241230-CR', public:'校内', href:'#'},
+  {date:'2024-10-08', title:'校史馆数字化项目立项书（节选）',                  type:'会议纪要', code:'QH-ARC-20241008-01', public:'公开', href:'#'},
+  {date:'2023-06-01', title:'校友捐赠入库清单（第二批）',                      type:'照片/影像', code:'QH-ARC-20230601-AL', public:'公开', href:'#'}
+];
+
+/* ====== 年份下拉初始化 ====== */
+(function initYears(){
+  const years = Array.from(new Set(ARCH.map(a=>a.date.slice(0,4)))).sort((a,b)=>b-a);
+  const sel = document.getElementById('yearSel');
+  years.forEach(y=>{ const opt=document.createElement('option'); opt.value=y; opt.textContent=y; sel.appendChild(opt); });
+})();
+
+/* ====== 渲染目录 ====== */
+const tbody = document.querySelector('#arcTable tbody');
+function renderRows(rows){
+  tbody.innerHTML = rows.map(r=>`
+    <tr>
+      <td>${r.date}</td>
+      <td class="truncate" title="${r.title}">${r.href ? `<a class="link" href="${r.href}">${r.title}</a>` : r.title}</td>
+      <td>${r.type}</td>
+      <td>${r.code}</td>
+      <td>${r.public}</td>
+    </tr>
+  `).join('');
+}
+function doFilter(){
+  const kw = document.getElementById('kw').value.trim().toLowerCase();
+  const y  = document.getElementById('yearSel').value.trim();
+  const t  = document.getElementById('typeSel').value.trim();
+  let rows = ARCH.slice().filter(r=>{
+    const hitKw = kw ? (r.title + ' ' + r.code + ' ' + r.type).toLowerCase().includes(kw) : true;
+    const hitY  = y ? r.date.startsWith(y) : true;
+    const hitT  = t ? r.type===t : true;
+    return hitKw && hitY && hitT;
+  });
+  rows.sort((a,b)=> b.date.localeCompare(a.date) || a.code.localeCompare(b.code));
+  renderRows(rows);
+}
+function resetFilter(){ document.getElementById('kw').value=''; document.getElementById('yearSel').value=''; document.getElementById('typeSel').value=''; doFilter(); }
+
+/* ====== 表头排序（日期/类型） ====== */
+document.addEventListener('DOMContentLoaded', ()=>{
+  refreshUserBar();
+  doFilter();
+  document.querySelectorAll('#arcTable thead th[data-sort]').forEach(th=>{
+    let asc=false;
+    th.addEventListener('click', ()=>{
+      const key = th.dataset.sort;
+      const rows = Array.from(tbody.querySelectorAll('tr')).map(tr=>{
+        const tds = tr.children;
+        return { date:tds[0].textContent.trim(), title:tds[1].textContent.trim(), type:tds[2].textContent.trim(), code:tds[3].textContent.trim(), public:tds[4].textContent.trim() };
+      });
+      rows.sort((a,b)=>{
+        if(key==='date') return asc ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date);
+        if(key==='type') return asc ? a.type.localeCompare(b.type) : b.type.localeCompare(a.type);
+        return 0;
+      });
+      asc = !asc;
+      renderRows(rows);
+    });
+  });
+
+  // 登录后展示“我的申请记录”
+  refreshReqList();
+  // 开放数据示例
+  document.getElementById('openData').textContent = JSON.stringify({
+    api:"/api/archive/search", q:"B-4", total:2, items: ARCH.filter(x=>x.title.includes('B-4')).map(x=>({date:x.date,type:x.type,code:x.code}))
+  }, null, 2);
+});
+
+/* ====== 申请表：本地保存回显 ====== */
+function submitReq(e){
+  e.preventDefault();
+  const name=document.getElementById('r_name').value.trim();
+  const mail=document.getElementById('r_mail').value.trim();
+  const type=document.getElementById('r_type').value.trim();
+  const kw=document.getElementById('r_kw').value.trim();
+  const desc=document.getElementById('r_desc').value.trim();
+  if(!name || !mail || !type){ alert('请填写必要信息'); return; }
+  const arr = JSON.parse(localStorage.getItem('qh_arc_req')||'[]');
+  const ts = new Date().toLocaleString();
+  const id = 'AR-'+Date.now().toString().slice(-8);
+  arr.unshift({id,name,mail,type,kw,desc,ts});
+  localStorage.setItem('qh_arc_req', JSON.stringify(arr));
+  clearReq(); refreshReqList(); alert('已提交，回执号：'+id+'（请留意邮箱通知）');
+}
+function clearReq(){ document.getElementById('reqForm').reset(); }
+function refreshReqList(){
+  const ul = document.getElementById('reqList');
+  const auth = getAuth();
+  const arr = JSON.parse(localStorage.getItem('qh_arc_req')||'[]');
+  if(!auth){ ul.innerHTML = '<li class="small muted">登录后将展示最近 5 条记录。</li>'; return; }
+  ul.innerHTML = arr.slice(0,5).map(x=>`
+    <li><span class="pill">回执</span>${x.id} · ${x.type} · <span class="muted small">${x.ts}</span>
+    <div class="muted small">关键词：${x.kw||'—'} · 申请人：${x.name}</div></li>
+  `).join('') || '<li class="small muted">暂无记录</li>';
+}
+
+/* ====== 小增强：标题全显提示（已给 title；此处兼容触屏长按复制） ====== */
+document.addEventListener('mouseover', (e)=>{
+  const td = e.target.closest('td.truncate'); if(td){ td.title = td.textContent.trim(); }
+});
+
+/* ====== 彩蛋：按 B -> 4 展示一条“延后处理”的索引占位（仅本地可见） ====== */
+(function secret(){
+  let seq=[];
+  document.addEventListener('keydown',(e)=>{
+    seq.push(e.key.toUpperCase()); if(seq.length>2) seq.shift();
+    if(seq[0]==='B' && seq[1]==='4'){
+      ARCH.push({date:'2025-05-17', title:'B-4-231 场地清理工单（只读占位）', type:'维护日志', code:'QH-IT-20250517-PL', public:'只读占位', href:'#'});
+      doFilter();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>关于进一步规范实验室夜间使用的通知（2025 修订） - 清河大学</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<script src="../js/main.js" defer></script>
+<script src="../js/auth.js" defer></script>
+<style>
+  :root{ color-scheme: dark; }
+  body{
+  margin:0;
+  background:#0c1119;
+  color:#e8eaee;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+  font-size:17px;
+}
+
+  a{ color:#cfd6df; text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .hidden{ display:none !important; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .muted{ color:#9aa0a6; } .small{ font-size:12px; }
+
+  .topbar{ background:#0f1320; border-bottom:1px solid #1d2331; color:#c9ced8; font-size:12px; }
+  .topbar .wrap{ max-width:1200px; margin:0 auto; padding:8px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .badge-u{ display:inline-block; margin-left:6px; padding:1px 6px; border-radius:999px; border:1px solid #3a465f; font-size:12px; background:#203047; color:#aee; }
+
+  .mast{ max-width:1200px; margin:0 auto; padding:0 14px; }
+  .brand{ display:flex; align-items:center; gap:12px; padding:14px 0; }
+  .brand img{ width:52px; height:52px; border-radius:10px; border:1px solid #2a3142; background:#111; }
+  .brand .cn{ font-weight:800; font-size:24px; letter-spacing:.5px; }
+  .brand .en{ font-size:12px; color:#98a0ab; }
+
+  .nav{ background:#0f1320; border-top:1px solid #1d2331; border-bottom:1px solid #1d2331; }
+  .nav .wrap.nav-wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .nav-links{ display:flex; gap:22px; flex-wrap:nowrap; }
+  .nav a{ display:inline-block; padding:12px 0; color:#e8eaee; }
+  .nav a:hover{ color:#fff; }
+
+  .nav-search{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left:auto;
+  }
+  .nav-search input{
+    width:220px;
+    max-width:260px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #262d3f;
+    background:#0c1119;
+    color:#e8eaee;
+    font-size:13px;
+    outline:none;
+  }
+  .nav-search input::placeholder{ color:#737b8c; }
+  .nav-search input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px rgba(59,130,246,.35);
+  }
+  .nav-search button{
+    padding:5px 12px;
+    border-radius:999px;
+    border:1px solid #36527a;
+    background:#1f2a3f;
+    color:#e8eaee;
+    font-size:13px;
+    cursor:pointer;
+  }
+  .nav-search button:hover{
+    border-color:#4f7dd9;
+    background:#243455;
+  }
+
+  .card{ background:#141822; border:1px solid #202636; border-radius:12px; padding:18px 18px 20px; margin:20px 0 26px; }
+
+  h1{ margin:0 0 10px; font-size:22px; }
+  h2{ margin:18px 0 10px; font-size:18px; }
+  .meta-line{ font-size:12px; color:#9aa0a6; margin-bottom:12px; }
+
+  .section-title{
+    margin-top:14px;
+    margin-bottom:6px;
+    font-weight:600;
+  }
+  .norm-list{
+    margin:0 0 4px 1.3em;
+    padding:0;
+    list-style:disc;
+    font-size:14px;
+    line-height:1.7;
+  }
+
+  .note-box{
+    margin-top:16px;
+    padding:10px 12px;
+    border-radius:8px;
+    background:#111724;
+    border:1px dashed #28334a;
+    font-size:12px;
+    color:#9aa0a6;
+    line-height:1.6;
+  }
+
+  footer{ background:#0f1320; border-top:1px solid #1d2331; margin-top:24px; }
+  footer .wrap{ max-width:1200px; margin:0 auto; padding:18px 14px; color:#97a0ad; font-size:12px; display:flex; justify-content:space-between; }
+
+  /* 兜底登录模态（main.js 会自动复用） */
+  #loginMask{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:999; }
+  #loginMask .box{ width:380px; background:#141822; border:1px solid #202636; border-radius:12px; padding:16px; }
+  .input{ background:#0e1116; border:1px solid #1c2230; border-radius:6px; padding:8px 10px; color:#e8eaee; width:100%; box-sizing:border-box; }
+  .btn{ background:#1b2333; border:1px solid #2a3347; border-radius:8px; color:#e8eaee; padding:8px 12px; cursor:pointer; }
+  .btn.primary{ background:#21406b; border-color:#2c538a; }
+  .btn:hover{ border-color:#3a4661; }
+</style>
+</head>
+<body>
+
+<!-- 顶部细栏 -->
+<div class="topbar">
+  <div class="wrap">
+    <div>欢迎访问清河大学官方网站</div>
+    <div id="userArea">
+      <a href="../inbox.html" id="inboxLink">收件箱</a>
+      <span id="userName" style="margin:0 8px;">未登录</span>
+      <a href="#" id="btnLogin">学生登录</a>
+      <a href="#" id="btnLogout" class="hidden">退出</a>
+      <a href="../index.html">首页</a>
+    </div>
+  </div>
+</div>
+
+<!-- 品牌与主导航 -->
+<div class="mast">
+  <div class="brand">
+    <img src="../images/logo.png" alt="清河大学校徽"/>
+    <div>
+      <div class="cn">清河大学</div>
+      <div class="en">QINGHE UNIVERSITY</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap nav-wrap">
+    <div class="nav-links">
+      <a href="/index.html">首页</a>
+      <a href="/overview.html">学校概况</a>
+      <a href="/organization.html">组织机构</a>
+      <a href="/education.html">教育教学</a>
+      <a href="/research.html">科学研究</a>
+      <a href="/admission.html">招生就业</a>
+      <a href="/campus.html">校园服务</a>
+      <a href="/faculty.html">教师队伍</a>
+      <a href="/archive.html">校史档案</a>
+    </div>
+    <form class="nav-search" action="/search.html">
+      <input type="text" name="q" placeholder="搜索：B-4、门禁记录、奖学金…"/>
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h1>关于进一步规范实验室夜间使用的通知（2020 修订）</h1>
+    <div class="meta-line">
+      发布单位：实验室与设备管理处　|　联合单位：信息化中心、保卫处　|　发布日期：2020-09-01
+    </div>
+
+    <p class="small muted">
+      为切实加强实验室安全管理，防范夜间违规实验引发的安全风险，保障广大师生人身安全和校园稳定，
+      学校在系统梳理近年来实验室安全隐患排查情况、结合省内外相关事故教训
+      （含本校 <strong>B-4 实验楼夜间曾发生的个别极端事件</strong>）基础上，
+      对《清河大学实验室夜间使用规范》进行了修订。
+      现将有关事项通知如下——
+    </p>
+
+    <h2>一、总体原则</h2>
+    <ul class="norm-list">
+      <li>坚持“安全第一、预防为主、风险可控”的原则，严格控制实验室夜间开放。</li>
+      <li>自本通知发布之日起，学校实验室实行<strong>白天集中开放、夜间原则封闭</strong>的管理模式。</li>
+      <li>任何单位和个人不得以科研、竞赛或课程等理由，突破学校夜间封闭管理的底线要求。</li>
+    </ul>
+
+    <h2>二、开放时段与门禁管理</h2>
+    <p class="section-title">（一）日间开放时段</p>
+    <ul class="norm-list">
+      <li>全校实验楼（含 B-4 楼）统一开放时间为：<strong>每日 6:30–20:00</strong>。</li>
+      <li>各单位可在上述时间段内，按需安排课程实验、项目科研、学生创新实践等活动。</li>
+      <li>日间使用仍须遵守预约制度和实验室安全操作规程，严禁超负荷、超范围使用仪器设备。</li>
+    </ul>
+
+    <p class="section-title">（二）夜间封闭管理</p>
+    <ul class="norm-list">
+      <li><strong>每日 20:00 至次日 6:30</strong>，全校实验楼一律实施封闭管理，不再对师生开放。</li>
+      <li>
+        夜间时段内，仅保卫处、后勤值班人员的必要巡查和应急处置权限，其他人员（含教职工、研究生、本科生等）
+        一律不得以任何形式进入实验室、机房或附属实验用房。
+      </li>
+      <li>B-4 楼等重点实验楼将适当增加夜间视频巡检频次和门禁日志抽查力度。</li>
+    </ul>
+
+    <h2>三、夜间实验管理要求</h2>
+
+    <p class="section-title">（一）禁止进入的时段</p>
+    <ul class="norm-list">
+      <li>自本规定发布之日起，所有实验楼在<strong>每日 20:00 至次日 6:30</strong>期间一律封闭管理。</li>
+      <li>上述时段内，任何学生、研究生及教职员工均不得以任何理由进入实验室、机房或附属实验用房。</li>
+    </ul>
+
+    <p class="section-title">（二）管理说明</p>
+    <ul class="norm-list">
+      <li>所有实验数据采集、仪器操作、程序调试等工作须在白天开放时段内合理安排完成。</li>
+      <li>导师、项目负责人不得以科研进度、课程要求、竞赛准备等理由安排或暗示学生在夜间进入实验室。</li>
+      <li>确需进行长时间监测的项目，应通过调整实验方案、使用自动记录设备等方式，在日间值守条件下完成。</li>
+      <li>各学院须定期对师生进行实验室安全教育和心理健康提示，引导师生科学安排作息，避免超负荷工作。</li>
+    </ul>
+
+    <p class="section-title">（三）违规处理</p>
+    <ul class="norm-list">
+      <li>任何人员擅自于 20:00 后进入实验楼，将视为违反校纪校规，按照实验室安全管理条例严肃处理。</li>
+      <li>指导教师、管理人员若存在授意、默许或协助学生夜间进入实验室的行为，将视情节追究管理责任直至纪律处分。</li>
+      <li>若因违规夜间进入实验室导致安全事故或人员伤亡，将依法依规追究相关责任人的法律责任；涉嫌违法犯罪的，移交司法机关处理。</li>
+    </ul>
+
+    <h2>四、附则</h2>
+    <ul class="norm-list">
+      <li>本通知自 <strong>2020 年 9 月 1 日</strong>起施行，与本规定不一致的原有条款同时废止。</li>
+      <li>各学院、各实验平台可在本规范基础上制定更严格的内部细则，并报实验室与设备管理处备案。</li>
+      <li>本通知由实验室与设备管理处负责解释，联系人：lab@qh.edu；如涉及门禁技术配置，请联系信息化中心。</li>
+    </ul>
+
+    <div class="note-box">
+      提示：为避免夜间长时间滞留实验楼引发的身心风险，特别是防范个别场所曾出现的极端个案再次发生，
+      请广大师生合理规划实验进度和作息时间，关注自身及身边同学的心理状态。
+      如因学业与科研压力产生明显困扰，可通过学生心理中心网站或“心理支持专线”预约咨询服务。
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>版权所有 © 2025 清河大学</div>
+    <div><a href="../overview.html">学校概况</a> · <a href="../organization.html">组织机构</a> · <a href="../education.html">教育教学</a></div>
+  </div>
+</footer>
+
+<!-- 兜底登录模态 -->
+<div id="loginMask">
+  <div class="box">
+    <h3 style="margin:0 0 8px">账号登录</h3>
+    <p class="small">示例：林镜 <code>linjing@stu.qh.edu</code>　密码 <code>qh-2025</code></p>
+    <label class="small">邮箱</label>
+    <input id="inpUser" class="input" placeholder="如：player@stu.qh.edu 或 2025X0001"/>
+    <label class="small" style="margin-top:8px;display:block">密码</label>
+    <input id="inpPass" type="password" class="input" placeholder="请输入密码"/>
+    <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" data-k="cancel">取消</button>
+      <button class="btn primary" data-k="ok">登录</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
